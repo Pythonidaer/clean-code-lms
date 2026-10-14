@@ -70,6 +70,13 @@ def unit_slides(unit):
                 if current and length+len(piece)>2200:flush()
                 current.append(piece);length+=len(piece)+2
     flush()
+    # Keep short examples beside their explanations instead of making one-line slides.
+    combined=[]
+    for title,body in slides:
+        if combined and combined[-1][0]==title and len(combined[-1][1])+len(body)+2<=3200 and 'listing part ' not in title:
+            combined[-1]=(title,combined[-1][1]+'\n\n'+body)
+        else:combined.append((title,body))
+    slides=combined
     # Repeated slide titles receive a stable continuation label, not new invented topics.
     counts={};total={}
     for title,_ in slides:total[title]=total.get(title,0)+1

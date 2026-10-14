@@ -2,7 +2,7 @@
 
 Live course: https://pythonidaer.github.io/clean-code-lms/
 
-A chapter-based course: **14 core chapters, one optional advanced chapter, 131 source-subsection decks, 161 total decks, 983 slides, 15 chapter quizzes with 75 questions, and an independent 20-question core final.**
+A chapter-based course: **14 core chapters, one optional advanced chapter, 131 source-subsection decks, 161 total decks, 555 slides, 15 chapter quizzes with 75 questions, and an independent 20-question core final.**
 
 ## Curriculum
 

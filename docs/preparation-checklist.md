@@ -30,5 +30,5 @@
 - [x] Chapters 15–16 deferred
 - [x] Practical chapter checks and independent core final written
 - [x] Source subsection, prose, code-line and figure coverage checks pass
-- [ ] Final browser and publication checks complete
+- Final browser and publication status: see the latest [GitHub Actions checks](https://github.com/Pythonidaer/clean-code-lms/actions).
 - [ ] Owner review of the learning experience
