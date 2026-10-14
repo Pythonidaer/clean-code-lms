@@ -60,7 +60,7 @@ const LMS = (() => {
         if(node.tagName==='TD'||node.tagName==='TH')return text+'\t';
         return blocks.has(node.tagName)?'\n'+text+'\n':text;
       };
-      return read(holder).trim();
+      return read(holder).replace(/^\n+|\n+$/g,'');
     };
     const parts=[course.title,plain(course.description)];
     const visit=(node,depth=1)=>{
