@@ -1,17 +1,15 @@
 # Source and component notices
 
-## User supplied source
+## User supplied book
 
-The course is based on the 67-page PDF supplied by the repository owner, titled Clean Code: A Handbook of Agile Software Craftsmanship, credited to Robert C. Martin and the Object Mentors. Its copyright page states © 2009 Pearson Education, Inc. All rights reserved. The foreword is by James O. Coplien. The complete extracted text, including the original copyright notice and credits, is retained in `docs/clean-code-extracted.txt` and the source-reference lessons.
+The course adapts the owner's supplied full PDF of Clean Code: A Handbook of Agile Software Craftsmanship, credited to Robert C. Martin and the Object Mentors, published by Pearson Education. Original copyright, rights and notices continue to apply. Source chapter text, code and seven teaching figures are transcribed or extracted into chapter files and the agreed LMS. This source is not relabeled MIT or Creative Commons; uploading or extracting a copy does not establish redistribution rights.
 
-This material is not relabeled as MIT or Creative Commons content. An uploaded copy and an extraction do not establish redistribution rights. The original notices continue to apply. The course does not claim to include missing chapters or reproduce the book's illustrations.
+The credited Object Mentors include Robert C. Martin, Michael C. Feathers, Timothy R. Ottinger, Jeffrey J. Langr, Brett L. Schuchert, James W. Grenning and Kevin Dean Wampler. Chapter 2 is credited to Tim Ottinger. The index is separate reference material. Appendices, epilogue and publication material are excluded from the course.
 
-Guided explanations, JavaScript examples, practice tasks and quiz questions were authored for this LMS. They are clearly separated from verbatim source-reference pages. No missing chapter text or numbered heuristic was reconstructed.
+Goals, exercises, worked checks and assessments are authored LMS material. Historical source listings are not a claim of executable modern programs or universally binding rules.
 
-## Reference LMS components
+## Reference LMS and Marked
 
-The learner runtime, stylesheet and safe Markdown adapter were adapted from the owner's `Pythonidaer/json-lms` repository, with the course schema cross-checked against `Pythonidaer/graphql-lms`. Course-specific report examples and theme tokens were updated for Clean Code.
+The schema and learner behavior follow the owner's Pythonidaer/json-lms and Pythonidaer/graphql-lms projects. This adaptation supports optional advanced prerequisites and packaged figures.
 
-## Marked
-
-The bundled Marked Markdown renderer is provided under its upstream MIT license, retained verbatim in `vendor/marked.LICENSE.md`.
+The bundled Marked renderer is provided under its upstream MIT license, retained in vendor/marked.LICENSE.md.

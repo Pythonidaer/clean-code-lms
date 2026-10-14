@@ -14,11 +14,11 @@ const LMS = (() => {
     const seen = new Set();
     const str = (v, max = 20000) => String(v ?? '').slice(0, max);
     const id = value => {const v = str(value,100); if(!/^[\w-]+$/.test(v)||['__proto__','constructor','prototype'].includes(v)||seen.has(v))throw Error('Course IDs must be unique.');seen.add(v);return v;};
-    const quiz = n => ({id:id(n.id),type:'quiz',...(str(n.skill,200).trim()?{skill:str(n.skill,200)}:{}),title:str(n.title,200).replace(/^(\d+)\s*[·•]\s*/, '$1 ')||'Quiz',questions:(Array.isArray(n.questions)?n.questions:[]).map(q=>({id:id(q.id),prompt:str(q.prompt,1000),options:(Array.isArray(q.options)?q.options:[]).map(v=>str(v,500)),answer:Number.isInteger(q.answer)?q.answer:0,explanation:str(q.explanation,2000)}))});
+    const quiz = n => ({id:id(n.id),type:'quiz',optional:n.optional===true,...(str(n.skill,200).trim()?{skill:str(n.skill,200)}:{}),title:str(n.title,200).replace(/^(\d+)\s*[·•]\s*/, '$1 ')||'Quiz',questions:(Array.isArray(n.questions)?n.questions:[]).map(q=>({id:id(q.id),prompt:str(q.prompt,1000),options:(Array.isArray(q.options)?q.options:[]).map(v=>str(v,500)),answer:Number.isInteger(q.answer)?q.answer:0,explanation:str(q.explanation,2000)}))});
     const node = n => {
       if(!n||typeof n!=='object')throw Error('Invalid course item.');
       if(n.type==='quiz')return quiz(n);
-      const base={id:id(n.id),type:n.type,title:str(n.title,200).replace(/^(\d+)\s*[·•]\s*/, '$1 ')||'Untitled'};
+      const base={id:id(n.id),type:n.type,optional:n.optional===true,title:str(n.title,200).replace(/^(\d+)\s*[·•]\s*/, '$1 ')||'Untitled'};
       if(n.type==='section'){if(!Array.isArray(n.children))throw Error('Section children must be a list.');return {...base,children:n.children.map(node)};}
       if(n.type==='slides')return {...base,slides:(Array.isArray(n.slides)?n.slides:[]).map(s=>({id:id(s.id),title:str(s.title,200),body:str(s.body)}))};
       if(n.type==='video')return {...base,url:mediaURL(n.url),captions:mediaURL(n.captions),transcript:str(n.transcript),description:str(n.description,2000)};
@@ -87,8 +87,9 @@ const LMS = (() => {
     const captureOutline=()=>{for(const el of root.querySelectorAll('details[data-lms-section]'))if(sectionIds.has(el.dataset.lmsSection))progress.outline[el.dataset.lmsSection]=el.open;};
     const save=()=>{captureOutline();progress.last=active;try{storage.setItem(key,JSON.stringify(progress));}catch{saveError=true;}};
     const current=()=>all.find(n=>n.id===active);
-    const completed=()=>lessons.filter(n=>record(n).completed).length;
-    const locked=n=>(progress.unlockAll??course.settings.unlockAll)?false:n.id===course.finalQuiz.id?(course.settings.requireLessons&&completed()<lessons.length):course.settings.sequential&&lessons.slice(0,lessons.findIndex(x=>x.id===n.id)).some(x=>!record(x).completed);
+    const requiredLessons=lessons.filter(n=>!n.optional);
+    const completed=()=>requiredLessons.filter(n=>record(n).completed).length;
+    const locked=n=>(progress.unlockAll??course.settings.unlockAll)?false:n.id===course.finalQuiz.id?(course.settings.requireLessons&&completed()<requiredLessons.length):course.settings.sequential&&lessons.slice(0,lessons.findIndex(x=>x.id===n.id)).some(x=>!record(x).completed);
     const finalPassed=()=>record(course.finalQuiz).completed;
     const announce=text=>{root.querySelector('#lms-live').textContent=text;};
     const focusMain=()=>root.querySelector('#lms-heading')?.focus({preventScroll:true});
@@ -111,7 +112,7 @@ const LMS = (() => {
       return title+'<p>Passing score: '+course.settings.passScore+'%. '+(course.settings.allowRetakes?'Retakes allowed.':'One attempt per learner in this browser.')+'</p>'+(latest?'<p class="lms-result" role="status">Latest score: '+latest.score+'% · '+(latest.passed?'Passed':'Not passed')+' · Attempts: '+r.attempts.length+'</p>':'')+(quizResult?'<div class="lms-feedback">'+n.questions.map((q,i)=>'<p><strong>Question '+(i+1)+': '+(quizResult[i]===q.answer?'Correct':'Review')+'</strong> '+escape(q.explanation)+'</p>').join('')+'</div>':'')+(n.questions.length&&canAttempt?'<form id="lms-quiz">'+optionsHTML(n)+'<button class="lms-primary" type="submit">Submit '+(n.id===course.finalQuiz.id?'final quiz':'quiz')+'</button></form>':!n.questions.length?'<p>No questions yet. Add them in the builder.</p>':'<p>Retakes are disabled in course settings.</p>');
     }
     const reportRows=()=>all.filter(n=>n.type==='quiz').map(n=>{const r=record(n);return {name:n.title,skill:n.skill||n.title,attempts:r.attempts.length,score:r.attempts.length?Math.max(...r.attempts.map(a=>a.score)):null,complete:r.completed};});
-    const sampleRows=()=>[{name:'Quiz',skill:'Sample skill',attempts:1,score:100,complete:true},{name:'Final quiz',skill:'Final quiz',attempts:0,score:null,complete:false}];
+    const sampleRows=()=>[{name:'Chapter 2 check',skill:'Meaningful Names',attempts:1,score:100,complete:true},{name:'Chapter 3 check',skill:'Functions',attempts:1,score:80,complete:true},{name:'Chapter 9 check',skill:'Unit Tests',attempts:1,score:60,complete:false},{name:'Chapter 17 check',skill:'Smells and Heuristics',attempts:0,score:null,complete:false}];
     const usingSample=()=>reportSample??!reportRows().some(r=>r.attempts);
     function skillRows(rows){const groups=new Map();for(const row of rows){const name=row.skill.trim()||row.name,key=name.toLowerCase();if(!groups.has(key))groups.set(key,{name,scores:[],quizzes:0});const skill=groups.get(key);skill.quizzes++;if(row.score!==null)skill.scores.push(row.score);}return [...groups.values()].map(skill=>({...skill,score:skill.scores.length?Math.round(skill.scores.reduce((a,b)=>a+b,0)/skill.scores.length*10)/10:null}));}
     function skillPie(skills,threshold){

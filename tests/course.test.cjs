@@ -1,5 +1,37 @@
-const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path');
-const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),course=JSON.parse(read('course.json'));
+const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict'),path=require('node:path'),crypto=require('node:crypto');
+const root=path.resolve(__dirname,'..'),read=p=>fs.readFileSync(path.join(root,p),'utf8'),course=JSON.parse(read('course.json')),manifest=JSON.parse(read('source-manifest.json')),stats=JSON.parse(read('docs/course-stats.json')),source=JSON.parse(read('docs/chapter-units.json'));
+const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
 assert.deepEqual(JSON.parse(read('index.html').match(/<script id="lms-course-data"[^>]*>(.*?)<\/script>/s)[1]),course);
 const context={};vm.createContext(context);vm.runInContext(read('lms-runtime.js')+';globalThis.api=LMS;',context);const model=context.api.validate(course);assert.equal(context.api.ready(model).length,0);
-console.log('PASS: course schema, readiness and embedded data parity');
+const items=context.api.flatten(model.sections),decks=items.filter(n=>n.type==='slides'),slides=decks.flatMap(d=>d.slides),quizzes=items.filter(n=>n.type==='quiz');
+assert.equal(decks.length,stats.decks);assert.equal(slides.length,stats.slides);assert.equal(model.sections.length,15);assert.equal(quizzes.length,15);assert.equal(model.finalQuiz.questions.length,20);
+assert.deepEqual(manifest.curriculum.coreChapters,[1,2,3,4,5,6,7,8,9,10,11,12,14,17]);assert.deepEqual(manifest.curriculum.advancedChapters,[13]);assert.deepEqual(manifest.curriculum.deferredChapters,[15,16]);
+for(const c of manifest.chapters){assert.equal(sha(read(c.sourcePath)),c.sha256);assert.equal(c.unmatchedHeadings.length,0,'TOC headings '+c.chapter);}
+assert.equal(manifest.chapters.length,17);assert.equal(manifest.index.includedInLms,false);assert.ok(read(manifest.index.path).includes('PDF page 462'));
+assert.ok(!model.sections.some(s=>/^ch(?:15|16)$/.test(s.id)));assert.ok(!items.some(n=>/index|foreword|dedication|publisher|acknowledgment/i.test(n.title)));
+const normalize=s=>s.replace(/\s+/g,' ').trim();
+for(const chapter of source.filter(c=>c.status!=='deferred')){
+ const actual=manifest.curriculum.lessons.filter(l=>l.chapter===chapter.number);
+ const wanted=chapter.units.filter(u=>u.title!=='Bibliography'&&u.blocks.length);
+ assert.equal(actual.length,wanted.length,'Every source subsection '+chapter.number);
+ for(let i=0;i<wanted.length;i++){
+  const unit=wanted[i],entry=actual[i],d=decks.find(d=>d.id===entry.lessonId);assert.equal(entry.unitTitle,unit.title);
+  const body=d.slides.map(s=>s.body).join('\n\n');
+  for(const b of unit.blocks){
+   if(b.kind==='heading')assert.ok(d.slides.some(s=>s.title.startsWith(b.title)),'Subheading '+b.title);
+   if(b.kind==='prose')assert.ok(normalize(body).includes(normalize(b.body)),'Full prose '+entry.lessonId);
+   if(b.kind==='listing')assert.ok(d.slides.some(s=>s.title.startsWith(b.body.replace(/^\*\*|\*\*$/g,''))),'Listing label '+b.body);
+   if(b.kind==='code')for(const line of b.body.split('\n').slice(1,-1).filter(l=>l.trim()))assert.ok(body.includes(line),'Code line '+entry.lessonId);
+   if(b.kind==='figure')assert.ok(body.includes(b.body.replace('../../assets/','assets/')),'Figure '+entry.lessonId);
+  }
+ }
+}
+for(const s of slides){assert.ok(s.body.length<20000,'No runtime truncation '+s.id);assert.equal((s.body.match(/^```/gm)||[]).length%2,0,'Balanced fences '+s.id);}
+const prompts=new Set(quizzes.flatMap(q=>q.questions.map(q=>q.prompt)));
+for(const q of model.finalQuiz.questions)assert.ok(!prompts.has(q.prompt),'Independent final prompt');
+for(const qz of [...quizzes,model.finalQuiz])for(const q of qz.questions){assert.ok(q.answer>=0&&q.answer<q.options.length);assert.ok(q.explanation);assert.equal(new Set(q.options).size,q.options.length);assert.ok(!/dedication|publisher|ISBN|cover image|foreword/i.test(q.prompt),'Concepts only');}
+assert.ok(model.sections.find(s=>s.id==='ch13').children.every(n=>n.optional),'Advanced chapter optional');assert.ok(model.sections.filter(s=>s.id!=='ch13').every(s=>s.children.every(n=>!n.optional)),'Core required');
+const counts=[0,0,0];for(const q of model.finalQuiz.questions)counts[q.answer]++;assert.ok(counts.every(n=>n>=3),'No fixed correct-answer position');
+const rgb=h=>h.slice(1).match(/../g).map(x=>parseInt(x,16)/255),lum=c=>c.map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4).reduce((a,v,i)=>a+v*[.2126,.7152,.0722][i],0),contrast=(a,b)=>{const x=lum(a),y=lum(b);return (Math.max(x,y)+.05)/(Math.min(x,y)+.05);};
+for(const key of ['text','muted','brand'])for(const bg of ['background','surface'])assert.ok(contrast(rgb(model.settings[key]),rgb(model.settings[bg]))>=4.5,'Text contrast');
+console.log('PASS: 17 Markdown chapters; every included TOC subsection, prose block, code line and figure; curriculum exclusions; optional advanced flags; schema, parity, assessments and contrast; '+slides.length+' slides');

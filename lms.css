@@ -104,3 +104,7 @@ body.lms-export-body{background:#070b15;color:#e0dcf8;color-scheme:dark}
 .lms-source-page .lms-slide-content{max-width:var(--lms-content-width)}
 .lms-source-page .lms-slide-content h2{font-size:clamp(24px,3vw,36px)}
 @media(max-width:599px){.lms-source-page .lms-prose pre{padding:12px;font-size:13px}.lms-source-page.lms-player-stage{padding:24px 48px}.lms-header h1{font-size:24px}}
+
+/* Book source figures use the original light background for clear labels. */
+.lms-prose img{object-fit:contain;max-height:480px;border:1px solid var(--lms-border);margin:18px 0}
+.lms-prose ul,.lms-prose ol{padding-left:1.5em}

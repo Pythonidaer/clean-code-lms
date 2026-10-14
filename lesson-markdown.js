@@ -12,7 +12,18 @@ window.LMSMarkdown = function (text) {
     if (node.tagName === 'A' && href) {
       try { const url = new URL(href, location.href); if (['https:','http:'].includes(url.protocol)) { node.setAttribute('href', url.href); node.setAttribute('target','_blank'); node.setAttribute('rel','noopener noreferrer'); } } catch {}
     }
-    if (node.tagName === 'IMG') node.replaceWith(document.createTextNode(alt || 'Diagram'));
+    if (node.tagName === 'IMG') {
+      let safe = false;
+      try {
+        const url = new URL(src || '', location.href);
+        const base = new URL('assets/figures/', location.href);
+        if (url.origin === location.origin && url.pathname.startsWith(base.pathname) && /\.png$/i.test(url.pathname)) {
+          node.setAttribute('src', url.href); node.setAttribute('alt', alt || 'Source figure');
+          node.setAttribute('loading', 'lazy'); safe = true;
+        }
+      } catch {}
+      if (!safe) node.replaceWith(document.createTextNode(alt || 'Diagram'));
+    }
   }
   return container.innerHTML;
 };
