@@ -13,13 +13,13 @@ A source-complete learning course for the **supplied 67-page Clean Code excerpt*
 5. Code sense and the Stroustrup, Booch, Thomas, Feathers, Jeffries and Cunningham perspectives
 6. Schools of thought, authorship, reader effort, the Boy Scout Rule and follow-up principles
 7. Original JavaScript refactoring clinic and an evidence-based code review capstone
-8. Every extracted source page in original order, including contents, credits, bibliography, index, footnotes and the advertisement
+8. Every extracted source page in original order, including contents, credits, bibliography, index, footnotes and publisher offers
 
 Guided lessons include objectives, source PDF page ranges, practice and worked checks. JavaScript examples and assessments were authored for the course; they are not missing book listings. Work on exercises in your own environment. The LMS does not execute arbitrary lesson code.
 
 ## Source scope
 
-The uploaded PDF contains front matter, the foreword, the introduction, Chapter 1 (printed pages 1–15), and the full book index (printed pages 411–431). **It does not contain the later chapters named in the contents and index.** Index page numbers refer to the full book's printed pages, not this excerpt's PDF page numbers.
+The uploaded PDF contains front matter, the foreword, the introduction, Chapter 1 (printed pages 1–15), and the full book index (printed pages 413–431). **It does not contain the later chapters named in the contents and index.** Index page numbers refer to the full book's printed pages, not this excerpt's PDF page numbers.
 
 `docs/clean-code-extracted.txt` is the complete text previously extracted from the user-supplied PDF, preserving original order, headings and indentation. `source-manifest.json` maps each of the 67 pages to its lesson and slide, with exact text hashes, plus the guided topic coverage. The generated source-reference decks reproduce every page's text once. Text extraction does not reproduce illustrations or recover text embedded only in an image. Historical claims, opinions and cover-essay speculation are identified as such in guided lessons.
 

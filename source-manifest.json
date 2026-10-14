@@ -431,7 +431,7 @@
     },
     {
       "pdfPage": 46,
-      "lessonId": "index-a",
+      "lessonId": "source-chapter-one-b",
       "slideId": "pdf-page-46",
       "textSha256": "8a3f698e50e6e41033256cadb39125ba38a40dea17267934b40cd88d0cd6dcd4",
       "characters": 34
@@ -571,7 +571,7 @@
     },
     {
       "pdfPage": 66,
-      "lessonId": "index-b",
+      "lessonId": "advertisement",
       "slideId": "pdf-page-66",
       "textSha256": "0c2a7b3c3a30765ed19ce1bbb7b8cd562b428f2ef8febbff02ec963589e84539",
       "characters": 1918
