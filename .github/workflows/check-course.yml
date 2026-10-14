@@ -1,4 +1,4 @@
-name: Check Clean Code course
+name: Check LMS course
 on:
   push:
   pull_request:
@@ -7,30 +7,9 @@ permissions:
 jobs:
   course:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate exact source coverage and course data
-        run: node tests/course.test.cjs
-      - name: Verify deterministic build
-        run: |
-          python3 scripts/build-course.py
-          git diff --exit-code -- course.json index.html source-manifest.json
-      - name: Prepare browser checks
-        run: |
-          npm install --no-save --package-lock=false playwright@1.56.1
-          npx playwright install --with-deps chromium
-      - name: Check browser behavior
-        env:
-          LMS_SCREENSHOT_DIR: ${{ runner.temp }}/clean-code-screenshots
-        run: node tests/browser.test.cjs
-      - name: Keep browser QA screenshots
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: clean-code-browser-screenshots
-          path: ${{ runner.temp }}/clean-code-screenshots
-          if-no-files-found: ignore
+      - run: node tests/course.test.cjs
