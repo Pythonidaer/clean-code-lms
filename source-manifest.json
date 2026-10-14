@@ -1803,7 +1803,7 @@
           33
         ],
         "sourceBlocksSha256": "043de9a9e535a20942683b5373001175c4a2de95d4e1758d65c40986af3b8a18",
-        "slides": 1
+        "slides": 5
       },
       {
         "chapter": 1,
@@ -1815,7 +1815,7 @@
           35
         ],
         "sourceBlocksSha256": "023b16c4144981a30361ae000d218eeef8a0ad61b65fc7c488e96c89fc98b4de",
-        "slides": 1
+        "slides": 6
       },
       {
         "chapter": 1,
@@ -1834,7 +1834,7 @@
           43
         ],
         "sourceBlocksSha256": "2bc48cd5c79fbd75003746cd7e9911387d2d9cdfc1a0bf5b268afe922821e404",
-        "slides": 10
+        "slides": 41
       },
       {
         "chapter": 1,
@@ -1846,7 +1846,7 @@
           44
         ],
         "sourceBlocksSha256": "342b8bff202a2892abfce4ab6d991aa39bfde146dec5e604d1362ccb2fc5fce3",
-        "slides": 1
+        "slides": 6
       },
       {
         "chapter": 1,
@@ -1858,7 +1858,7 @@
           45
         ],
         "sourceBlocksSha256": "8f612f7d4fb4f61f387e3946fbdc7814c9666c53014450e146331ae927d6fe77",
-        "slides": 1
+        "slides": 6
       },
       {
         "chapter": 1,
@@ -1869,7 +1869,7 @@
           45
         ],
         "sourceBlocksSha256": "fce402c827dc791a4643a31eb8565d904f2add12fc14903b4f6e20289b2d2a2c",
-        "slides": 1
+        "slides": 2
       },
       {
         "chapter": 1,
@@ -1891,7 +1891,7 @@
           46
         ],
         "sourceBlocksSha256": "c67cb3a0e343a4ed6ab6e90de800e38efa22d30654b25f93ae4d67d890cddfd2",
-        "slides": 1
+        "slides": 2
       },
       {
         "chapter": 2,

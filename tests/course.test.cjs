@@ -15,10 +15,10 @@ for(const chapter of source.filter(c=>c.status!=='deferred')){
  const wanted=chapter.units.filter(u=>u.title!=='Bibliography'&&u.blocks.length);
  assert.equal(actual.length,wanted.length,'Every source subsection '+chapter.number);
  for(let i=0;i<wanted.length;i++){
-  const unit=wanted[i],entry=actual[i],d=decks.find(d=>d.id===entry.lessonId);assert.equal(entry.unitTitle,unit.title);
+  const unit=wanted[i],entry=actual[i],node=(function find(ns){for(const n of ns){if(n.id===entry.lessonId)return n;if(n.children){const found=find(n.children);if(found)return found;}}})(model.sections),ds=node.type==='section'?context.api.flatten(node.children):[node],d={slides:ds.flatMap(n=>n.slides||[])};assert.equal(entry.unitTitle,unit.title);
   const body=d.slides.map(s=>s.body).join('\n\n');
   for(const b of unit.blocks){
-   if(b.kind==='heading')assert.ok(d.slides.some(s=>s.title.startsWith(b.title)),'Subheading '+b.title);
+   if(b.kind==='heading')assert.ok(chapter.number===1?ds.some(n=>n.title===b.title):d.slides.some(s=>s.title.startsWith(b.title)),'Subheading '+b.title);
    if(b.kind==='prose')assert.ok(normalize(body).includes(normalize(b.body)),'Full prose '+entry.lessonId);
    if(b.kind==='listing')assert.ok(d.slides.some(s=>s.title.startsWith(b.body.replace(/^\*\*|\*\*$/g,''))),'Listing label '+b.body);
    if(b.kind==='code')for(const line of b.body.split('\n').slice(1,-1).filter(l=>l.trim()))assert.ok(body.includes(line),'Code line '+entry.lessonId);
@@ -26,6 +26,15 @@ for(const chapter of source.filter(c=>c.status!=='deferred')){
   }
  }
 }
+
+const pilotMap=JSON.parse(read('docs/chapter-one-slide-map.json'));
+for(const unit of source[0].units.filter(u=>u.title!=='Bibliography')){
+ const mapping=pilotMap.find(m=>m.sourceUnit===unit.title);
+ const actual=mapping.slides.map(m=>{const slide=slides.find(s=>s.id===m.slideId);assert.ok(slide,m.slideId);assert.equal(slide.title,m.title);assert.equal(slide.body.split(/\s+/).length,m.wordCount);assert.ok(m.wordCount<=150,'Chapter 1 reading budget '+m.slideId);return slide.body;}).join('\n\n');
+ const expected=unit.blocks.filter(b=>b.kind!=='heading').map(b=>b.body.replace('../../assets/','assets/')).join('\n\n');
+ assert.equal(normalize(actual),normalize(expected),'Exact ordered source coverage '+unit.title);
+}
+
 for(const s of slides){assert.ok(s.body.length<20000,'No runtime truncation '+s.id);assert.equal((s.body.match(/^```/gm)||[]).length%2,0,'Balanced fences '+s.id);}
 const prompts=new Set(quizzes.flatMap(q=>q.questions.map(q=>q.prompt)));
 for(const q of model.finalQuiz.questions)assert.ok(!prompts.has(q.prompt),'Independent final prompt');
