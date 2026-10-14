@@ -1756,5 +1756,1688 @@
       ],
       "unmatchedHeadings": []
     }
-  ]
+  ],
+  "curriculum": {
+    "coreChapters": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      14,
+      17
+    ],
+    "advancedChapters": [
+      13
+    ],
+    "deferredChapters": [
+      15,
+      16
+    ],
+    "lessons": [
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-01",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          32,
+          33
+        ],
+        "sourceBlocksSha256": "657478772308fd0a91aff9c384afc1cea3a926c7439c352ca24e0865a0deb61f",
+        "slides": 1
+      },
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-02",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "There Will Be Code",
+        "sourcePages": [
+          33
+        ],
+        "sourceBlocksSha256": "043de9a9e535a20942683b5373001175c4a2de95d4e1758d65c40986af3b8a18",
+        "slides": 2
+      },
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-03",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "Bad Code",
+        "sourcePages": [
+          34,
+          35
+        ],
+        "sourceBlocksSha256": "023b16c4144981a30361ae000d218eeef8a0ad61b65fc7c488e96c89fc98b4de",
+        "slides": 2
+      },
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-04",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "The Total Cost of Owning a Mess",
+        "sourcePages": [
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43
+        ],
+        "sourceBlocksSha256": "2bc48cd5c79fbd75003746cd7e9911387d2d9cdfc1a0bf5b268afe922821e404",
+        "slides": 13
+      },
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-05",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "Schools of Thought",
+        "sourcePages": [
+          43,
+          44
+        ],
+        "sourceBlocksSha256": "342b8bff202a2892abfce4ab6d991aa39bfde146dec5e604d1362ccb2fc5fce3",
+        "slides": 2
+      },
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-06",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "We Are Authors",
+        "sourcePages": [
+          44,
+          45
+        ],
+        "sourceBlocksSha256": "8f612f7d4fb4f61f387e3946fbdc7814c9666c53014450e146331ae927d6fe77",
+        "slides": 1
+      },
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-07",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "The Boy Scout Rule",
+        "sourcePages": [
+          45
+        ],
+        "sourceBlocksSha256": "fce402c827dc791a4643a31eb8565d904f2add12fc14903b4f6e20289b2d2a2c",
+        "slides": 1
+      },
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-08",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "Prequel and Principles",
+        "sourcePages": [
+          46
+        ],
+        "sourceBlocksSha256": "e309ac469a0e9bf24c7c586be410052c293eaf48819e21907ec4109dd955091b",
+        "slides": 1
+      },
+      {
+        "chapter": 1,
+        "lessonId": "ch01-topic-09",
+        "sourcePath": "docs/chapters/01-clean-code.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          46
+        ],
+        "sourceBlocksSha256": "c67cb3a0e343a4ed6ab6e90de800e38efa22d30654b25f93ae4d67d890cddfd2",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-01",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Introduction",
+        "sourcePages": [
+          48,
+          49
+        ],
+        "sourceBlocksSha256": "d8fea9f78030f4de4242964d11ce039debc7366949d169afed558046ac7dd560",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-02",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Use Intention-Revealing Names",
+        "sourcePages": [
+          49,
+          50
+        ],
+        "sourceBlocksSha256": "3264a6d86dddae4ca6f0a9f692f37f6e18278873519cef3506a422ff0223a28e",
+        "slides": 11
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-03",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Avoid Disinformation",
+        "sourcePages": [
+          50,
+          51
+        ],
+        "sourceBlocksSha256": "90ed8408d8b0db634909dc9f2a7bf11f7b61f2d7b68bea49bc21f3f168e8e88d",
+        "slides": 3
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-04",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Make Meaningful Distinctions",
+        "sourcePages": [
+          51,
+          52
+        ],
+        "sourceBlocksSha256": "fb26d7e0d0148e436f20c9771122d133b9f340cf9202045a57a97f3b311272e0",
+        "slides": 5
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-05",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Use Pronounceable Names",
+        "sourcePages": [
+          52,
+          53
+        ],
+        "sourceBlocksSha256": "a425edc67eebf8e30e962d2153ce28fe5ec12cec609dadc237ca518e263fae23",
+        "slides": 5
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-06",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Use Searchable Names",
+        "sourcePages": [
+          53,
+          54
+        ],
+        "sourceBlocksSha256": "8a75e2846051433c0c0ddc7013d4adffa65a81b283db046afbc71d30d2034154",
+        "slides": 5
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-07",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Avoid Encodings",
+        "sourcePages": [
+          54,
+          55
+        ],
+        "sourceBlocksSha256": "cc04d27742b8ca9b94a344e0a593bacca92a06ffdd6ec9166255d33dd3539a07",
+        "slides": 7
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-08",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Avoid Mental Mapping",
+        "sourcePages": [
+          56
+        ],
+        "sourceBlocksSha256": "5962815280d98d473f6464bec5d38dfc01ae6f8865bbfba8495026f33814f97c",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-09",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Class Names",
+        "sourcePages": [
+          56
+        ],
+        "sourceBlocksSha256": "e2a6bef89ebee0231756612bbab22915b6038a71b59367b3d19af28fc30deb0b",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-10",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Method Names",
+        "sourcePages": [
+          56
+        ],
+        "sourceBlocksSha256": "37df9d4da2771d748c8c47ff033c3dac49744a22635fe6cafcdb238b95f51728",
+        "slides": 7
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-11",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Don't Be Cute",
+        "sourcePages": [
+          57
+        ],
+        "sourceBlocksSha256": "ec73dc2ba5527b5c2a67841c968d9bae6c297edef516bd937bce3433f0e2a35f",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-12",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Pick One Word per Concept",
+        "sourcePages": [
+          57
+        ],
+        "sourceBlocksSha256": "56e56b3c7172102c9dd696b342991a68d9de3b7bdc9dc1d0c0845d4af681faac",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-13",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Don't Pun",
+        "sourcePages": [
+          57,
+          58
+        ],
+        "sourceBlocksSha256": "54f0dd884567b57a25b5fdaf863a4247f47de4f9f57ba6f9b42293a2c8bc843d",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-14",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Use Solution Domain Names",
+        "sourcePages": [
+          58
+        ],
+        "sourceBlocksSha256": "4440ce02f489d82d2f1cfb3a4876df62f9efc14dad7a34cb9adbc2b959050c3b",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-15",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Use Problem Domain Names",
+        "sourcePages": [
+          58
+        ],
+        "sourceBlocksSha256": "a6987cc594b8c6a32ecd25a2a66f54412328fa054d8c29484ef92be68e2c80a4",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-16",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Add Meaningful Context",
+        "sourcePages": [
+          58,
+          59,
+          60
+        ],
+        "sourceBlocksSha256": "8d1be5f4d84086320a9286ba202fec409192c3c15a9edd54194b7b50cae2769e",
+        "slides": 4
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-17",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Don't Add Gratuitous Context",
+        "sourcePages": [
+          60,
+          61
+        ],
+        "sourceBlocksSha256": "9c446beb87a9eafc0eae5486118c3698827bee3ac9d00dc4161d36904596d29c",
+        "slides": 1
+      },
+      {
+        "chapter": 2,
+        "lessonId": "ch02-topic-18",
+        "sourcePath": "docs/chapters/02-meaningful-names.md",
+        "unitTitle": "Final Words",
+        "sourcePages": [
+          61
+        ],
+        "sourceBlocksSha256": "bb7e387ec34d47b41110a7b63d935c8633c684426d3600b28075138528c20ec6",
+        "slides": 1
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-01",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          62,
+          63,
+          64,
+          65
+        ],
+        "sourceBlocksSha256": "00fd23ae2b7dc90f6c6da2d76dff347a39dde2b3aa2c362f277e481a9eb8f24c",
+        "slides": 7
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-02",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Small!",
+        "sourcePages": [
+          65,
+          66
+        ],
+        "sourceBlocksSha256": "521d546f0106adf4a2033412be61962a945fd2ecfe6d406ba00e678662a22a3f",
+        "slides": 4
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-03",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Do One Thing",
+        "sourcePages": [
+          66,
+          67
+        ],
+        "sourceBlocksSha256": "b777ae51afeba151f13c1b86a103e1362f1974d5a6b9568bcdad8cd126442a47",
+        "slides": 3
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-04",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "One Level of Abstraction per Function",
+        "sourcePages": [
+          67,
+          68
+        ],
+        "sourceBlocksSha256": "9c9753fe797c4c4b04e9398f761dbe0d3f88681d19e5d331b58c7c210a72acea",
+        "slides": 2
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-05",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Switch Statements",
+        "sourcePages": [
+          68,
+          69,
+          70
+        ],
+        "sourceBlocksSha256": "fad932c6a8240b03df5ce0a7a7141f5af80e81fe52b40226c640b33a58cafc3d",
+        "slides": 9
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-06",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Use Descriptive Names",
+        "sourcePages": [
+          70,
+          71
+        ],
+        "sourceBlocksSha256": "e5c05dfb2978c81e617be0d38b102df8bc04c6cd92183ed15cc4062838a27ff3",
+        "slides": 1
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-07",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Function Arguments",
+        "sourcePages": [
+          71,
+          72,
+          73,
+          74
+        ],
+        "sourceBlocksSha256": "5e3f0a55afd38b8d5dd61dbb5164843fa7465e7e5f271cfac6013e128b914548",
+        "slides": 15
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-08",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Have No Side Effects",
+        "sourcePages": [
+          75,
+          76
+        ],
+        "sourceBlocksSha256": "14fb2cd5d1a8bdb3be194571ee91148fbec20ff46fd03f121da229da967de82c",
+        "slides": 10
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-09",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Command Query Separation",
+        "sourcePages": [
+          76,
+          77
+        ],
+        "sourceBlocksSha256": "ec01fe9067054f5612fba24b0bf6180951da27b6c6aa666f3fb3eff672832e04",
+        "slides": 6
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-10",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Prefer Exceptions to Returning Error Codes",
+        "sourcePages": [
+          77,
+          78,
+          79
+        ],
+        "sourceBlocksSha256": "6f00b5facaac4759b271c6d25dc68a3bd8b55b11d6c7b6489549a6996cd8da7f",
+        "slides": 13
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-11",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Don't Repeat Yourself",
+        "sourcePages": [
+          79
+        ],
+        "sourceBlocksSha256": "85b95bc036a7c034ea9fcbe4838bc3a07c736ac710fd994cc1fd38bb5e4f0c3a",
+        "slides": 1
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-12",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Structured Programming",
+        "sourcePages": [
+          79,
+          80
+        ],
+        "sourceBlocksSha256": "34d8f1bdaedb49d3adb7b4a45a8e779a1cb1edbb9f11ebe2b537b94f650c5bb3",
+        "slides": 1
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-13",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "How Do You Write Functions Like This?",
+        "sourcePages": [
+          80
+        ],
+        "sourceBlocksSha256": "2823ef2a7dc2b955cd715deb1f40b2a9d73be35dae464a48971c2421b4368216",
+        "slides": 1
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-14",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          80,
+          81
+        ],
+        "sourceBlocksSha256": "88f49f7f71243cca295cf0e2bb11120c36a81fb5c0bf49259940b36b56566c47",
+        "slides": 1
+      },
+      {
+        "chapter": 3,
+        "lessonId": "ch03-topic-15",
+        "sourcePath": "docs/chapters/03-functions.md",
+        "unitTitle": "SetupTeardownIncluder",
+        "sourcePages": [
+          81
+        ],
+        "sourceBlocksSha256": "f0539903adc8e68b0e95979ca4b7176dccb25a5580342c665be235cc02f19fc0",
+        "slides": 3
+      },
+      {
+        "chapter": 4,
+        "lessonId": "ch04-topic-01",
+        "sourcePath": "docs/chapters/04-comments.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          84,
+          85
+        ],
+        "sourceBlocksSha256": "da0f5b65e3d5b0324ee3bbe420f5ab3bc3e732c399978f83826ab7da8d67c42e",
+        "slides": 3
+      },
+      {
+        "chapter": 4,
+        "lessonId": "ch04-topic-02",
+        "sourcePath": "docs/chapters/04-comments.md",
+        "unitTitle": "Comments Do Not Make Up for Bad Code",
+        "sourcePages": [
+          86
+        ],
+        "sourceBlocksSha256": "57a8a94ad9b4a489f9c8f1e03875b7498b0aaea4d3a0f975be1dc5e67b7fc5fc",
+        "slides": 1
+      },
+      {
+        "chapter": 4,
+        "lessonId": "ch04-topic-03",
+        "sourcePath": "docs/chapters/04-comments.md",
+        "unitTitle": "Explain Yourself in Code",
+        "sourcePages": [
+          86
+        ],
+        "sourceBlocksSha256": "a35baad547565b029480b77183991f66a06749b94b5696034578a51a550f408c",
+        "slides": 5
+      },
+      {
+        "chapter": 4,
+        "lessonId": "ch04-topic-04",
+        "sourcePath": "docs/chapters/04-comments.md",
+        "unitTitle": "Good Comments",
+        "sourcePages": [
+          86,
+          87,
+          88,
+          89,
+          90
+        ],
+        "sourceBlocksSha256": "28ef230a8277d2cf60e53b7ccac145018ebd751d9506c568daba38061cf28c74",
+        "slides": 27
+      },
+      {
+        "chapter": 4,
+        "lessonId": "ch04-topic-05",
+        "sourcePath": "docs/chapters/04-comments.md",
+        "unitTitle": "Bad Comments",
+        "sourcePages": [
+          90,
+          91,
+          92,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          105
+        ],
+        "sourceBlocksSha256": "a07961f495ce134bb2398fd9e0f9ab0a3c14ea3cf9cfb8257abc9a849ee41022",
+        "slides": 66
+      },
+      {
+        "chapter": 5,
+        "lessonId": "ch05-topic-01",
+        "sourcePath": "docs/chapters/05-formatting.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          106,
+          107
+        ],
+        "sourceBlocksSha256": "ef0e1a57706441d34965845b1b1067108f79f01e96e4aad8ebb556fb90f6cf1b",
+        "slides": 1
+      },
+      {
+        "chapter": 5,
+        "lessonId": "ch05-topic-02",
+        "sourcePath": "docs/chapters/05-formatting.md",
+        "unitTitle": "The Purpose of Formatting",
+        "sourcePages": [
+          107
+        ],
+        "sourceBlocksSha256": "bb746bb645340a7b7bf553bf22d89adc24f6448608f82c8eb249e0b96d7eb4d4",
+        "slides": 1
+      },
+      {
+        "chapter": 5,
+        "lessonId": "ch05-topic-03",
+        "sourcePath": "docs/chapters/05-formatting.md",
+        "unitTitle": "Vertical Formatting",
+        "sourcePages": [
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116
+        ],
+        "sourceBlocksSha256": "853f35157876478127d25636f3a5401be83632365ad562ae8a9a75298745fa88",
+        "slides": 26
+      },
+      {
+        "chapter": 5,
+        "lessonId": "ch05-topic-04",
+        "sourcePath": "docs/chapters/05-formatting.md",
+        "unitTitle": "Horizontal Formatting",
+        "sourcePages": [
+          116,
+          117,
+          118,
+          119,
+          120,
+          121
+        ],
+        "sourceBlocksSha256": "cdd85c3a78d1ab673cc2d3a2e154825da0332aef8df3354dd6a7f5fdc96fb976",
+        "slides": 20
+      },
+      {
+        "chapter": 5,
+        "lessonId": "ch05-topic-05",
+        "sourcePath": "docs/chapters/05-formatting.md",
+        "unitTitle": "Team Rules",
+        "sourcePages": [
+          121
+        ],
+        "sourceBlocksSha256": "35ab51a430b0a9e807170a0f3dc7fed8fcd2d9c8cb2b36fc0dcdaa719b3e90c3",
+        "slides": 1
+      },
+      {
+        "chapter": 5,
+        "lessonId": "ch05-topic-06",
+        "sourcePath": "docs/chapters/05-formatting.md",
+        "unitTitle": "Uncle Bob's Formatting Rules",
+        "sourcePages": [
+          121,
+          122
+        ],
+        "sourceBlocksSha256": "b2db44e1e1e956ff718e5816c409b0882a24ea467de7f5052626145fe0c3525f",
+        "slides": 3
+      },
+      {
+        "chapter": 6,
+        "lessonId": "ch06-topic-01",
+        "sourcePath": "docs/chapters/06-objects-and-data-structures.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          124
+        ],
+        "sourceBlocksSha256": "4e1bb1a3780255631155deccbe228ff6bee925765f7106ea0f89a614672e832f",
+        "slides": 1
+      },
+      {
+        "chapter": 6,
+        "lessonId": "ch06-topic-02",
+        "sourcePath": "docs/chapters/06-objects-and-data-structures.md",
+        "unitTitle": "Data Abstraction",
+        "sourcePages": [
+          124,
+          125,
+          126
+        ],
+        "sourceBlocksSha256": "812750117ce2a2b42f6b4018ca1278fbbb9de03cdbf1d04708b7d66da0b3986d",
+        "slides": 7
+      },
+      {
+        "chapter": 6,
+        "lessonId": "ch06-topic-03",
+        "sourcePath": "docs/chapters/06-objects-and-data-structures.md",
+        "unitTitle": "Data/Object Anti-Symmetry",
+        "sourcePages": [
+          126,
+          127,
+          128
+        ],
+        "sourceBlocksSha256": "931aa72a7a9909d15272df05ee1de4cb1b9b19ebb45e22a871365ec00e95b8e7",
+        "slides": 7
+      },
+      {
+        "chapter": 6,
+        "lessonId": "ch06-topic-04",
+        "sourcePath": "docs/chapters/06-objects-and-data-structures.md",
+        "unitTitle": "The Law of Demeter",
+        "sourcePages": [
+          128,
+          129,
+          130,
+          131
+        ],
+        "sourceBlocksSha256": "ab05f450b2ad9d525588a4417761b27c183e5997a055a8f6fd7f343f8be9142c",
+        "slides": 17
+      },
+      {
+        "chapter": 6,
+        "lessonId": "ch06-topic-05",
+        "sourcePath": "docs/chapters/06-objects-and-data-structures.md",
+        "unitTitle": "Data Transfer Objects",
+        "sourcePages": [
+          131,
+          132
+        ],
+        "sourceBlocksSha256": "03694848732f6be6d8384d215c4ed8f55db5368eea8b43ce4f6fdcaee19cebf1",
+        "slides": 3
+      },
+      {
+        "chapter": 6,
+        "lessonId": "ch06-topic-06",
+        "sourcePath": "docs/chapters/06-objects-and-data-structures.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          132
+        ],
+        "sourceBlocksSha256": "686357950c1e22cfa202861e597da2f14468bde248e36f39d6f118f592c922a9",
+        "slides": 1
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-01",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          134
+        ],
+        "sourceBlocksSha256": "9c944c2ff04796e1d98d52a52c77fd671de3aa45969a7eb2fa88c18449571c67",
+        "slides": 1
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-02",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Use Exceptions Rather Than Return Codes",
+        "sourcePages": [
+          135,
+          136
+        ],
+        "sourceBlocksSha256": "b99d1c1618cf40c844c98c0a6d587c5f0fb63e70b4d8b8b9f1b763caa3d64de8",
+        "slides": 5
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-03",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Write Your Try-Catch-Finally Statement First",
+        "sourcePages": [
+          136,
+          137
+        ],
+        "sourceBlocksSha256": "50cfd0f75be17639b03e4473fc34f7f816c098b43edcc7c0a96f157fc3b3020d",
+        "slides": 9
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-04",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Use Unchecked Exceptions",
+        "sourcePages": [
+          137,
+          138
+        ],
+        "sourceBlocksSha256": "70b76532267954de1174ef499409ec105a941a90d98ea85f68713e5c532eb956",
+        "slides": 2
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-05",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Provide Context with Exceptions",
+        "sourcePages": [
+          138
+        ],
+        "sourceBlocksSha256": "e4ddff8ea8f9b00a2db243ef414c1a226d10b1093a2ad1da6cd0488798111a8d",
+        "slides": 1
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-06",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Define Exception Classes in Terms of a Caller's Needs",
+        "sourcePages": [
+          138,
+          139,
+          140
+        ],
+        "sourceBlocksSha256": "22b6dae078a92ed271c8f33e576ff504b9cbbb71515b12d4957514d82debcd23",
+        "slides": 7
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-07",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Define the Normal Flow",
+        "sourcePages": [
+          140,
+          141
+        ],
+        "sourceBlocksSha256": "ad4b55fec63cb9da74cf3de498913446c886222ab1e6c38b24841ffc249da037",
+        "slides": 7
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-08",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Don't Return Null",
+        "sourcePages": [
+          141,
+          142
+        ],
+        "sourceBlocksSha256": "533473a2f5ee3764db8594c4dccd65816fa765320cae823e180d824b71a25467",
+        "slides": 9
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-09",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Don't Pass Null",
+        "sourcePages": [
+          142,
+          143
+        ],
+        "sourceBlocksSha256": "a18453bb2d327ef2cc631d89c9d8db62d57cb57a7d64e2d983d8232ae52cb82c",
+        "slides": 9
+      },
+      {
+        "chapter": 7,
+        "lessonId": "ch07-topic-10",
+        "sourcePath": "docs/chapters/07-error-handling.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          143
+        ],
+        "sourceBlocksSha256": "5a8fe5b4a90891a41853ed612bcc463af3829927925249209350ab48a7c2f85c",
+        "slides": 1
+      },
+      {
+        "chapter": 8,
+        "lessonId": "ch08-topic-01",
+        "sourcePath": "docs/chapters/08-boundaries.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          144,
+          145
+        ],
+        "sourceBlocksSha256": "fa98ecda8d3fb01270671af4b69195c80839d4fe5df96f6d119ce38b656f8c00",
+        "slides": 1
+      },
+      {
+        "chapter": 8,
+        "lessonId": "ch08-topic-02",
+        "sourcePath": "docs/chapters/08-boundaries.md",
+        "unitTitle": "Using Third-Party Code",
+        "sourcePages": [
+          145,
+          146
+        ],
+        "sourceBlocksSha256": "2064e1364ab2515577a873933311e62ee3e01223c17f78443fbe4cbad0001afd",
+        "slides": 9
+      },
+      {
+        "chapter": 8,
+        "lessonId": "ch08-topic-03",
+        "sourcePath": "docs/chapters/08-boundaries.md",
+        "unitTitle": "Exploring and Learning Boundaries",
+        "sourcePages": [
+          147
+        ],
+        "sourceBlocksSha256": "fd4264d1468db0f0308f73b7cf06f61438549fb4fbc35f67befac08b93799228",
+        "slides": 1
+      },
+      {
+        "chapter": 8,
+        "lessonId": "ch08-topic-04",
+        "sourcePath": "docs/chapters/08-boundaries.md",
+        "unitTitle": "Learning log4j",
+        "sourcePages": [
+          147,
+          148,
+          149
+        ],
+        "sourceBlocksSha256": "876a34489543eb5c1da1f9b51ddcb0dcd048671bce389af93f39a1d4f31a49d2",
+        "slides": 9
+      },
+      {
+        "chapter": 8,
+        "lessonId": "ch08-topic-05",
+        "sourcePath": "docs/chapters/08-boundaries.md",
+        "unitTitle": "Learning Tests Are Better Than Free",
+        "sourcePages": [
+          149
+        ],
+        "sourceBlocksSha256": "21d3fdac5beb3bdade46e178f5ddd0b201a91a6b9e8f4b240559e63b2e768f2f",
+        "slides": 1
+      },
+      {
+        "chapter": 8,
+        "lessonId": "ch08-topic-06",
+        "sourcePath": "docs/chapters/08-boundaries.md",
+        "unitTitle": "Using Code That Does Not Yet Exist",
+        "sourcePages": [
+          149,
+          150
+        ],
+        "sourceBlocksSha256": "40d30228e24bd2b8717095c90aed58dcb02f5633555eb65be3e8e484c9b816e9",
+        "slides": 2
+      },
+      {
+        "chapter": 8,
+        "lessonId": "ch08-topic-07",
+        "sourcePath": "docs/chapters/08-boundaries.md",
+        "unitTitle": "Clean Boundaries",
+        "sourcePages": [
+          151
+        ],
+        "sourceBlocksSha256": "6652fd3371488f9ac0e9bb98a491475148ef5ced35adde53595af539017292a5",
+        "slides": 1
+      },
+      {
+        "chapter": 9,
+        "lessonId": "ch09-topic-01",
+        "sourcePath": "docs/chapters/09-unit-tests.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          152,
+          153
+        ],
+        "sourceBlocksSha256": "af723b13bdc3d009637500085cef3a79bb0272c137c1f86126682270fd9b788c",
+        "slides": 3
+      },
+      {
+        "chapter": 9,
+        "lessonId": "ch09-topic-02",
+        "sourcePath": "docs/chapters/09-unit-tests.md",
+        "unitTitle": "The Three Laws of TDD",
+        "sourcePages": [
+          153,
+          154
+        ],
+        "sourceBlocksSha256": "802b67ba059e5160c67e4244efc86c0b53c1c8daa9c654ee7246915d03641cc3",
+        "slides": 1
+      },
+      {
+        "chapter": 9,
+        "lessonId": "ch09-topic-03",
+        "sourcePath": "docs/chapters/09-unit-tests.md",
+        "unitTitle": "Keeping Tests Clean",
+        "sourcePages": [
+          154,
+          155
+        ],
+        "sourceBlocksSha256": "153ea7604a55a5c65103e08046c70d9f96948560762d0038018ad2df9045904a",
+        "slides": 3
+      },
+      {
+        "chapter": 9,
+        "lessonId": "ch09-topic-04",
+        "sourcePath": "docs/chapters/09-unit-tests.md",
+        "unitTitle": "Clean Tests",
+        "sourcePages": [
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161
+        ],
+        "sourceBlocksSha256": "c427a83b9481735713e1a5bbd2acf5166b3c688eddacb31a88ab82aa5b175520",
+        "slides": 16
+      },
+      {
+        "chapter": 9,
+        "lessonId": "ch09-topic-05",
+        "sourcePath": "docs/chapters/09-unit-tests.md",
+        "unitTitle": "One Assert per Test",
+        "sourcePages": [
+          161,
+          162,
+          163
+        ],
+        "sourceBlocksSha256": "1da526bd859c23179c90326a6e66a82b61429cc3dc30d935be5d0deb01226cb0",
+        "slides": 6
+      },
+      {
+        "chapter": 9,
+        "lessonId": "ch09-topic-06",
+        "sourcePath": "docs/chapters/09-unit-tests.md",
+        "unitTitle": "F.I.R.S.T.",
+        "sourcePages": [
+          163,
+          164
+        ],
+        "sourceBlocksSha256": "55e6186eb871b5fc179c74a85dcd8604b862fb81340d232db5781a65b84e5157",
+        "slides": 1
+      },
+      {
+        "chapter": 9,
+        "lessonId": "ch09-topic-07",
+        "sourcePath": "docs/chapters/09-unit-tests.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          164
+        ],
+        "sourceBlocksSha256": "12b2f4f25914f9fa22602d5eed2a723644482cd29b6452ab82a17796378b5b59",
+        "slides": 1
+      },
+      {
+        "chapter": 10,
+        "lessonId": "ch10-topic-01",
+        "sourcePath": "docs/chapters/10-classes.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          166
+        ],
+        "sourceBlocksSha256": "5596a0849b237b26665769ddc15a6e1121bf1a19278858dbb92fe591a5905dd2",
+        "slides": 1
+      },
+      {
+        "chapter": 10,
+        "lessonId": "ch10-topic-02",
+        "sourcePath": "docs/chapters/10-classes.md",
+        "unitTitle": "Class Organization",
+        "sourcePages": [
+          167
+        ],
+        "sourceBlocksSha256": "f2cb218c352b689101e2340b3db816d2d3c33e1fffcf97edab6d2461374cbf49",
+        "slides": 2
+      },
+      {
+        "chapter": 10,
+        "lessonId": "ch10-topic-03",
+        "sourcePath": "docs/chapters/10-classes.md",
+        "unitTitle": "Classes Should Be Small!",
+        "sourcePages": [
+          167,
+          168,
+          169,
+          170,
+          171,
+          172,
+          173,
+          174,
+          176,
+          177
+        ],
+        "sourceBlocksSha256": "f27eb5b11b3f8b78cba36b9be1b7776a1c51f858f96c9427e29d73f4a7aff0a4",
+        "slides": 27
+      },
+      {
+        "chapter": 10,
+        "lessonId": "ch10-topic-04",
+        "sourcePath": "docs/chapters/10-classes.md",
+        "unitTitle": "Organizing for Change",
+        "sourcePages": [
+          178,
+          179,
+          180,
+          181
+        ],
+        "sourceBlocksSha256": "0ba67800609dd2801f70862f79855559e4704ce383aa65c1d71a9d9fc86669a7",
+        "slides": 13
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-01",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          184
+        ],
+        "sourceBlocksSha256": "f2b1b95ea7e3fdc3647fb2d76cacba868879cd02c5cbb850554f2d5d9dffc492",
+        "slides": 1
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-02",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "How Would You Build a City?",
+        "sourcePages": [
+          185
+        ],
+        "sourceBlocksSha256": "0e041469877e973e6ea09a3e6d1f10e6a89779735f2f800522a02b71f01e5d0c",
+        "slides": 1
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-03",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Separate Constructing a System from Using It",
+        "sourcePages": [
+          185,
+          186,
+          187,
+          188
+        ],
+        "sourceBlocksSha256": "7af601841e3e1d876050481383f082c422988cb7c6b74269ca6b59aae31cd41a",
+        "slides": 8
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-04",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Scaling Up",
+        "sourcePages": [
+          188,
+          189,
+          190,
+          191,
+          192
+        ],
+        "sourceBlocksSha256": "eb153a6c388e8a804625f37db563f3a6b44402c3213805e13e1d133d476f09b3",
+        "slides": 7
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-05",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Java Proxies",
+        "sourcePages": [
+          192,
+          193,
+          194
+        ],
+        "sourceBlocksSha256": "8fd63f5112f2513531aaad6a58f4b0fa450aa87449d4347aee06a9b98d811943",
+        "slides": 5
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-06",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Pure Java AOP Frameworks",
+        "sourcePages": [
+          194,
+          195,
+          196,
+          197
+        ],
+        "sourceBlocksSha256": "4aa9e0142f9f862c05a80876748d7124cfd03f06403896242a57da08e85f96a5",
+        "slides": 11
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-07",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "AspectJ Aspects",
+        "sourcePages": [
+          197
+        ],
+        "sourceBlocksSha256": "0cc067d7f9fd679bbef31138b19f74f9890fb0ad46b6b83aaf7eae53511896c7",
+        "slides": 1
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-08",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Test Drive the System Architecture",
+        "sourcePages": [
+          197,
+          198
+        ],
+        "sourceBlocksSha256": "8e9f5bed9f42030b059e9a90e9055334044a90e1ad5485a3b84c70b1fdda9440",
+        "slides": 2
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-09",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Optimize Decision Making",
+        "sourcePages": [
+          198,
+          199
+        ],
+        "sourceBlocksSha256": "32856e9967b62cdb68bcb05dae07c8f44a55ad29f353f1f9783af05548930bf4",
+        "slides": 1
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-10",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Use Standards Wisely, When They Add Demonstrable Value",
+        "sourcePages": [
+          199
+        ],
+        "sourceBlocksSha256": "b987e4a8f19295d0d045e9fe70ff9c1d26f64e10e790d230ec490f058b76ccba",
+        "slides": 1
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-11",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Systems Need Domain-Specific Languages",
+        "sourcePages": [
+          199,
+          200
+        ],
+        "sourceBlocksSha256": "d669f2757aadda2619b4782f15fb5c0d4f12d8057ee72f5e4508add6b7135fc3",
+        "slides": 1
+      },
+      {
+        "chapter": 11,
+        "lessonId": "ch11-topic-12",
+        "sourcePath": "docs/chapters/11-systems.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          200
+        ],
+        "sourceBlocksSha256": "85def40b4c4f2451e30b4352da99ecb71da3207eecbb210a5f216d690ed8ffdc",
+        "slides": 1
+      },
+      {
+        "chapter": 12,
+        "lessonId": "ch12-topic-01",
+        "sourcePath": "docs/chapters/12-emergence.md",
+        "unitTitle": "Getting Clean via Emergent Design",
+        "sourcePages": [
+          202,
+          203
+        ],
+        "sourceBlocksSha256": "ba5d83306846543cbe63fc7743cc39dbd7b0e711330af670b99a3fd4855c066e",
+        "slides": 1
+      },
+      {
+        "chapter": 12,
+        "lessonId": "ch12-topic-02",
+        "sourcePath": "docs/chapters/12-emergence.md",
+        "unitTitle": "Simple Design Rule 1: Runs All the Tests",
+        "sourcePages": [
+          203
+        ],
+        "sourceBlocksSha256": "c6297b0d7f033bd8751b214c845ee9a89b87cf03977894661730e8285d857667",
+        "slides": 1
+      },
+      {
+        "chapter": 12,
+        "lessonId": "ch12-topic-03",
+        "sourcePath": "docs/chapters/12-emergence.md",
+        "unitTitle": "Simple Design Rules 2–4: Refactoring",
+        "sourcePages": [
+          203
+        ],
+        "sourceBlocksSha256": "bf596128fb45eab4152d1110725f309ad5e50927ba08a54d6c3ad8dfda9dab3a",
+        "slides": 1
+      },
+      {
+        "chapter": 12,
+        "lessonId": "ch12-topic-04",
+        "sourcePath": "docs/chapters/12-emergence.md",
+        "unitTitle": "No Duplication",
+        "sourcePages": [
+          204,
+          205,
+          206
+        ],
+        "sourceBlocksSha256": "a8eeb3dd74d429baf25aab74be44ca2f6da60c052c708636c72c3d311ffea8be",
+        "slides": 15
+      },
+      {
+        "chapter": 12,
+        "lessonId": "ch12-topic-05",
+        "sourcePath": "docs/chapters/12-emergence.md",
+        "unitTitle": "Expressive",
+        "sourcePages": [
+          206,
+          207
+        ],
+        "sourceBlocksSha256": "150610c98972feff9f567b366087291857d69b8d041b880c2f79f435a2acf207",
+        "slides": 2
+      },
+      {
+        "chapter": 12,
+        "lessonId": "ch12-topic-06",
+        "sourcePath": "docs/chapters/12-emergence.md",
+        "unitTitle": "Minimal Classes and Methods",
+        "sourcePages": [
+          207
+        ],
+        "sourceBlocksSha256": "2ba00d83ed37c72708e1b5604af1b5439046caf786058d1528300dc83048b218",
+        "slides": 1
+      },
+      {
+        "chapter": 12,
+        "lessonId": "ch12-topic-07",
+        "sourcePath": "docs/chapters/12-emergence.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          207
+        ],
+        "sourceBlocksSha256": "d3ea9a0376fde9d6fa26b09eed6b675efa912b48d901ece56316b41a8131794f",
+        "slides": 1
+      },
+      {
+        "chapter": 14,
+        "lessonId": "ch14-topic-01",
+        "sourcePath": "docs/chapters/14-successive-refinement.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          224,
+          225
+        ],
+        "sourceBlocksSha256": "2a9093961006890c6f7bf255ea8d3d91dd0efb6b86dc0eaf35054914dd8a8dae",
+        "slides": 3
+      },
+      {
+        "chapter": 14,
+        "lessonId": "ch14-topic-02",
+        "sourcePath": "docs/chapters/14-successive-refinement.md",
+        "unitTitle": "Args Implementation",
+        "sourcePages": [
+          225,
+          227,
+          228,
+          229,
+          231,
+          232
+        ],
+        "sourceBlocksSha256": "29307d6f20a79276cec1b0051757b876fdb285abdd45a84e7e19be8bc137e6da",
+        "slides": 14
+      },
+      {
+        "chapter": 14,
+        "lessonId": "ch14-topic-03",
+        "sourcePath": "docs/chapters/14-successive-refinement.md",
+        "unitTitle": "Args: The Rough Draft",
+        "sourcePages": [
+          232,
+          237,
+          239,
+          243,
+          244,
+          245
+        ],
+        "sourceBlocksSha256": "f80a773c9e68340fd50b5bb334df8ab0486907f2a938a5567c8c806e4cbb3000",
+        "slides": 31
+      },
+      {
+        "chapter": 14,
+        "lessonId": "ch14-topic-04",
+        "sourcePath": "docs/chapters/14-successive-refinement.md",
+        "unitTitle": "String Arguments",
+        "sourcePages": [
+          245,
+          246,
+          248,
+          249,
+          251,
+          252,
+          253,
+          254,
+          255,
+          256,
+          257,
+          262,
+          263,
+          264,
+          265,
+          266,
+          267,
+          268,
+          269,
+          270,
+          273,
+          275,
+          276,
+          278,
+          281
+        ],
+        "sourceBlocksSha256": "84bd161feadd9c736f1bad51ea9c10dfffe4e554ddf494b675ebaeb6767b069b",
+        "slides": 111
+      },
+      {
+        "chapter": 14,
+        "lessonId": "ch14-topic-05",
+        "sourcePath": "docs/chapters/14-successive-refinement.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          281
+        ],
+        "sourceBlocksSha256": "588f786504e506259a15f97ca5461de18fa745078c925c3c306e7feb36807c34",
+        "slides": 1
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-01",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          316,
+          317
+        ],
+        "sourceBlocksSha256": "ac802ade33f54a525dc078d1c03b1bdc06e3a9cfc3cd6311c483afa4464d592e",
+        "slides": 1
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-02",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "Comments",
+        "sourcePages": [
+          317,
+          318
+        ],
+        "sourceBlocksSha256": "ab3d9930d33efcc95e09f67d66d863923a86c2d28cbfb181051a083476f52edc",
+        "slides": 9
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-03",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "Environment",
+        "sourcePages": [
+          318
+        ],
+        "sourceBlocksSha256": "14052f0e5b4f40796d614d2e044ef3f1617cd4e4d67ac75d47e66662238bbd83",
+        "slides": 3
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-04",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "Functions",
+        "sourcePages": [
+          319
+        ],
+        "sourceBlocksSha256": "9fc6852d31643e21647bf8330a1cf78f49394a896eff4be223973a96b96d1f02",
+        "slides": 4
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-05",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "General",
+        "sourcePages": [
+          319,
+          320,
+          321,
+          322,
+          323,
+          324,
+          325,
+          326,
+          327,
+          328,
+          329,
+          330,
+          331,
+          332,
+          333,
+          334,
+          335,
+          336,
+          337,
+          338
+        ],
+        "sourceBlocksSha256": "0ad9f58f1d062e3c95bfdb3be753f2ba7a973212ff5f08a7ac2fcbcdcc9b9cc9",
+        "slides": 100
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-06",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "Java",
+        "sourcePages": [
+          338,
+          339,
+          340
+        ],
+        "sourceBlocksSha256": "70d3ea3fe1ec549ca17eae13bbb6744df69b96bfa50e5cf5b36bae99bad4d9d3",
+        "slides": 13
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-07",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "Names",
+        "sourcePages": [
+          340,
+          341,
+          342,
+          343,
+          344
+        ],
+        "sourceBlocksSha256": "8994f5833205955e1c0a8203755c3b4611b575cae2cce29b5c5abc7ae9383b62",
+        "slides": 23
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-08",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "Tests",
+        "sourcePages": [
+          344,
+          345
+        ],
+        "sourceBlocksSha256": "fe70782894b26cd1e48225209b74d7abf5a1aec33e1852a10c01b45256196e70",
+        "slides": 9
+      },
+      {
+        "chapter": 17,
+        "lessonId": "ch17-topic-09",
+        "sourcePath": "docs/chapters/17-smells-and-heuristics.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          345
+        ],
+        "sourceBlocksSha256": "e276965ad4bcac4a555c91ad042340dbc8a892f5152901bcc99fadaf736d2969",
+        "slides": 1
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-01",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Chapter introduction",
+        "sourcePages": [
+          208,
+          209
+        ],
+        "sourceBlocksSha256": "a7a66cd1c6d51bbfe3a2a98e79502f097716d2c179ffa8e949eb7db813752a93",
+        "slides": 1
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-02",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Why Concurrency?",
+        "sourcePages": [
+          209,
+          210,
+          211
+        ],
+        "sourceBlocksSha256": "bb5820cb3fec84f4a5f01adc44ebf5845fef1c196445e10a678339ad5ac0fd9a",
+        "slides": 3
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-03",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Challenges",
+        "sourcePages": [
+          211
+        ],
+        "sourceBlocksSha256": "38f46d8577f9b6856b72b6852257473f273c92589ad3a921b5e705d50f855696",
+        "slides": 3
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-04",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Concurrency Defense Principles",
+        "sourcePages": [
+          211,
+          212,
+          213
+        ],
+        "sourceBlocksSha256": "a43cd5a64d9c14d0599e8f55b56174effffed0443b0d4d83fbde37b194a521bd",
+        "slides": 5
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-05",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Know Your Library",
+        "sourcePages": [
+          213,
+          214
+        ],
+        "sourceBlocksSha256": "d9db03b23aa38595d80120b9e57a8fb36f6973af814a21c1238872d4e2b48c81",
+        "slides": 2
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-06",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Know Your Execution Models",
+        "sourcePages": [
+          214,
+          215,
+          216
+        ],
+        "sourceBlocksSha256": "213c5fcba951ed7b9d7a7a3992444f66b0539011cd3a27e2639bf9b55f0b9333",
+        "slides": 4
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-07",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Beware Dependencies Between Synchronized Methods",
+        "sourcePages": [
+          216
+        ],
+        "sourceBlocksSha256": "0ab877976f303a85322ea226450f27c1672dd31866defcd6191bc4872959a862",
+        "slides": 1
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-08",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Keep Synchronized Sections Small",
+        "sourcePages": [
+          216
+        ],
+        "sourceBlocksSha256": "b4ab93b506281d32ff5dbc8d172e5c1aabf90a1e063350fcdb127563e5e09e57",
+        "slides": 1
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-09",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Writing Correct Shut-Down Code Is Hard",
+        "sourcePages": [
+          217
+        ],
+        "sourceBlocksSha256": "ee36214f5a3c4170f8e30e361de3da25cd8f25e5578699bc96fd06b923dc5c61",
+        "slides": 1
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-10",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Testing Threaded Code",
+        "sourcePages": [
+          217,
+          218,
+          219,
+          220,
+          221
+        ],
+        "sourceBlocksSha256": "96345bbe2312d542ad3b247c9e4a46b8a47aa0cf56e6bfce87693fe25e4c9afe",
+        "slides": 16
+      },
+      {
+        "chapter": 13,
+        "lessonId": "ch13-topic-11",
+        "sourcePath": "docs/chapters/13-concurrency.md",
+        "unitTitle": "Conclusion",
+        "sourcePages": [
+          221,
+          222
+        ],
+        "sourceBlocksSha256": "f3701b0c40c94eb497be21706ae4bb0f9e611b4e162ed8028dc94786927c301a",
+        "slides": 2
+      }
+    ]
+  }
 }
