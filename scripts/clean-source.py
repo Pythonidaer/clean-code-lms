@@ -57,6 +57,9 @@ def clean_unit(unit,ch,audit=None):
         # Explanatory footnotes are collected at the unit end, never inside a sentence.
         if b['kind']=='prose':
             b['body']=prose(b['body'],b['page'])
+            if ch==2 and b['body']=='to':
+                if audit is not None:audit.append(dict(chapter=ch,page=b['page'],action='clarify comparison connector',original='to'))
+                b['body']='Compare with:'
             if out and out[-1]['kind']=='prose' and re.search(r'[\w®`,;]$',out[-1]['body']) and re.match(r'^[a-z]',b['body']):
                 out[-1]['body']+=' '+b['body'];continue
         out.append(b)

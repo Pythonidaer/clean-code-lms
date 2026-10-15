@@ -19,9 +19,9 @@ for(const chapter of cleaned.filter(c=>c.status!=='deferred')){
   const unit=wanted[i],entry=actual[i],node=(function find(ns){for(const n of ns){if(n.id===entry.lessonId)return n;if(n.children){const found=find(n.children);if(found)return found;}}})(model.sections),ds=node.type==='section'?context.api.flatten(node.children):[node],d={slides:ds.flatMap(n=>n.slides||[])};assert.equal(entry.unitTitle,unit.title);
   const body=d.slides.map(s=>s.body).join('\n\n');
   for(const b of unit.blocks){
-   if(b.kind==='heading')assert.ok(chapter.number===1?ds.some(n=>n.title===b.title):d.slides.some(s=>s.title.startsWith(b.title)),'Subheading '+b.title);
+   if(b.kind==='heading')assert.ok([1,2].includes(chapter.number)?ds.some(n=>n.title===b.title):d.slides.some(s=>s.title.startsWith(b.title)),'Subheading '+b.title);
    if(b.kind==='prose')assert.ok(normalize(body).includes(normalize(b.body)),'Clean teaching prose '+entry.lessonId);
-   if(b.kind==='listing')assert.ok(d.slides.some(s=>s.title.startsWith(b.body.replace(/^\*\*|\*\*$/g,''))),'Listing label '+b.body);
+   if(b.kind==='listing')assert.ok(d.slides.some(s=>s.title.startsWith(b.body.replace(/^\*\*|\*\*$/g,''))||s.body.includes(b.body)),'Listing label '+b.body);
    if(b.kind==='code')for(const line of b.body.split('\n').slice(1,-1).filter(l=>l.trim()))assert.ok(body.includes(line),'Code line '+entry.lessonId);
    if(b.kind==='figure')assert.ok(body.includes(b.body.replace('../../assets/','assets/')),'Figure '+entry.lessonId);
   }
@@ -56,3 +56,12 @@ for(const key of ['text','muted','brand'])for(const bg of ['background','surface
 console.log('PASS: 17 Markdown chapters; every included TOC subsection, prose block, code line and figure; curriculum exclusions; optional advanced flags; schema, parity, assessments and contrast; '+slides.length+' slides');
 
 const resource=model.sections.at(-1);assert.equal(resource.id,"study-resources");assert.ok(context.api.flatten(resource.children).every(n=>n.optional));assert.ok(decks.find(d=>d.id==="resource-ch01-notes").slides.some(s=>s.title==="Draft rules for future reviews and skills"));
+
+const secondMap=JSON.parse(read('docs/chapter-two-slide-map.json'));
+for(const unit of cleaned[1].units){
+ const mapping=secondMap.find(m=>m.sourceUnit===unit.title);assert.ok(mapping);
+ const actual=mapping.slides.map(m=>{const slide=slides.find(s=>s.id===m.slideId);assert.ok(slide);assert.equal(slide.title,m.title);assert.ok(m.proseWordCount<=150,'Chapter 2 prose budget '+m.slideId);return slide.body;}).join('\n\n');
+ const expected=unit.blocks.filter(b=>b.kind!=='heading'&&b.kind!=='listing').map(b=>b.body.replace('../../assets/','assets/')).join('\n\n');
+ const actualWithoutLabels=actual.replace(/\*\*Listing 2-[12][^\n]*\*\*/g,'');
+ assert.equal(normalize(actualWithoutLabels),normalize(expected),'Ordered Chapter 2 source coverage '+unit.title);
+}

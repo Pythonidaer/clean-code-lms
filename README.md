@@ -2,7 +2,7 @@
 
 Live course: https://pythonidaer.github.io/clean-code-lms/
 
-A chapter-based course: **14 core chapters, one optional advanced chapter, 131 source-subsection decks, 173 total decks, 614 slides, 15 chapter quizzes with 75 questions, and an independent 20-question core final.**
+A chapter-based course: **14 core chapters, one optional advanced chapter, 131 source-subsection decks, 180 total decks, 656 slides, 15 chapter quizzes with 75 questions, and an independent 20-question core final.**
 
 ## Curriculum
 
@@ -48,3 +48,7 @@ Chapter 1 preserves every source passage while replacing 23 long slides with 75 
 Teaching prose is cleaned separately from archived source: footnote markers and reference-only footnotes are removed, explanatory notes remain plain prose, and interrupted lowercase continuations are rejoined. Code and genuine numbered lists are unchanged. docs/source-cleanup-audit.json records the citation cleanup.
 
 Resources appears directly before Final assessment and includes a concise Chapter 1 notes summary, draft review heuristics, reflection answers and grouped open questions. It is optional and does not block the final. Edit docs/resources/chapter-1-notes.md and rebuild to update it.
+
+## Chapter 2 reading-flow pilot
+
+Chapter 2 now uses 71 slides instead of 29; its longest prose passage is 132 words instead of 460. Extended examples and source subheadings are nested, with code preserved next to its explanation. docs/chapter-two-slide-map.json records ordered cleaned source coverage. Chapter 1 and its resources are unchanged. The chapter quiz remains at the end, and reflection requires no code editing.
