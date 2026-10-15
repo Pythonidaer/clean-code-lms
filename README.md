@@ -2,7 +2,7 @@
 
 Live course: https://pythonidaer.github.io/clean-code-lms/
 
-A chapter-based course: **14 core chapters, one optional advanced chapter, 131 source-subsection decks, 161 total decks, 555 slides, 15 chapter quizzes with 75 questions, and an independent 20-question core final.**
+A chapter-based course: **14 core chapters, one optional advanced chapter, 131 source-subsection decks, 173 total decks, 614 slides, 15 chapter quizzes with 75 questions, and an independent 20-question core final.**
 
 ## Curriculum
 
@@ -40,3 +40,11 @@ node tests/course.test.cjs checks every included source subsection, prose block,
 With Playwright installed, node tests/browser.test.cjs checks every rendered slide, figures, safe Markdown, 390/768/1440px layouts, code layouts, menu/outline, notes/completion persistence, grading/reports, optional advanced gates, complete copying and manual fallback. GitHub Actions runs these checks plus deterministic generation. QA screenshots are workflow artifacts.
 
 There is no authentication, shared backend, verified certificate or secure grading. Answers are delivered to the client; results are personal study feedback.
+
+## Chapter 1 reading-flow pilot
+
+Chapter 1 preserves every source passage while replacing 23 long slides with 75 shorter slides (maximum 144 words), explicit teaching-point titles and nested source subtopics. The chapter quiz remains at the end. See docs/content-guidelines.md for local review steps and docs/chapter-one-slide-map.json for source coverage. Source Markdown is unchanged. Changed Chapter 1 lessons start fresh progress; existing notes on retained lesson IDs are preserved when prose changes.
+
+Teaching prose is cleaned separately from archived source: footnote markers and reference-only footnotes are removed, explanatory notes remain plain prose, and interrupted lowercase continuations are rejoined. Code and genuine numbered lists are unchanged. docs/source-cleanup-audit.json records the citation cleanup.
+
+Resources appears directly before Final assessment and includes a concise Chapter 1 notes summary, draft review heuristics, reflection answers and grouped open questions. It is optional and does not block the final. Edit docs/resources/chapter-1-notes.md and rebuild to update it.

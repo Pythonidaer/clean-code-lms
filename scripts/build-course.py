@@ -7,7 +7,13 @@ source=json.loads((ROOT/'docs/chapter-units.json').read_text())
 study=runpy.run_path(str(ROOT/'scripts/study-material.py'))
 material=study['CHAPTERS'];final=study['FINAL']
 prior=json.loads((ROOT/'course.json').read_text())
-sections=[];coverage=[]
+sections=[];coverage=[];chapter_one_mapping=[]
+cleaner=runpy.run_path(str(ROOT/"scripts/clean-source.py"));cleanup_audit=[]
+flow=runpy.run_path(str(ROOT/"scripts/chapter-one-flow.py"))
+def leaf_decks(nodes):
+    for node in nodes:
+        if node["type"]=="section":yield from leaf_decks(node["children"])
+        else:yield node
 
 def slug(s):return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
 def deck(id,title,pairs,optional=False):
@@ -102,13 +108,24 @@ for number in [*range(1,13),14,17,13]:
         if unit['title']=='Bibliography':continue
         if not unit['blocks']:continue
         id=f'{prefix}-topic-{index:02}'
-        pairs=unit_slides(unit)
+        teaching_unit=cleaner['clean_unit'](unit,number,cleanup_audit)
+        pairs=unit_slides(teaching_unit)
         if not pairs:continue
-        children.append(deck(id,unit['title'],pairs,optional))
+        if number==1:
+            node,mapping=flow['build_unit'](teaching_unit,id,deck)
+            children.append(node)
+            chapter_one_mapping.append(dict(sourceUnit=unit['title'],sourcePath=chapter['sourcePath'],sourcePages=unit['sourcePages'],slides=mapping))
+            pairs=[s for d in leaf_decks([node]) for s in d.get('slides',[])]
+        else:children.append(deck(id,unit['title'],pairs,optional))
         coverage.append(dict(chapter=number,lessonId=id,sourcePath=chapter['sourcePath'],unitTitle=unit['title'],sourcePages=unit['sourcePages'],sourceBlocksSha256=hashlib.sha256(json.dumps(unit['blocks'],sort_keys=True,ensure_ascii=False).encode()).hexdigest(),slides=len(pairs)))
     children.append(deck(prefix+'-practice','Apply the chapter',[('Practice',guide['practice']),('Worked self-check',guide['check'])],optional))
     children.append(dict(id=prefix+'-quiz',type='quiz',title='Check your understanding',skill=chapter['title'],optional=optional,questions=questions(prefix+'-quiz',guide['questions'])))
     sections.append(dict(id=prefix,type='section',title=title,children=children))
+
+resource_text=(ROOT/'docs/resources/chapter-1-notes.md').read_text()
+resource_parts=re.split(r'^## ',resource_text,flags=re.M)[1:]
+resource_slides=[tuple(part.split('\n',1)) for part in resource_parts]
+sections.append(dict(id='study-resources',type='section',title='Resources',optional=True,children=[deck('resource-ch01-notes','Chapter 1 — My clean-code notes',[(t,b.strip()) for t,b in resource_slides],True)]))
 
 course=dict(schemaVersion=1,id='clean-code-core-chapters-v2',title='Clean Code',description='Learn code-quality decisions through the book’s chapters and subsections. Core: Chapters 1–12, 14 and 17. Advanced optional: Chapter 13. Practice and assessments focus on programming concepts.',sections=sections,finalQuiz=dict(id='clean-code-core-final',type='quiz',title='Final assessment',skill='Core code-quality judgment',questions=questions('final',final)),settings=prior['settings'])
 (ROOT/'course.json').write_text(json.dumps(course,ensure_ascii=False,indent=2)+'\n')
@@ -117,6 +134,9 @@ html='<!doctype html>\n<html lang="en"><head><meta charset="UTF-8"><meta name="v
 (ROOT/'index.html').write_text(html)
 manifest=json.loads((ROOT/'source-manifest.json').read_text());manifest['curriculum']=dict(coreChapters=[*range(1,13),14,17],advancedChapters=[13],deferredChapters=[15,16],lessons=coverage)
 (ROOT/'source-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
-stats=dict(chapterSections=len(sections),sourceSubsectionDecks=len(coverage),decks=sum(n['type']=='slides' for sec in sections for n in sec['children']),slides=sum(len(n.get('slides',[])) for sec in sections for n in sec['children']),chapterQuizzes=len(sections),chapterQuestions=sum(len(n.get('questions',[])) for sec in sections for n in sec['children']),finalQuestions=len(final))
+(ROOT/'docs/source-cleanup-audit.json').write_text(json.dumps(cleanup_audit,ensure_ascii=False,indent=2)+'\n')
+(ROOT/'docs/chapter-one-slide-map.json').write_text(json.dumps(chapter_one_mapping,ensure_ascii=False,indent=2)+'\n')
+leaves=list(leaf_decks(sections))
+stats=dict(chapterSections=sum(s['id'].startswith('ch') for s in sections),sourceSubsectionDecks=len(coverage),decks=sum(n['type']=='slides' for n in leaves),slides=sum(len(n.get('slides',[])) for n in leaves),chapterQuizzes=sum(n['type']=='quiz' for n in leaves),chapterQuestions=sum(len(n.get('questions',[])) for n in leaves),finalQuestions=len(final))
 (ROOT/'docs/course-stats.json').write_text(json.dumps(stats,indent=2)+'\n')
 print(json.dumps(stats))

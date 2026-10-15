@@ -1,0 +1,655 @@
+[
+  {
+    "sourceUnit": "Chapter introduction",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      32,
+      33
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-01-s1",
+        "title": "Learn to recognize and improve code",
+        "sourceSubheading": "Chapter introduction",
+        "wordCount": 117,
+        "sourceStart": 0,
+        "sourceEnd": 609
+      }
+    ]
+  },
+  {
+    "sourceUnit": "There Will Be Code",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      33
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-02-s1",
+        "title": "The claim that programming will disappear",
+        "sourceSubheading": "There Will Be Code",
+        "wordCount": 67,
+        "sourceStart": 0,
+        "sourceEnd": 408
+      },
+      {
+        "slideId": "ch01-topic-02-s2",
+        "title": "Code specifies precise requirements",
+        "sourceSubheading": "There Will Be Code",
+        "wordCount": 49,
+        "sourceStart": 408,
+        "sourceEnd": 704
+      },
+      {
+        "slideId": "ch01-topic-02-s3",
+        "title": "Higher-level languages still need precision",
+        "sourceSubheading": "There Will Be Code",
+        "wordCount": 75,
+        "sourceStart": 704,
+        "sourceEnd": 1150
+      },
+      {
+        "slideId": "ch01-topic-02-s4",
+        "title": "Vague intentions are not executable requirements",
+        "sourceSubheading": "There Will Be Code",
+        "wordCount": 108,
+        "sourceStart": 1150,
+        "sourceEnd": 1770
+      },
+      {
+        "slideId": "ch01-topic-02-s5",
+        "title": "Requirements can become executable tests",
+        "sourceSubheading": "There Will Be Code",
+        "wordCount": 81,
+        "sourceStart": 1770,
+        "sourceEnd": 2281
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Bad Code",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      34,
+      35
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-03-s1",
+        "title": "Why code quality matters",
+        "sourceSubheading": "Bad Code",
+        "wordCount": 80,
+        "sourceStart": 0,
+        "sourceEnd": 421
+      },
+      {
+        "slideId": "ch01-topic-03-s2",
+        "title": "A successful product becomes difficult to maintain",
+        "sourceSubheading": "Bad Code",
+        "wordCount": 77,
+        "sourceStart": 421,
+        "sourceEnd": 832
+      },
+      {
+        "slideId": "ch01-topic-03-s3",
+        "title": "Accumulated disorder can overwhelm a product",
+        "sourceSubheading": "Bad Code",
+        "wordCount": 72,
+        "sourceStart": 832,
+        "sourceEnd": 1207
+      },
+      {
+        "slideId": "ch01-topic-03-s4",
+        "title": "Recognizing the cost of tangled code",
+        "sourceSubheading": "Bad Code",
+        "wordCount": 78,
+        "sourceStart": 1207,
+        "sourceEnd": 1621
+      },
+      {
+        "slideId": "ch01-topic-03-s5",
+        "title": "Why developers leave a mess",
+        "sourceSubheading": "Bad Code",
+        "wordCount": 114,
+        "sourceStart": 1621,
+        "sourceEnd": 2177
+      },
+      {
+        "slideId": "ch01-topic-03-s6",
+        "title": "The risk of postponing cleanup",
+        "sourceSubheading": "Bad Code",
+        "wordCount": 64,
+        "sourceStart": 2177,
+        "sourceEnd": 2513
+      }
+    ]
+  },
+  {
+    "sourceUnit": "The Total Cost of Owning a Mess",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-04-part-01-s1",
+        "title": "Small changes become expensive",
+        "sourceSubheading": "The Total Cost of Owning a Mess",
+        "wordCount": 129,
+        "sourceStart": 0,
+        "sourceEnd": 709
+      },
+      {
+        "slideId": "ch01-topic-04-part-01-s2",
+        "title": "Disorder creates a productivity spiral",
+        "sourceSubheading": "The Total Cost of Owning a Mess",
+        "wordCount": 62,
+        "sourceStart": 709,
+        "sourceEnd": 1063
+      },
+      {
+        "slideId": "ch01-topic-04-part-01-s3",
+        "title": "More people do not automatically fix the design",
+        "sourceSubheading": "The Total Cost of Owning a Mess",
+        "wordCount": 78,
+        "sourceStart": 1063,
+        "sourceEnd": 1557
+      },
+      {
+        "slideId": "ch01-topic-04-part-02-s1",
+        "title": "The team asks for a complete redesign",
+        "sourceSubheading": "The Grand Redesign in the Sky",
+        "wordCount": 112,
+        "sourceStart": 0,
+        "sourceEnd": 661
+      },
+      {
+        "slideId": "ch01-topic-04-part-02-s2",
+        "title": "The replacement must chase a moving target",
+        "sourceSubheading": "The Grand Redesign in the Sky",
+        "wordCount": 63,
+        "sourceStart": 661,
+        "sourceEnd": 993
+      },
+      {
+        "slideId": "ch01-topic-04-part-02-s3",
+        "title": "The new system can inherit the same problems",
+        "sourceSubheading": "The Grand Redesign in the Sky",
+        "wordCount": 85,
+        "sourceStart": 993,
+        "sourceEnd": 1444
+      },
+      {
+        "slideId": "ch01-topic-04-part-03-s1",
+        "title": "Recognizing symptoms of code decay",
+        "sourceSubheading": "Attitude",
+        "wordCount": 106,
+        "sourceStart": 0,
+        "sourceEnd": 611
+      },
+      {
+        "slideId": "ch01-topic-04-part-03-s2",
+        "title": "The author argues for developer responsibility",
+        "sourceSubheading": "Attitude",
+        "wordCount": 57,
+        "sourceStart": 611,
+        "sourceEnd": 931
+      },
+      {
+        "slideId": "ch01-topic-04-part-03-s3",
+        "title": "Developers contribute to requirements and planning",
+        "sourceSubheading": "Attitude",
+        "wordCount": 95,
+        "sourceStart": 931,
+        "sourceEnd": 1445
+      },
+      {
+        "slideId": "ch01-topic-04-part-03-s4",
+        "title": "Communicating risk under deadline pressure",
+        "sourceSubheading": "Attitude",
+        "wordCount": 65,
+        "sourceStart": 1445,
+        "sourceEnd": 1811
+      },
+      {
+        "slideId": "ch01-topic-04-part-03-s5",
+        "title": "The hand-washing analogy for professional judgment",
+        "sourceSubheading": "Attitude",
+        "wordCount": 103,
+        "sourceStart": 1811,
+        "sourceEnd": 2397
+      },
+      {
+        "slideId": "ch01-topic-04-part-04-s1",
+        "title": "Keeping code clean is part of moving quickly",
+        "sourceSubheading": "The Primal Conundrum",
+        "wordCount": 109,
+        "sourceStart": 0,
+        "sourceEnd": 595
+      },
+      {
+        "slideId": "ch01-topic-04-part-05-s1",
+        "title": "Recognizing quality is different from creating it",
+        "sourceSubheading": "The Art of Clean Code?",
+        "wordCount": 127,
+        "sourceStart": 0,
+        "sourceEnd": 630
+      },
+      {
+        "slideId": "ch01-topic-04-part-05-s2",
+        "title": "Background to the hand-washing analogy",
+        "sourceSubheading": "The Art of Clean Code?",
+        "wordCount": 34,
+        "sourceStart": 630,
+        "sourceEnd": 837
+      },
+      {
+        "slideId": "ch01-topic-04-part-05-s3",
+        "title": "Developing judgment through small techniques",
+        "sourceSubheading": "The Art of Clean Code?",
+        "wordCount": 72,
+        "sourceStart": 837,
+        "sourceEnd": 1237
+      },
+      {
+        "slideId": "ch01-topic-04-part-05-s4",
+        "title": "Judgment guides behavior-preserving changes",
+        "sourceSubheading": "The Art of Clean Code?",
+        "wordCount": 97,
+        "sourceStart": 1237,
+        "sourceEnd": 1790
+      },
+      {
+        "slideId": "ch01-topic-04-part-06-s1",
+        "title": "Several perspectives on clean code",
+        "sourceSubheading": "What Is Clean Code?",
+        "wordCount": 23,
+        "sourceStart": 0,
+        "sourceEnd": 150
+      },
+      {
+        "slideId": "ch01-topic-04-part-07-s1",
+        "title": "Bjarne Stroustrup: focused and carefully implemented code",
+        "sourceSubheading": "Bjarne Stroustrup",
+        "wordCount": 73,
+        "sourceStart": 0,
+        "sourceEnd": 449
+      },
+      {
+        "slideId": "ch01-topic-04-part-07-s2",
+        "title": "Elegance includes readability and efficiency",
+        "sourceSubheading": "Bjarne Stroustrup",
+        "wordCount": 126,
+        "sourceStart": 449,
+        "sourceEnd": 1223
+      },
+      {
+        "slideId": "ch01-topic-04-part-07-s3",
+        "title": "Neglect can encourage further neglect",
+        "sourceSubheading": "Bjarne Stroustrup",
+        "wordCount": 83,
+        "sourceStart": 1223,
+        "sourceEnd": 1711
+      },
+      {
+        "slideId": "ch01-topic-04-part-07-s4",
+        "title": "Complete handling requires attention to detail",
+        "sourceSubheading": "Bjarne Stroustrup",
+        "wordCount": 54,
+        "sourceStart": 1711,
+        "sourceEnd": 2067
+      },
+      {
+        "slideId": "ch01-topic-04-part-07-s5",
+        "title": "Clean code has a focused purpose",
+        "sourceSubheading": "Bjarne Stroustrup",
+        "wordCount": 82,
+        "sourceStart": 2067,
+        "sourceEnd": 2571
+      },
+      {
+        "slideId": "ch01-topic-04-part-08-s1",
+        "title": "Grady Booch: make the design intent clear",
+        "sourceSubheading": "Grady Booch",
+        "wordCount": 42,
+        "sourceStart": 0,
+        "sourceEnd": 281
+      },
+      {
+        "slideId": "ch01-topic-04-part-08-s2",
+        "title": "Readable code explains the problem and solution",
+        "sourceSubheading": "Grady Booch",
+        "wordCount": 142,
+        "sourceStart": 281,
+        "sourceEnd": 1082
+      },
+      {
+        "slideId": "ch01-topic-04-part-08-s3",
+        "title": "Use decisive abstractions without unnecessary detail",
+        "sourceSubheading": "Grady Booch",
+        "wordCount": 80,
+        "sourceStart": 1082,
+        "sourceEnd": 1613
+      },
+      {
+        "slideId": "ch01-topic-04-part-09-s1",
+        "title": "Dave Thomas: code others can read and enhance",
+        "sourceSubheading": "Dave Thomas",
+        "wordCount": 83,
+        "sourceStart": 0,
+        "sourceEnd": 501
+      },
+      {
+        "slideId": "ch01-topic-04-part-09-s2",
+        "title": "Readability and changeability are different",
+        "sourceSubheading": "Dave Thomas",
+        "wordCount": 55,
+        "sourceStart": 501,
+        "sourceEnd": 810
+      },
+      {
+        "slideId": "ch01-topic-04-part-09-s3",
+        "title": "Tests support confidence in changes",
+        "sourceSubheading": "Dave Thomas",
+        "wordCount": 69,
+        "sourceStart": 810,
+        "sourceEnd": 1200
+      },
+      {
+        "slideId": "ch01-topic-04-part-09-s4",
+        "title": "Prefer small, human-readable implementations",
+        "sourceSubheading": "Dave Thomas",
+        "wordCount": 72,
+        "sourceStart": 1200,
+        "sourceEnd": 1615
+      },
+      {
+        "slideId": "ch01-topic-04-part-10-s1",
+        "title": "Michael Feathers: care is visible in the details",
+        "sourceSubheading": "Michael Feathers",
+        "wordCount": 102,
+        "sourceStart": 0,
+        "sourceEnd": 567
+      },
+      {
+        "slideId": "ch01-topic-04-part-10-s2",
+        "title": "Care means maintaining simplicity and order",
+        "sourceSubheading": "Michael Feathers",
+        "wordCount": 58,
+        "sourceStart": 567,
+        "sourceEnd": 883
+      },
+      {
+        "slideId": "ch01-topic-04-part-11-s1",
+        "title": "Ron Jeffries: priorities for simple code",
+        "sourceSubheading": "Ron Jeffries",
+        "wordCount": 98,
+        "sourceStart": 0,
+        "sourceEnd": 589
+      },
+      {
+        "slideId": "ch01-topic-04-part-11-s2",
+        "title": "Duplication can reveal an unexpressed idea",
+        "sourceSubheading": "Ron Jeffries",
+        "wordCount": 97,
+        "sourceStart": 589,
+        "sourceEnd": 1119
+      },
+      {
+        "slideId": "ch01-topic-04-part-11-s3",
+        "title": "Separate responsibilities to reveal intent",
+        "sourceSubheading": "Ron Jeffries",
+        "wordCount": 94,
+        "sourceStart": 1119,
+        "sourceEnd": 1622
+      },
+      {
+        "slideId": "ch01-topic-04-part-11-s4",
+        "title": "Recognize recurring operations",
+        "sourceSubheading": "Ron Jeffries",
+        "wordCount": 81,
+        "sourceStart": 1622,
+        "sourceEnd": 2054
+      },
+      {
+        "slideId": "ch01-topic-04-part-11-s5",
+        "title": "A small abstraction preserves room to change",
+        "sourceSubheading": "Ron Jeffries",
+        "wordCount": 76,
+        "sourceStart": 2054,
+        "sourceEnd": 2498
+      },
+      {
+        "slideId": "ch01-topic-04-part-11-s6",
+        "title": "An abstraction can clarify what is really needed",
+        "sourceSubheading": "Ron Jeffries",
+        "wordCount": 84,
+        "sourceStart": 2498,
+        "sourceEnd": 3037
+      },
+      {
+        "slideId": "ch01-topic-04-part-12-s1",
+        "title": "Ward Cunningham: code should meet the reader’s expectations",
+        "sourceSubheading": "Ward Cunningham",
+        "wordCount": 124,
+        "sourceStart": 0,
+        "sourceEnd": 709
+      },
+      {
+        "slideId": "ch01-topic-04-part-12-s2",
+        "title": "Surprising code makes understanding harder",
+        "sourceSubheading": "Ward Cunningham",
+        "wordCount": 100,
+        "sourceStart": 709,
+        "sourceEnd": 1256
+      },
+      {
+        "slideId": "ch01-topic-04-part-12-s3",
+        "title": "Each module prepares the reader for the next",
+        "sourceSubheading": "Ward Cunningham",
+        "wordCount": 86,
+        "sourceStart": 1256,
+        "sourceEnd": 1739
+      },
+      {
+        "slideId": "ch01-topic-04-part-12-s4",
+        "title": "Express the problem clearly in the language",
+        "sourceSubheading": "Ward Cunningham",
+        "wordCount": 80,
+        "sourceStart": 1739,
+        "sourceEnd": 2213
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Schools of Thought",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      43,
+      44
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-05-s1",
+        "title": "This book represents one school of thought",
+        "sourceSubheading": "Schools of Thought",
+        "wordCount": 83,
+        "sourceStart": 0,
+        "sourceEnd": 446
+      },
+      {
+        "slideId": "ch01-topic-05-s2",
+        "title": "Different schools develop different techniques",
+        "sourceSubheading": "Schools of Thought",
+        "wordCount": 80,
+        "sourceStart": 446,
+        "sourceEnd": 887
+      },
+      {
+        "slideId": "ch01-topic-05-s3",
+        "title": "Learning can extend across schools",
+        "sourceSubheading": "Schools of Thought",
+        "wordCount": 72,
+        "sourceStart": 887,
+        "sourceEnd": 1341
+      },
+      {
+        "slideId": "ch01-topic-05-s4",
+        "title": "A school’s conventions are not universal truth",
+        "sourceSubheading": "Schools of Thought",
+        "wordCount": 80,
+        "sourceStart": 1341,
+        "sourceEnd": 1805
+      },
+      {
+        "slideId": "ch01-topic-05-s5",
+        "title": "Consider other professional perspectives",
+        "sourceSubheading": "Schools of Thought",
+        "wordCount": 75,
+        "sourceStart": 1805,
+        "sourceEnd": 2216
+      },
+      {
+        "slideId": "ch01-topic-05-s6",
+        "title": "Evaluate recommendations without assuming final authority",
+        "sourceSubheading": "Schools of Thought",
+        "wordCount": 88,
+        "sourceStart": 2216,
+        "sourceEnd": 2714
+      }
+    ]
+  },
+  {
+    "sourceUnit": "We Are Authors",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      44,
+      45
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-06-s1",
+        "title": "Write code for the people who will read it",
+        "sourceSubheading": "We Are Authors",
+        "wordCount": 56,
+        "sourceStart": 0,
+        "sourceEnd": 316
+      },
+      {
+        "slideId": "ch01-topic-06-s2",
+        "title": "Editing includes a great deal of reading",
+        "sourceSubheading": "We Are Authors",
+        "wordCount": 81,
+        "sourceStart": 316,
+        "sourceEnd": 756
+      },
+      {
+        "slideId": "ch01-topic-06-s3",
+        "title": "Following an edit session: finding context",
+        "sourceSubheading": "We Are Authors",
+        "wordCount": 43,
+        "sourceStart": 756,
+        "sourceEnd": 999
+      },
+      {
+        "slideId": "ch01-topic-06-s4",
+        "title": "Following an edit session: checking callers",
+        "sourceSubheading": "We Are Authors",
+        "wordCount": 75,
+        "sourceStart": 999,
+        "sourceEnd": 1404
+      },
+      {
+        "slideId": "ch01-topic-06-s5",
+        "title": "Easier reading supports easier writing",
+        "sourceSubheading": "We Are Authors",
+        "wordCount": 80,
+        "sourceStart": 1404,
+        "sourceEnd": 1804
+      },
+      {
+        "slideId": "ch01-topic-06-s6",
+        "title": "Surrounding code affects the next change",
+        "sourceSubheading": "We Are Authors",
+        "wordCount": 74,
+        "sourceStart": 1804,
+        "sourceEnd": 2159
+      }
+    ]
+  },
+  {
+    "sourceUnit": "The Boy Scout Rule",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      45
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-07-s1",
+        "title": "Leave the code cleaner than you found it",
+        "sourceSubheading": "The Boy Scout Rule",
+        "wordCount": 62,
+        "sourceStart": 0,
+        "sourceEnd": 328
+      },
+      {
+        "slideId": "ch01-topic-07-s2",
+        "title": "Small improvements can accumulate over time",
+        "sourceSubheading": "The Boy Scout Rule",
+        "wordCount": 119,
+        "sourceStart": 328,
+        "sourceEnd": 1025
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Prequel and Principles",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      46
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-08-s1",
+        "title": "How this book connects to design principles",
+        "sourceSubheading": "Prequel and Principles",
+        "wordCount": 129,
+        "sourceStart": 0,
+        "sourceEnd": 769
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Conclusion",
+    "sourcePath": "docs/chapters/01-clean-code.md",
+    "sourcePages": [
+      46
+    ],
+    "slides": [
+      {
+        "slideId": "ch01-topic-09-s1",
+        "title": "Reading provides tools; practice develops judgment",
+        "sourceSubheading": "Conclusion",
+        "wordCount": 71,
+        "sourceStart": 0,
+        "sourceEnd": 389
+      },
+      {
+        "slideId": "ch01-topic-09-s2",
+        "title": "Learning continues through examples and practice",
+        "sourceSubheading": "Conclusion",
+        "wordCount": 108,
+        "sourceStart": 389,
+        "sourceEnd": 974
+      }
+    ]
+  }
+]
