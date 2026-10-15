@@ -97,6 +97,18 @@
   },
   {
     "chapter": 2,
+    "page": 53,
+    "action": "clarify comparison connector",
+    "original": "to"
+  },
+  {
+    "chapter": 2,
+    "page": 54,
+    "action": "clarify comparison connector",
+    "original": "to"
+  },
+  {
+    "chapter": 2,
     "page": 56,
     "action": "remove reference-only footnote",
     "original": "4. http://java.sun.com/products/javabeans/docs/spec.html"

@@ -20,6 +20,10 @@ const first=course.sections[0].children[0];await openLesson(first.id);for(let i=
 // Changed prose preserves learner notes while stale completion is reset.
 await page.addInitScript(({id,courseId})=>{const key='design-lab-lms-progress-'+courseId,stored=JSON.parse(localStorage.getItem(key));stored.records[id].fingerprint='old-extracted-content';localStorage.setItem(key,JSON.stringify(stored));},{id:first.id,courseId:course.id});
 await page.reload();assert.equal(await page.locator('[data-lms-notes="'+first.id+'"]').inputValue(),'Private chapter study note');assert.equal(await page.locator('[data-id="'+first.id+'"] .lms-complete-icon').count(),0);
+// Chapter 2's example sequence is nested and keeps code beside its explanation.
+await openLesson('ch02-topic-02-part-03');assert.equal(await page.locator('#lms-heading').innerText(),'Give the game concepts explicit names');assert.ok((await page.locator('.lms-slide pre').innerText()).includes('getFlaggedCells'));
+for(const width of [390,768,1440]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Chapter 2 overflow '+width);if(shotDir)await page.screenshot({path:path.join(shotDir,'chapter-2-pilot-'+width+'.png')});}
+await page.setViewportSize({width:1440,height:900});
 // Real slide layouts for names, testing and a long case-study listing.
 for(const number of [2,9,14,17]){
  const section=course.sections.find(s=>s.id==='ch'+String(number).padStart(2,'0')),target=section.children.find(n=>n.type==='slides'&&n.slides.some(s=>s.body.includes('```')))||section.children[1];await openLesson(target.id);const index=target.slides.findIndex(s=>s.body.includes('```'));for(let i=0;i<Math.max(0,index);i++)await page.locator('[data-lms="slide-next"]').click();

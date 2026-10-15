@@ -1,0 +1,778 @@
+[
+  {
+    "sourceUnit": "Introduction",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      48,
+      49
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-01-s1",
+        "title": "Names are part of everyday programming",
+        "sourceSubheading": "Introduction",
+        "wordCount": 66,
+        "proseWordCount": 66,
+        "sourceStart": 0,
+        "sourceEnd": 364
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Use Intention-Revealing Names",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      49,
+      50
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-02-part-01-s1",
+        "title": "A name should explain why it exists",
+        "sourceSubheading": "Use Intention-Revealing Names",
+        "wordCount": 114,
+        "proseWordCount": 105,
+        "sourceStart": 0,
+        "sourceEnd": 590
+      },
+      {
+        "slideId": "ch02-topic-02-part-01-s2",
+        "title": "Include the quantity and its units",
+        "sourceSubheading": "Use Intention-Revealing Names",
+        "wordCount": 44,
+        "proseWordCount": 34,
+        "sourceStart": 590,
+        "sourceEnd": 878
+      },
+      {
+        "slideId": "ch02-topic-02-part-02-s1",
+        "title": "Short code can still hide its purpose",
+        "sourceSubheading": "Use Intention-Revealing Names",
+        "wordCount": 46,
+        "proseWordCount": 22,
+        "sourceStart": 878,
+        "sourceEnd": 1190
+      },
+      {
+        "slideId": "ch02-topic-02-part-02-s2",
+        "title": "Identify the context the reader has to guess",
+        "sourceSubheading": "Use Intention-Revealing Names",
+        "wordCount": 132,
+        "proseWordCount": 132,
+        "sourceStart": 1190,
+        "sourceEnd": 1925
+      },
+      {
+        "slideId": "ch02-topic-02-part-03-s1",
+        "title": "Give the game concepts explicit names",
+        "sourceSubheading": "Use Intention-Revealing Names",
+        "wordCount": 113,
+        "proseWordCount": 89,
+        "sourceStart": 1925,
+        "sourceEnd": 2657
+      },
+      {
+        "slideId": "ch02-topic-02-part-03-s2",
+        "title": "Hide representation details behind a meaningful operation",
+        "sourceSubheading": "Use Intention-Revealing Names",
+        "wordCount": 121,
+        "proseWordCount": 99,
+        "sourceStart": 2657,
+        "sourceEnd": 3452
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Avoid Disinformation",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      50,
+      51
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-03-s1",
+        "title": "Avoid names that suggest the wrong concept",
+        "sourceSubheading": "Avoid Disinformation",
+        "wordCount": 63,
+        "proseWordCount": 63,
+        "sourceStart": 0,
+        "sourceEnd": 385
+      },
+      {
+        "slideId": "ch02-topic-03-s2",
+        "title": "Do not imply a collection type incorrectly",
+        "sourceSubheading": "Avoid Disinformation",
+        "wordCount": 52,
+        "proseWordCount": 52,
+        "sourceStart": 385,
+        "sourceEnd": 710
+      },
+      {
+        "slideId": "ch02-topic-03-s3",
+        "title": "Make important differences easy to see",
+        "sourceSubheading": "Avoid Disinformation",
+        "wordCount": 49,
+        "proseWordCount": 49,
+        "sourceStart": 710,
+        "sourceEnd": 1105
+      },
+      {
+        "slideId": "ch02-topic-03-s4",
+        "title": "Names need to be recognizable in completion lists",
+        "sourceSubheading": "Avoid Disinformation",
+        "wordCount": 82,
+        "proseWordCount": 82,
+        "sourceStart": 1105,
+        "sourceEnd": 1588
+      },
+      {
+        "slideId": "ch02-topic-03-s5",
+        "title": "Avoid letters that look like numbers",
+        "sourceSubheading": "Avoid Disinformation",
+        "wordCount": 59,
+        "proseWordCount": 40,
+        "sourceStart": 1588,
+        "sourceEnd": 1901
+      },
+      {
+        "slideId": "ch02-topic-03-s6",
+        "title": "Rename the ambiguity instead of changing the font",
+        "sourceSubheading": "Avoid Disinformation",
+        "wordCount": 98,
+        "proseWordCount": 98,
+        "sourceStart": 1901,
+        "sourceEnd": 2453
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Make Meaningful Distinctions",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      51,
+      52
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-04-s1",
+        "title": "Different names should mean different things",
+        "sourceSubheading": "Make Meaningful Distinctions",
+        "wordCount": 98,
+        "proseWordCount": 98,
+        "sourceStart": 0,
+        "sourceEnd": 592
+      },
+      {
+        "slideId": "ch02-topic-04-s2",
+        "title": "Name the source and destination by their roles",
+        "sourceSubheading": "Make Meaningful Distinctions",
+        "wordCount": 68,
+        "proseWordCount": 43,
+        "sourceStart": 592,
+        "sourceEnd": 1027
+      },
+      {
+        "slideId": "ch02-topic-04-s3",
+        "title": "Adding Info or Data may not explain a difference",
+        "sourceSubheading": "Make Meaningful Distinctions",
+        "wordCount": 45,
+        "proseWordCount": 45,
+        "sourceStart": 1027,
+        "sourceEnd": 1327
+      },
+      {
+        "slideId": "ch02-topic-04-s4",
+        "title": "A convention is useful when it carries meaning",
+        "sourceSubheading": "Make Meaningful Distinctions",
+        "wordCount": 58,
+        "proseWordCount": 58,
+        "sourceStart": 1327,
+        "sourceEnd": 1670
+      },
+      {
+        "slideId": "ch02-topic-04-s5",
+        "title": "Remove labels that repeat what is already clear",
+        "sourceSubheading": "Make Meaningful Distinctions",
+        "wordCount": 77,
+        "proseWordCount": 77,
+        "sourceStart": 1670,
+        "sourceEnd": 2152
+      },
+      {
+        "slideId": "ch02-topic-04-s6",
+        "title": "Similar API names should communicate distinct operations",
+        "sourceSubheading": "Make Meaningful Distinctions",
+        "wordCount": 32,
+        "proseWordCount": 27,
+        "sourceStart": 2152,
+        "sourceEnd": 2380
+      },
+      {
+        "slideId": "ch02-topic-04-s7",
+        "title": "Help readers choose the right operation",
+        "sourceSubheading": "Make Meaningful Distinctions",
+        "wordCount": 82,
+        "proseWordCount": 82,
+        "sourceStart": 2380,
+        "sourceEnd": 2959
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Use Pronounceable Names",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      52,
+      53
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-05-s1",
+        "title": "Choose names people can discuss aloud",
+        "sourceSubheading": "Use Pronounceable Names",
+        "wordCount": 96,
+        "proseWordCount": 96,
+        "sourceStart": 0,
+        "sourceEnd": 527
+      },
+      {
+        "slideId": "ch02-topic-05-s2",
+        "title": "An abbreviation can become a shared guessing game",
+        "sourceSubheading": "Use Pronounceable Names",
+        "wordCount": 79,
+        "proseWordCount": 79,
+        "sourceStart": 527,
+        "sourceEnd": 970
+      },
+      {
+        "slideId": "ch02-topic-05-s3",
+        "title": "Compare abbreviated names with readable names",
+        "sourceSubheading": "Use Pronounceable Names",
+        "wordCount": 48,
+        "proseWordCount": 27,
+        "sourceStart": 970,
+        "sourceEnd": 1262
+      },
+      {
+        "slideId": "ch02-topic-05-s4",
+        "title": "Readable names make a useful conversation possible",
+        "sourceSubheading": "Use Pronounceable Names",
+        "wordCount": 68,
+        "proseWordCount": 47,
+        "sourceStart": 1262,
+        "sourceEnd": 1688
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Use Searchable Names",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      53,
+      54
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-06-s1",
+        "title": "A named concept is easier to find than a number",
+        "sourceSubheading": "Use Searchable Names",
+        "wordCount": 89,
+        "proseWordCount": 89,
+        "sourceStart": 0,
+        "sourceEnd": 549
+      },
+      {
+        "slideId": "ch02-topic-06-s2",
+        "title": "Make names searchable across their scope",
+        "sourceSubheading": "Use Searchable Names",
+        "wordCount": 59,
+        "proseWordCount": 59,
+        "sourceStart": 549,
+        "sourceEnd": 870
+      },
+      {
+        "slideId": "ch02-topic-06-s3",
+        "title": "Match the name to how widely it is used",
+        "sourceSubheading": "Use Searchable Names",
+        "wordCount": 58,
+        "proseWordCount": 58,
+        "sourceStart": 870,
+        "sourceEnd": 1187
+      },
+      {
+        "slideId": "ch02-topic-06-s4",
+        "title": "An unnamed calculation hides the meaning of its numbers",
+        "sourceSubheading": "Use Searchable Names",
+        "wordCount": 15,
+        "proseWordCount": 3,
+        "sourceStart": 1187,
+        "sourceEnd": 1266
+      },
+      {
+        "slideId": "ch02-topic-06-s5",
+        "title": "Named constants explain the calculation",
+        "sourceSubheading": "Use Searchable Names",
+        "wordCount": 41,
+        "proseWordCount": 2,
+        "sourceStart": 1266,
+        "sourceEnd": 1547
+      },
+      {
+        "slideId": "ch02-topic-06-s6",
+        "title": "Searchability can be worth a longer expression",
+        "sourceSubheading": "Use Searchable Names",
+        "wordCount": 58,
+        "proseWordCount": 58,
+        "sourceStart": 1547,
+        "sourceEnd": 1878
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Avoid Encodings",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      54,
+      55
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-07-part-01-s1",
+        "title": "Avoid making readers decode type or scope",
+        "sourceSubheading": "Avoid Encodings",
+        "wordCount": 79,
+        "proseWordCount": 79,
+        "sourceStart": 0,
+        "sourceEnd": 483
+      },
+      {
+        "slideId": "ch02-topic-07-part-02-s1",
+        "title": "Type encodings addressed older language limitations",
+        "sourceSubheading": "Hungarian Notation",
+        "wordCount": 93,
+        "proseWordCount": 93,
+        "sourceStart": 0,
+        "sourceEnd": 545
+      },
+      {
+        "slideId": "ch02-topic-07-part-02-s2",
+        "title": "Modern type systems reduce the need for encoded names",
+        "sourceSubheading": "Hungarian Notation",
+        "wordCount": 65,
+        "proseWordCount": 65,
+        "sourceStart": 545,
+        "sourceEnd": 929
+      },
+      {
+        "slideId": "ch02-topic-07-part-02-s3",
+        "title": "An encoded type can become misleading after a change",
+        "sourceSubheading": "Hungarian Notation",
+        "wordCount": 89,
+        "proseWordCount": 78,
+        "sourceStart": 929,
+        "sourceEnd": 1460
+      },
+      {
+        "slideId": "ch02-topic-07-part-03-s1",
+        "title": "The author recommends clear names over member prefixes",
+        "sourceSubheading": "Member Prefixes",
+        "wordCount": 79,
+        "proseWordCount": 41,
+        "sourceStart": 0,
+        "sourceEnd": 550
+      },
+      {
+        "slideId": "ch02-topic-07-part-03-s2",
+        "title": "Repeated prefixes can become ignored clutter",
+        "sourceSubheading": "Member Prefixes",
+        "wordCount": 42,
+        "proseWordCount": 42,
+        "sourceStart": 550,
+        "sourceEnd": 783
+      },
+      {
+        "slideId": "ch02-topic-07-part-04-s1",
+        "title": "Name an interface for the role it provides",
+        "sourceSubheading": "Interfaces and Implementations",
+        "wordCount": 70,
+        "proseWordCount": 70,
+        "sourceStart": 0,
+        "sourceEnd": 427
+      },
+      {
+        "slideId": "ch02-topic-07-part-04-s2",
+        "title": "The author prefers marking an implementation when needed",
+        "sourceSubheading": "Interfaces and Implementations",
+        "wordCount": 51,
+        "proseWordCount": 51,
+        "sourceStart": 427,
+        "sourceEnd": 746
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Avoid Mental Mapping",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      56
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-08-s1",
+        "title": "Use names readers do not have to translate",
+        "sourceSubheading": "Avoid Mental Mapping",
+        "wordCount": 79,
+        "proseWordCount": 79,
+        "sourceStart": 0,
+        "sourceEnd": 473
+      },
+      {
+        "slideId": "ch02-topic-08-s2",
+        "title": "A placeholder name makes readers memorize a mapping",
+        "sourceSubheading": "Avoid Mental Mapping",
+        "wordCount": 46,
+        "proseWordCount": 46,
+        "sourceStart": 473,
+        "sourceEnd": 723
+      },
+      {
+        "slideId": "ch02-topic-08-s3",
+        "title": "Use your understanding to make the code clear to others",
+        "sourceSubheading": "Avoid Mental Mapping",
+        "wordCount": 83,
+        "proseWordCount": 83,
+        "sourceStart": 723,
+        "sourceEnd": 1245
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Class Names",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      56
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-09-s1",
+        "title": "Use nouns for classes and objects",
+        "sourceSubheading": "Class Names",
+        "wordCount": 38,
+        "proseWordCount": 38,
+        "sourceStart": 0,
+        "sourceEnd": 236
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Method Names",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      56
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-10-s1",
+        "title": "Use verbs and meaningful predicate names",
+        "sourceSubheading": "Method Names",
+        "wordCount": 44,
+        "proseWordCount": 35,
+        "sourceStart": 0,
+        "sourceEnd": 338
+      },
+      {
+        "slideId": "ch02-topic-10-s2",
+        "title": "A named factory can explain the construction arguments",
+        "sourceSubheading": "Method Names",
+        "wordCount": 43,
+        "proseWordCount": 30,
+        "sourceStart": 338,
+        "sourceEnd": 678
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Don't Be Cute",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      57
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-11-s1",
+        "title": "Choose clarity over an inside joke",
+        "sourceSubheading": "Don't Be Cute",
+        "wordCount": 60,
+        "proseWordCount": 60,
+        "sourceStart": 0,
+        "sourceEnd": 349
+      },
+      {
+        "slideId": "ch02-topic-11-s2",
+        "title": "Avoid slang that hides the intended operation",
+        "sourceSubheading": "Don't Be Cute",
+        "wordCount": 40,
+        "proseWordCount": 40,
+        "sourceStart": 349,
+        "sourceEnd": 599
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Pick One Word per Concept",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      57
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-12-s1",
+        "title": "Use consistent vocabulary for the same operation",
+        "sourceSubheading": "Pick One Word per Concept",
+        "wordCount": 77,
+        "proseWordCount": 77,
+        "sourceStart": 0,
+        "sourceEnd": 464
+      },
+      {
+        "slideId": "ch02-topic-12-s2",
+        "title": "Method names need to stand on their own",
+        "sourceSubheading": "Pick One Word per Concept",
+        "wordCount": 80,
+        "proseWordCount": 80,
+        "sourceStart": 464,
+        "sourceEnd": 955
+      },
+      {
+        "slideId": "ch02-topic-12-s3",
+        "title": "Role names should express real distinctions",
+        "sourceSubheading": "Pick One Word per Concept",
+        "wordCount": 78,
+        "proseWordCount": 78,
+        "sourceStart": 955,
+        "sourceEnd": 1420
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Don't Pun",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      57,
+      58
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-13-s1",
+        "title": "Do not reuse a term for different meanings",
+        "sourceSubheading": "Don't Pun",
+        "wordCount": 87,
+        "proseWordCount": 87,
+        "sourceStart": 0,
+        "sourceEnd": 475
+      },
+      {
+        "slideId": "ch02-topic-13-s2",
+        "title": "Adding values and appending an item are different ideas",
+        "sourceSubheading": "Don't Pun",
+        "wordCount": 88,
+        "proseWordCount": 88,
+        "sourceStart": 475,
+        "sourceEnd": 954
+      },
+      {
+        "slideId": "ch02-topic-13-s3",
+        "title": "Make the meaning clear rather than requiring study",
+        "sourceSubheading": "Don't Pun",
+        "wordCount": 64,
+        "proseWordCount": 64,
+        "sourceStart": 954,
+        "sourceEnd": 1285
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Use Solution Domain Names",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      58
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-14-s1",
+        "title": "Use technical terms your programming readers know",
+        "sourceSubheading": "Use Solution Domain Names",
+        "wordCount": 72,
+        "proseWordCount": 72,
+        "sourceStart": 0,
+        "sourceEnd": 397
+      },
+      {
+        "slideId": "ch02-topic-14-s2",
+        "title": "Known technical names can communicate a useful concept",
+        "sourceSubheading": "Use Solution Domain Names",
+        "wordCount": 50,
+        "proseWordCount": 50,
+        "sourceStart": 397,
+        "sourceEnd": 704
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Use Problem Domain Names",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      58
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-15-s1",
+        "title": "Use domain vocabulary for domain concepts",
+        "sourceSubheading": "Use Problem Domain Names",
+        "wordCount": 68,
+        "proseWordCount": 68,
+        "sourceStart": 0,
+        "sourceEnd": 391
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Add Meaningful Context",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      58,
+      59,
+      60
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-16-part-01-s1",
+        "title": "Give names an understandable surrounding context",
+        "sourceSubheading": "Add Meaningful Context",
+        "wordCount": 49,
+        "proseWordCount": 49,
+        "sourceStart": 0,
+        "sourceEnd": 286
+      },
+      {
+        "slideId": "ch02-topic-16-part-01-s2",
+        "title": "An isolated state value needs an address context",
+        "sourceSubheading": "Add Meaningful Context",
+        "wordCount": 50,
+        "proseWordCount": 50,
+        "sourceStart": 286,
+        "sourceEnd": 604
+      },
+      {
+        "slideId": "ch02-topic-16-part-01-s3",
+        "title": "A meaningful structure can provide the context",
+        "sourceSubheading": "Add Meaningful Context",
+        "wordCount": 52,
+        "proseWordCount": 52,
+        "sourceStart": 604,
+        "sourceEnd": 930
+      },
+      {
+        "slideId": "ch02-topic-16-part-02-s1",
+        "title": "Listing 2-1: context must be inferred from the function",
+        "sourceSubheading": "Add Meaningful Context",
+        "wordCount": 150,
+        "proseWordCount": 77,
+        "sourceStart": 930,
+        "sourceEnd": 2002
+      },
+      {
+        "slideId": "ch02-topic-16-part-03-s1",
+        "title": "Give the message parts a clear shared context",
+        "sourceSubheading": "Add Meaningful Context",
+        "wordCount": 75,
+        "proseWordCount": 75,
+        "sourceStart": 2002,
+        "sourceEnd": 2472
+      },
+      {
+        "slideId": "ch02-topic-16-part-03-s2",
+        "title": "Listing 2-2: named message responsibilities",
+        "sourceSubheading": "Add Meaningful Context",
+        "wordCount": 110,
+        "proseWordCount": 6,
+        "sourceStart": 2472,
+        "sourceEnd": 3416
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Don't Add Gratuitous Context",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      60,
+      61
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-17-s1",
+        "title": "A product prefix can make names harder to find",
+        "sourceSubheading": "Don't Add Gratuitous Context",
+        "wordCount": 60,
+        "proseWordCount": 60,
+        "sourceStart": 0,
+        "sourceEnd": 320
+      },
+      {
+        "slideId": "ch02-topic-17-s2",
+        "title": "Do not attach a reusable concept to an irrelevant product",
+        "sourceSubheading": "Don't Add Gratuitous Context",
+        "wordCount": 46,
+        "proseWordCount": 46,
+        "sourceStart": 320,
+        "sourceEnd": 631
+      },
+      {
+        "slideId": "ch02-topic-17-s3",
+        "title": "Use only the context needed to be precise",
+        "sourceSubheading": "Don't Add Gratuitous Context",
+        "wordCount": 86,
+        "proseWordCount": 86,
+        "sourceStart": 631,
+        "sourceEnd": 1144
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Final Words",
+    "sourcePath": "docs/chapters/02-meaningful-names.md",
+    "sourcePages": [
+      61
+    ],
+    "slides": [
+      {
+        "slideId": "ch02-topic-18-s1",
+        "title": "Good naming depends on shared understanding",
+        "sourceSubheading": "Final Words",
+        "wordCount": 81,
+        "proseWordCount": 81,
+        "sourceStart": 0,
+        "sourceEnd": 465
+      },
+      {
+        "slideId": "ch02-topic-18-s2",
+        "title": "Tools help readers focus on meaning",
+        "sourceSubheading": "Final Words",
+        "wordCount": 56,
+        "proseWordCount": 56,
+        "sourceStart": 465,
+        "sourceEnd": 768
+      },
+      {
+        "slideId": "ch02-topic-18-s3",
+        "title": "Improve names with help from refactoring tools",
+        "sourceSubheading": "Final Words",
+        "wordCount": 74,
+        "proseWordCount": 74,
+        "sourceStart": 768,
+        "sourceEnd": 1179
+      }
+    ]
+  }
+]

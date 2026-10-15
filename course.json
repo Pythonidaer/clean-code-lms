@@ -652,7 +652,7 @@
             {
               "id": "ch02-overview-s2",
               "title": "Ideas to look for",
-              "body": "• A name should explain what a value means, including units when relevant.\n\n• Use consistent vocabulary for the same concept; avoid misleading container names, noise words and arbitrary number suffixes.\n\n• Context should clarify a domain idea without adding redundant prefixes or encoding implementation details unnecessarily."
+              "body": "• Communicate meaning, role and relevant units.\n\n• Avoid misleading clues, unexplained abbreviations and meaningless differences.\n\n• Use consistent vocabulary, useful context and names that can be pronounced and searched."
             }
           ]
         },
@@ -664,26 +664,69 @@
           "slides": [
             {
               "id": "ch02-topic-01-s1",
-              "title": "Introduction",
+              "title": "Names are part of everyday programming",
               "body": "Names are everywhere in software. We name our variables, our functions, our arguments, classes, and packages. We name our source files and the directories that contain them. We name our jar files and war files and ear files. We name and name and name. Because we do so much of it, we’d better do it well. What follows are some simple rules for creating good names."
             }
           ]
         },
         {
           "id": "ch02-topic-02",
-          "type": "slides",
+          "type": "section",
           "title": "Use Intention-Revealing Names",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch02-topic-02-s1",
-              "title": "Use Intention-Revealing Names · 1 of 2",
-              "body": "It is easy to say that names should reveal intent. What we want to impress upon you is that we are serious about this. Choosing good names takes time but saves more than it takes. So take care with your names and change them when you find better ones. Everyone who reads your code (including you) will be happier if you do. The name of a variable, function, or class, should answer all the big questions. It should tell you why it exists, what it does, and how it is used. If a name requires a comment, then the name does not reveal its intent.\n\n```text\nint d; // elapsed time in days\n```\n\nThe name `d` reveals nothing. It does not evoke a sense of elapsed time, nor of days. We should choose a name that specifies what is being measured and the unit of that measurement:\n\n```text\nint elapsedTimeInDays;\nint daysSinceCreation;\nint daysSinceModification;\nint fileAgeInDays;\n```\n\nChoosing names that reveal intent can make it much easier to understand and change code. What is the purpose of this code?\n\n```text\n  public List<int[]> getThem() {\n    List<int[]> list1 = new ArrayList<int[]>();\n    for (int[] x : theList)\n      if (x[0] == 4) \n        list1.add(x);\n    return list1;\n  }\n```\n\nWhy is it hard to tell what this code is doing? There are no complex expressions. Spacing and indentation are reasonable. There are only three variables and two constants mentioned. There aren’t even any fancy classes or polymorphic methods, just a list of arrays (or so it seems). The problem isn’t the simplicity of the code but the implicity of the code (to coin a phrase): the degree to which the context is not explicit in the code itself. The code implicitly requires that we know the answers to questions such as:\n\n1. What kinds of things are in `theList`?\n\n2. What is the significance of the zeroth subscript of an item in `theList`?\n\n3. What is the significance of the value `4`?\n\n4. How would I use the list being returned?\n\nThe answers to these questions are not present in the code sample, but they could have been. Say that we’re working in a mine sweeper game. We find that the board is a list of cells called `theList`. Let’s rename that to `gameBoard`. Each cell on the board is represented by a simple array. We further find that the zeroth subscript is the location of a status value and that a status value of 4 means “flagged.” Just by giving these concepts names we can improve the code considerably:\n\n```text\n  public List<int[]> getFlaggedCells() {\n    List<int[]> flaggedCells = new ArrayList<int[]>();\n    for (int[] cell : gameBoard)\n      if (cell[STATUS_VALUE] == FLAGGED)\n        flaggedCells.add(cell);\n    return flaggedCells;\n  }\n```\n\nNotice that the simplicity of the code has not changed. It still has exactly the same number of operators and constants, with exactly the same number of nesting levels. But the code has become much more explicit. We can go further and write a simple class for cells instead of using an array of `int`s. It can include an intention-revealing function (call it `isFlagged`) to hide the magic numbers. It results in a new version of the function:"
+              "id": "ch02-topic-02-part-01",
+              "type": "slides",
+              "title": "Meaning and units",
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-02-part-01-s1",
+                  "title": "A name should explain why it exists",
+                  "body": "It is easy to say that names should reveal intent. What we want to impress upon you is that we are serious about this. Choosing good names takes time but saves more than it takes. So take care with your names and change them when you find better ones. Everyone who reads your code (including you) will be happier if you do. The name of a variable, function, or class, should answer all the big questions. It should tell you why it exists, what it does, and how it is used. If a name requires a comment, then the name does not reveal its intent.\n\n```text\nint d; // elapsed time in days\n```"
+                },
+                {
+                  "id": "ch02-topic-02-part-01-s2",
+                  "title": "Include the quantity and its units",
+                  "body": "The name `d` reveals nothing. It does not evoke a sense of elapsed time, nor of days. We should choose a name that specifies what is being measured and the unit of that measurement:\n\n```text\nint elapsedTimeInDays;\nint daysSinceCreation;\nint daysSinceModification;\nint fileAgeInDays;\n```"
+                }
+              ]
             },
             {
-              "id": "ch02-topic-02-s2",
-              "title": "Use Intention-Revealing Names · 2 of 2",
-              "body": "```text\n  public List<Cell> getFlaggedCells() {\n    List<Cell> flaggedCells = new ArrayList<Cell>();\n    for (Cell cell : gameBoard)\n      if (cell.isFlagged())\n        flaggedCells.add(cell);\n    return flaggedCells;\n  }\n```\n\nWith these simple name changes, it’s not difficult to understand what’s going on. This is the power of choosing good names."
+              "id": "ch02-topic-02-part-02",
+              "type": "slides",
+              "title": "Reading the unclear example",
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-02-part-02-s1",
+                  "title": "Short code can still hide its purpose",
+                  "body": "Choosing names that reveal intent can make it much easier to understand and change code. What is the purpose of this code?\n\n```text\n  public List<int[]> getThem() {\n    List<int[]> list1 = new ArrayList<int[]>();\n    for (int[] x : theList)\n      if (x[0] == 4) \n        list1.add(x);\n    return list1;\n  }\n```"
+                },
+                {
+                  "id": "ch02-topic-02-part-02-s2",
+                  "title": "Identify the context the reader has to guess",
+                  "body": "Why is it hard to tell what this code is doing? There are no complex expressions. Spacing and indentation are reasonable. There are only three variables and two constants mentioned. There aren’t even any fancy classes or polymorphic methods, just a list of arrays (or so it seems). The problem isn’t the simplicity of the code but the implicity of the code (to coin a phrase): the degree to which the context is not explicit in the code itself. The code implicitly requires that we know the answers to questions such as:\n\n1. What kinds of things are in `theList`?\n\n2. What is the significance of the zeroth subscript of an item in `theList`?\n\n3. What is the significance of the value `4`?\n\n4. How would I use the list being returned?"
+                }
+              ]
+            },
+            {
+              "id": "ch02-topic-02-part-03",
+              "type": "slides",
+              "title": "Making the game concepts explicit",
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-02-part-03-s1",
+                  "title": "Give the game concepts explicit names",
+                  "body": "The answers to these questions are not present in the code sample, but they could have been. Say that we’re working in a mine sweeper game. We find that the board is a list of cells called `theList`. Let’s rename that to `gameBoard`. Each cell on the board is represented by a simple array. We further find that the zeroth subscript is the location of a status value and that a status value of 4 means “flagged.” Just by giving these concepts names we can improve the code considerably:\n\n```text\n  public List<int[]> getFlaggedCells() {\n    List<int[]> flaggedCells = new ArrayList<int[]>();\n    for (int[] cell : gameBoard)\n      if (cell[STATUS_VALUE] == FLAGGED)\n        flaggedCells.add(cell);\n    return flaggedCells;\n  }\n```"
+                },
+                {
+                  "id": "ch02-topic-02-part-03-s2",
+                  "title": "Hide representation details behind a meaningful operation",
+                  "body": "Notice that the simplicity of the code has not changed. It still has exactly the same number of operators and constants, with exactly the same number of nesting levels. But the code has become much more explicit. We can go further and write a simple class for cells instead of using an array of `int`s. It can include an intention-revealing function (call it `isFlagged`) to hide the magic numbers. It results in a new version of the function:\n\n```text\n  public List<Cell> getFlaggedCells() {\n    List<Cell> flaggedCells = new ArrayList<Cell>();\n    for (Cell cell : gameBoard)\n      if (cell.isFlagged())\n        flaggedCells.add(cell);\n    return flaggedCells;\n  }\n```\n\nWith these simple name changes, it’s not difficult to understand what’s going on. This is the power of choosing good names."
+                }
+              ]
             }
           ]
         },
@@ -695,8 +738,33 @@
           "slides": [
             {
               "id": "ch02-topic-03-s1",
-              "title": "Avoid Disinformation",
-              "body": "Programmers must avoid leaving false clues that obscure the meaning of code. We should avoid words whose entrenched meanings vary from our intended meaning. For example, `hp`,` aix`, and `sco` would be poor variable names because they are the names of Unix platforms or variants. Even if you are coding a hypotenuse and `hp` looks like a good abbreviation, it could be disinformative. Do not refer to a grouping of accounts as an `accountList` unless it’s actually a `List`. The word list means something specific to programmers. If the container holding the accounts is not actually a `List`, it may lead to false conclusions. So` accountGroup` or `bunchOfAccounts` or just plain `accounts` would be better.\n\nBeware of using names which vary in small ways. How long does it take to spot the subtle difference between a `XYZControllerForEfficientHandlingOfStrings` in one module and, somewhere a little more distant, `XYZControllerForEfficientStorageOfStrings`? The words have frightfully similar shapes. Spelling similar concepts similarly is information. Using inconsistent spellings is disinformation. With modern Java environments we enjoy automatic code completion. We write a few characters of a name and press some hotkey combination (if that) and are rewarded with a list of possible completions for that name. It is very helpful if names for very similar things sort together alphabetically and if the differences are very obvious, because the developer is likely to pick an object by name without seeing your copious comments or even the list of methods supplied by that class. A truly awful example of disinformative names would be the use of lower-case `L` or uppercase` O` as variable names, especially in combination. The problem, of course, is that they look almost entirely like the constants one and zero, respectively.\n\n```text\nint a = l;\nif ( O == l )\n  a = O1;\nelse\n  l = 01;\n```\n\nThe reader may think this a contrivance, but we have examined code where such things were abundant. In one case the author of the code suggested using a different font so that the differences were more obvious, a solution that would have to be passed down to all future developers as oral tradition or in a written document. The problem is conquered with finality and without creating new work products by a simple renaming.\n\nAs we’ll see later on, even if the container is a `List`, it’s probably better not to encode the container type into the name."
+              "title": "Avoid names that suggest the wrong concept",
+              "body": "Programmers must avoid leaving false clues that obscure the meaning of code. We should avoid words whose entrenched meanings vary from our intended meaning. For example, `hp`,` aix`, and `sco` would be poor variable names because they are the names of Unix platforms or variants. Even if you are coding a hypotenuse and `hp` looks like a good abbreviation, it could be disinformative."
+            },
+            {
+              "id": "ch02-topic-03-s2",
+              "title": "Do not imply a collection type incorrectly",
+              "body": "Do not refer to a grouping of accounts as an `accountList` unless it’s actually a `List`. The word list means something specific to programmers. If the container holding the accounts is not actually a `List`, it may lead to false conclusions. So` accountGroup` or `bunchOfAccounts` or just plain `accounts` would be better."
+            },
+            {
+              "id": "ch02-topic-03-s3",
+              "title": "Make important differences easy to see",
+              "body": "Beware of using names which vary in small ways. How long does it take to spot the subtle difference between a `XYZControllerForEfficientHandlingOfStrings` in one module and, somewhere a little more distant, `XYZControllerForEfficientStorageOfStrings`? The words have frightfully similar shapes. Spelling similar concepts similarly is information. Using inconsistent spellings is disinformation."
+            },
+            {
+              "id": "ch02-topic-03-s4",
+              "title": "Names need to be recognizable in completion lists",
+              "body": "With modern Java environments we enjoy automatic code completion. We write a few characters of a name and press some hotkey combination (if that) and are rewarded with a list of possible completions for that name. It is very helpful if names for very similar things sort together alphabetically and if the differences are very obvious, because the developer is likely to pick an object by name without seeing your copious comments or even the list of methods supplied by that class."
+            },
+            {
+              "id": "ch02-topic-03-s5",
+              "title": "Avoid letters that look like numbers",
+              "body": "A truly awful example of disinformative names would be the use of lower-case `L` or uppercase` O` as variable names, especially in combination. The problem, of course, is that they look almost entirely like the constants one and zero, respectively.\n\n```text\nint a = l;\nif ( O == l )\n  a = O1;\nelse\n  l = 01;\n```"
+            },
+            {
+              "id": "ch02-topic-03-s6",
+              "title": "Rename the ambiguity instead of changing the font",
+              "body": "The reader may think this a contrivance, but we have examined code where such things were abundant. In one case the author of the code suggested using a different font so that the differences were more obvious, a solution that would have to be passed down to all future developers as oral tradition or in a written document. The problem is conquered with finality and without creating new work products by a simple renaming.\n\nAs we’ll see later on, even if the container is a `List`, it’s probably better not to encode the container type into the name."
             }
           ]
         },
@@ -708,8 +776,38 @@
           "slides": [
             {
               "id": "ch02-topic-04-s1",
-              "title": "Make Meaningful Distinctions",
-              "body": "Programmers create problems for themselves when they write code solely to satisfy a compiler or interpreter. For example, because you can’t use the same name to refer to two different things in the same scope, you might be tempted to change one name in an arbitrary way. Sometimes this is done by misspelling one, leading to the surprising situation where correcting spelling errors leads to an inability to compile.\n\nIt is not sufficient to add number series or noise words, even though the compiler is satisfied. If names must be different, then they should also mean something different.\n\nNumber-series naming `(a1, a2, .. aN)` is the opposite of intentional naming. Such names are not disinformative—they are noninformative; they provide no clue to the author’s intention. Consider:\n\n```text\n  public static void copyChars(char a1[], char a2[]) {\n    for (int i = 0; i < a1.length; i++) {\n      a2[i] = a1[i]; \n    }\n  }\n```\n\nThis function reads much better when `source` and` destination` are used for the argument names. Noise words are another meaningless distinction. Imagine that you have a `Product` class. If you have another called `ProductInfo` or` ProductData`, you have made the names different without making them mean anything different. `Info` and` Data` are indistinct noise words like `a`,` an`, and `the`. Note that there is nothing wrong with using prefix conventions like `a` and` the` so long as they make a meaningful distinction. For example you might use `a` for all local variables and` the` for all function arguments. The problem comes in when you decide to call a variable `theZork` because you already have another variable named `zork`. Noise words are redundant. The word `variable` should never appear in a variable name. The word `table` should never appear in a table name. How is `NameString` better than `Name`? Would a `Name` ever be a floating point number? If so, it breaks an earlier rule about disinformation. Imagine finding one class named `Customer` and another named `CustomerObject`. What should you understand as the distinction? Which one will represent the best path to a customer’s payment history? There is an application we know of where this is illustrated. we’ve changed the names to protect the guilty, but here’s the exact form of the error:\n\n```text\ngetActiveAccount();\ngetActiveAccounts();\ngetActiveAccountInfo();\n```\n\nHow are the programmers in this project supposed to know which of these functions to call? In the absence of specific conventions, the variable `moneyAmount` is indistinguishable from` money`,` customerInfo` is indistinguishable from `customer`,` accountData` is indistinguishable from `account`, and `theMessage` is indistinguishable from `message`. Distinguish names in such a way that the reader knows what the differences offer.\n\nConsider, for example, the truly hideous practice of creating a variable named `klass` just because the name `class` was used for something else."
+              "title": "Different names should mean different things",
+              "body": "Programmers create problems for themselves when they write code solely to satisfy a compiler or interpreter. For example, because you can’t use the same name to refer to two different things in the same scope, you might be tempted to change one name in an arbitrary way. Sometimes this is done by misspelling one, leading to the surprising situation where correcting spelling errors leads to an inability to compile.\n\nIt is not sufficient to add number series or noise words, even though the compiler is satisfied. If names must be different, then they should also mean something different."
+            },
+            {
+              "id": "ch02-topic-04-s2",
+              "title": "Name the source and destination by their roles",
+              "body": "Number-series naming `(a1, a2, .. aN)` is the opposite of intentional naming. Such names are not disinformative—they are noninformative; they provide no clue to the author’s intention. Consider:\n\n```text\n  public static void copyChars(char a1[], char a2[]) {\n    for (int i = 0; i < a1.length; i++) {\n      a2[i] = a1[i]; \n    }\n  }\n```\n\nThis function reads much better when `source` and` destination` are used for the argument names."
+            },
+            {
+              "id": "ch02-topic-04-s3",
+              "title": "Adding Info or Data may not explain a difference",
+              "body": "Noise words are another meaningless distinction. Imagine that you have a `Product` class. If you have another called `ProductInfo` or` ProductData`, you have made the names different without making them mean anything different. `Info` and` Data` are indistinct noise words like `a`,` an`, and `the`."
+            },
+            {
+              "id": "ch02-topic-04-s4",
+              "title": "A convention is useful when it carries meaning",
+              "body": "Note that there is nothing wrong with using prefix conventions like `a` and` the` so long as they make a meaningful distinction. For example you might use `a` for all local variables and` the` for all function arguments. The problem comes in when you decide to call a variable `theZork` because you already have another variable named `zork`."
+            },
+            {
+              "id": "ch02-topic-04-s5",
+              "title": "Remove labels that repeat what is already clear",
+              "body": "Noise words are redundant. The word `variable` should never appear in a variable name. The word `table` should never appear in a table name. How is `NameString` better than `Name`? Would a `Name` ever be a floating point number? If so, it breaks an earlier rule about disinformation. Imagine finding one class named `Customer` and another named `CustomerObject`. What should you understand as the distinction? Which one will represent the best path to a customer’s payment history?"
+            },
+            {
+              "id": "ch02-topic-04-s6",
+              "title": "Similar API names should communicate distinct operations",
+              "body": "There is an application we know of where this is illustrated. we’ve changed the names to protect the guilty, but here’s the exact form of the error:\n\n```text\ngetActiveAccount();\ngetActiveAccounts();\ngetActiveAccountInfo();\n```"
+            },
+            {
+              "id": "ch02-topic-04-s7",
+              "title": "Help readers choose the right operation",
+              "body": "How are the programmers in this project supposed to know which of these functions to call? In the absence of specific conventions, the variable `moneyAmount` is indistinguishable from` money`,` customerInfo` is indistinguishable from `customer`,` accountData` is indistinguishable from `account`, and `theMessage` is indistinguishable from `message`. Distinguish names in such a way that the reader knows what the differences offer.\n\nConsider, for example, the truly hideous practice of creating a variable named `klass` just because the name `class` was used for something else."
             }
           ]
         },
@@ -721,8 +819,23 @@
           "slides": [
             {
               "id": "ch02-topic-05-s1",
-              "title": "Use Pronounceable Names",
-              "body": "Humans are good at words. A significant part of our brains is dedicated to the concept of words. And words are, by definition, pronounceable. It would be a shame not to take advantage of that huge portion of our brains that has evolved to deal with spoken language. So make your names pronounceable. If you can’t pronounce it, you can’t discuss it without sounding like an idiot. “Well, over here on the bee cee arr three cee enn tee we have a pee ess zee kyew int, see?” This matters because programming is a social activity. A company I know has `genymdhms` (generation date, year, month, day, hour, minute, and second) so they walked around saying “gen why emm dee aich emm ess”. I have an annoying habit of pronouncing everything as written, so I started saying “gen-yah-muddahims.” It later was being called this by a host of designers and analysts, and we still sounded silly. But we were in on the joke, so it was fun. Fun or not, we were tolerating poor naming. New developers had to have the variables explained to them, and then they spoke about it in silly made-up words instead of using proper English terms. Compare\n\n```text\nclass DtaRcrd102 {\nprivate Date genymdhms; \nprivate Date modymdhms;\nprivate final String pszqint = \"102\";\n/* ... */\n};\n```\n\nto\n\n```text\nclass Customer {\nprivate Date generationTimestamp; \nprivate Date modificationTimestamp;;\nprivate final String recordId = \"102\";\n/* ... */\n};\n```\n\nIntelligent conversation is now possible: “Hey, Mikey, take a look at this record! The generation timestamp is set to tomorrow’s date! How can that be?”\n\nUncle Bob used to do this in C++ but has given up the practice because modern IDEs make it unnecessary."
+              "title": "Choose names people can discuss aloud",
+              "body": "Humans are good at words. A significant part of our brains is dedicated to the concept of words. And words are, by definition, pronounceable. It would be a shame not to take advantage of that huge portion of our brains that has evolved to deal with spoken language. So make your names pronounceable. If you can’t pronounce it, you can’t discuss it without sounding like an idiot. “Well, over here on the bee cee arr three cee enn tee we have a pee ess zee kyew int, see?” This matters because programming is a social activity."
+            },
+            {
+              "id": "ch02-topic-05-s2",
+              "title": "An abbreviation can become a shared guessing game",
+              "body": "A company I know has `genymdhms` (generation date, year, month, day, hour, minute, and second) so they walked around saying “gen why emm dee aich emm ess”. I have an annoying habit of pronouncing everything as written, so I started saying “gen-yah-muddahims.” It later was being called this by a host of designers and analysts, and we still sounded silly. But we were in on the joke, so it was fun. Fun or not, we were tolerating poor naming."
+            },
+            {
+              "id": "ch02-topic-05-s3",
+              "title": "Compare abbreviated names with readable names",
+              "body": "New developers had to have the variables explained to them, and then they spoke about it in silly made-up words instead of using proper English terms. Compare\n\n```text\nclass DtaRcrd102 {\nprivate Date genymdhms; \nprivate Date modymdhms;\nprivate final String pszqint = \"102\";\n/* ... */\n};\n```"
+            },
+            {
+              "id": "ch02-topic-05-s4",
+              "title": "Readable names make a useful conversation possible",
+              "body": "Compare with:\n\n```text\nclass Customer {\nprivate Date generationTimestamp; \nprivate Date modificationTimestamp;;\nprivate final String recordId = \"102\";\n/* ... */\n};\n```\n\nIntelligent conversation is now possible: “Hey, Mikey, take a look at this record! The generation timestamp is set to tomorrow’s date! How can that be?”\n\nUncle Bob used to do this in C++ but has given up the practice because modern IDEs make it unnecessary."
             }
           ]
         },
@@ -734,36 +847,112 @@
           "slides": [
             {
               "id": "ch02-topic-06-s1",
-              "title": "Use Searchable Names",
-              "body": "Single-letter names and numeric constants have a particular problem in that they are not easy to locate across a body of text. One might easily grep for `MAX_CLASSES_PER_STUDENT`, but the number 7 could be more troublesome. Searches may turn up the digit as part of file names, other constant definitions, and in various expressions where the value is used with different intent. It is even worse when a constant is a long number and someone might have transposed digits, thereby creating a bug while simultaneously evading the programmer’s search. Likewise, the name `e` is a poor choice for any variable for which a programmer might need to search. It is the most common letter in the English language and likely to show up in every passage of text in every program. In this regard, longer names trump shorter names, and any searchable name trumps a constant in code. My personal preference is that single-letter names can ONLY be used as local variables inside short methods. The length of a name should correspond to the size of its scope\n\n[N5]. If a variable or constant might be seen or used in multiple places in a body of code, it is imperative to give it a search-friendly name. Once again compare\n\n```text\nfor (int j=0; j<34; j++) {\ns += (t[j]*4)/5;\n}\n```\n\nto\n\n```text\nint realDaysPerIdealDay = 4;\nconst int WORK_DAYS_PER_WEEK = 5;\nint sum = 0;\nfor (int j=0; j < NUMBER_OF_TASKS; j++) {\nint realTaskDays = taskEstimate[j] * realDaysPerIdealDay;\nint realTaskWeeks = (realdays / WORK_DAYS_PER_WEEK);\nsum += realTaskWeeks;\n}\n```\n\nNote that `sum`, above, is not a particularly useful name but at least is searchable. The intentionally named code makes for a longer function, but consider how much easier it will be to find `WORK_DAYS_PER_WEEK` than to find all the places where 5 was used and filter the list down to just the instances with the intended meaning."
+              "title": "A named concept is easier to find than a number",
+              "body": "Single-letter names and numeric constants have a particular problem in that they are not easy to locate across a body of text. One might easily grep for `MAX_CLASSES_PER_STUDENT`, but the number 7 could be more troublesome. Searches may turn up the digit as part of file names, other constant definitions, and in various expressions where the value is used with different intent. It is even worse when a constant is a long number and someone might have transposed digits, thereby creating a bug while simultaneously evading the programmer’s search."
+            },
+            {
+              "id": "ch02-topic-06-s2",
+              "title": "Make names searchable across their scope",
+              "body": "Likewise, the name `e` is a poor choice for any variable for which a programmer might need to search. It is the most common letter in the English language and likely to show up in every passage of text in every program. In this regard, longer names trump shorter names, and any searchable name trumps a constant in code."
+            },
+            {
+              "id": "ch02-topic-06-s3",
+              "title": "Match the name to how widely it is used",
+              "body": "My personal preference is that single-letter names can ONLY be used as local variables inside short methods. The length of a name should correspond to the size of its scope [N5]. If a variable or constant might be seen or used in multiple places in a body of code, it is imperative to give it a search-friendly name."
+            },
+            {
+              "id": "ch02-topic-06-s4",
+              "title": "An unnamed calculation hides the meaning of its numbers",
+              "body": "Once again compare\n\n```text\nfor (int j=0; j<34; j++) {\ns += (t[j]*4)/5;\n}\n```"
+            },
+            {
+              "id": "ch02-topic-06-s5",
+              "title": "Named constants explain the calculation",
+              "body": "Compare with:\n\n```text\nint realDaysPerIdealDay = 4;\nconst int WORK_DAYS_PER_WEEK = 5;\nint sum = 0;\nfor (int j=0; j < NUMBER_OF_TASKS; j++) {\nint realTaskDays = taskEstimate[j] * realDaysPerIdealDay;\nint realTaskWeeks = (realdays / WORK_DAYS_PER_WEEK);\nsum += realTaskWeeks;\n}\n```"
+            },
+            {
+              "id": "ch02-topic-06-s6",
+              "title": "Searchability can be worth a longer expression",
+              "body": "Note that `sum`, above, is not a particularly useful name but at least is searchable. The intentionally named code makes for a longer function, but consider how much easier it will be to find `WORK_DAYS_PER_WEEK` than to find all the places where 5 was used and filter the list down to just the instances with the intended meaning."
             }
           ]
         },
         {
           "id": "ch02-topic-07",
-          "type": "slides",
+          "type": "section",
           "title": "Avoid Encodings",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch02-topic-07-s1",
+              "id": "ch02-topic-07-part-01",
+              "type": "slides",
               "title": "Avoid Encodings",
-              "body": "We have enough encodings to deal with without adding more to our burden. Encoding type or scope information into names simply adds an extra burden of deciphering. It hardly seems reasonable to require each new employee to learn yet another encoding “language” in addition to learning the (usually considerable) body of code that they’ll be working in. It is an unnecessary mental burden when trying to solve a problem. Encoded names are seldom pronounceable and are easy to mis-type."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-07-part-01-s1",
+                  "title": "Avoid making readers decode type or scope",
+                  "body": "We have enough encodings to deal with without adding more to our burden. Encoding type or scope information into names simply adds an extra burden of deciphering. It hardly seems reasonable to require each new employee to learn yet another encoding “language” in addition to learning the (usually considerable) body of code that they’ll be working in. It is an unnecessary mental burden when trying to solve a problem. Encoded names are seldom pronounceable and are easy to mis-type."
+                }
+              ]
             },
             {
-              "id": "ch02-topic-07-s2",
+              "id": "ch02-topic-07-part-02",
+              "type": "slides",
               "title": "Hungarian Notation",
-              "body": "In days of old, when we worked in name-length-challenged languages, we violated this rule out of necessity, and with regret. Fortran forced encodings by making the first letter a code for the type. Early versions of BASIC allowed only a letter plus one digit. Hungarian Notation (HN) took this to a whole new level. HN was considered to be pretty important back in the Windows C API, when everything was an integer handle or a long pointer or a `void` pointer, or one of several implementations of “string” (with different uses and attributes). The compiler did not check types in those days, so the programmers needed a crutch to help them remember the types. In modern languages we have much richer type systems, and the compilers remember and enforce the types. What’s more, there is a trend toward smaller classes and shorter functions so that people can usually see the point of declaration of each variable they’re using.\n\nJava programmers don’t need type encoding. Objects are strongly typed, and editing environments have advanced such that they detect a type error long before you can run a compile! So nowadays HN and other forms of type encoding are simply impediments. They make it harder to change the name or type of a variable, function, or class. They make it harder to read the code. And they create the possibility that the encoding system will mislead the reader.\n\n```text\nPhoneNumber phoneString; \n// name not changed when type changed!\n```"
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-07-part-02-s1",
+                  "title": "Type encodings addressed older language limitations",
+                  "body": "In days of old, when we worked in name-length-challenged languages, we violated this rule out of necessity, and with regret. Fortran forced encodings by making the first letter a code for the type. Early versions of BASIC allowed only a letter plus one digit. Hungarian Notation (HN) took this to a whole new level. HN was considered to be pretty important back in the Windows C API, when everything was an integer handle or a long pointer or a `void` pointer, or one of several implementations of “string” (with different uses and attributes)."
+                },
+                {
+                  "id": "ch02-topic-07-part-02-s2",
+                  "title": "Modern type systems reduce the need for encoded names",
+                  "body": "The compiler did not check types in those days, so the programmers needed a crutch to help them remember the types. In modern languages we have much richer type systems, and the compilers remember and enforce the types. What’s more, there is a trend toward smaller classes and shorter functions so that people can usually see the point of declaration of each variable they’re using."
+                },
+                {
+                  "id": "ch02-topic-07-part-02-s3",
+                  "title": "An encoded type can become misleading after a change",
+                  "body": "Java programmers don’t need type encoding. Objects are strongly typed, and editing environments have advanced such that they detect a type error long before you can run a compile! So nowadays HN and other forms of type encoding are simply impediments. They make it harder to change the name or type of a variable, function, or class. They make it harder to read the code. And they create the possibility that the encoding system will mislead the reader.\n\n```text\nPhoneNumber phoneString; \n// name not changed when type changed!\n```"
+                }
+              ]
             },
             {
-              "id": "ch02-topic-07-s3",
+              "id": "ch02-topic-07-part-03",
+              "type": "slides",
               "title": "Member Prefixes",
-              "body": "You also don’t need to prefix member variables with `m_` anymore. Your classes and functions should be small enough that you don’t need them. And you should be using an editing environment that highlights or colorizes members to make them distinct.\n\n```text\npublic class Part { \nprivate String m_dsc; // The textual description\nvoid setName(String name) {\nm_dsc = name;\n}\n}\n_________________________________________________\n\npublic class Part { \nString description;\nvoid setDescription(String description) { \nthis.description = description;\n}\n}\n```\n\nBesides, people quickly learn to ignore the prefix (or suffix) to see the meaningful part of the name. The more we read the code, the less we see the prefixes. Eventually the prefixes become unseen clutter and a marker of older code."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-07-part-03-s1",
+                  "title": "The author recommends clear names over member prefixes",
+                  "body": "You also don’t need to prefix member variables with `m_` anymore. Your classes and functions should be small enough that you don’t need them. And you should be using an editing environment that highlights or colorizes members to make them distinct.\n\n```text\npublic class Part { \nprivate String m_dsc; // The textual description\nvoid setName(String name) {\nm_dsc = name;\n}\n}\n_________________________________________________\n\npublic class Part { \nString description;\nvoid setDescription(String description) { \nthis.description = description;\n}\n}\n```"
+                },
+                {
+                  "id": "ch02-topic-07-part-03-s2",
+                  "title": "Repeated prefixes can become ignored clutter",
+                  "body": "Besides, people quickly learn to ignore the prefix (or suffix) to see the meaningful part of the name. The more we read the code, the less we see the prefixes. Eventually the prefixes become unseen clutter and a marker of older code."
+                }
+              ]
             },
             {
-              "id": "ch02-topic-07-s4",
+              "id": "ch02-topic-07-part-04",
+              "type": "slides",
               "title": "Interfaces and Implementations",
-              "body": "These are sometimes a special case for encodings. For example, say you are building an ABSTRACT FACTORY for the creation of shapes. This factory will be an interface and will be implemented by a concrete class. What should you name them? `IShapeFactory` and `ShapeFactory`? I prefer to leave interfaces unadorned. The preceding `I`, so common in today’s legacy wads, is a distraction at best and too much information at worst. I don’t want my users knowing that I’m handing them an interface. I just want them to know that it’s a `ShapeFactory`. So if I must encode either the interface or the implementation, I choose the implementation. Calling it `ShapeFactoryImp`, or even the hideous `CShapeFactory`, is preferable to encoding the interface."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-07-part-04-s1",
+                  "title": "Name an interface for the role it provides",
+                  "body": "These are sometimes a special case for encodings. For example, say you are building an ABSTRACT FACTORY for the creation of shapes. This factory will be an interface and will be implemented by a concrete class. What should you name them? `IShapeFactory` and `ShapeFactory`? I prefer to leave interfaces unadorned. The preceding `I`, so common in today’s legacy wads, is a distraction at best and too much information at worst."
+                },
+                {
+                  "id": "ch02-topic-07-part-04-s2",
+                  "title": "The author prefers marking an implementation when needed",
+                  "body": "I don’t want my users knowing that I’m handing them an interface. I just want them to know that it’s a `ShapeFactory`. So if I must encode either the interface or the implementation, I choose the implementation. Calling it `ShapeFactoryImp`, or even the hideous `CShapeFactory`, is preferable to encoding the interface."
+                }
+              ]
             }
           ]
         },
@@ -775,8 +964,18 @@
           "slides": [
             {
               "id": "ch02-topic-08-s1",
-              "title": "Avoid Mental Mapping",
-              "body": "Readers shouldn’t have to mentally translate your names into other names they already know. This problem generally arises from a choice to use neither problem domain terms nor solution domain terms. This is a problem with single-letter variable names. Certainly a loop counter may be named` i` or` j` or` k` (though never `l`!) if its scope is very small and no other names can conflict with it. This is because those single-letter names for loop counters are traditional. However, in most other contexts a single-letter name is a poor choice; it’s just a place holder that the reader must mentally map to the actual concept. There can be no worse reason for using the name `c` than because `a` and `b` were already taken. In general programmers are pretty smart people. Smart people sometimes like to show off their smarts by demonstrating their mental juggling abilities. After all, if you can reliably remember that `r` is the lower-cased version of the url with the host and scheme removed, then you must clearly be very smart. One difference between a smart programmer and a professional programmer is that the professional understands that clarity is king. Professionals use their powers for good and write code that others can understand."
+              "title": "Use names readers do not have to translate",
+              "body": "Readers shouldn’t have to mentally translate your names into other names they already know. This problem generally arises from a choice to use neither problem domain terms nor solution domain terms. This is a problem with single-letter variable names. Certainly a loop counter may be named` i` or` j` or` k` (though never `l`!) if its scope is very small and no other names can conflict with it. This is because those single-letter names for loop counters are traditional."
+            },
+            {
+              "id": "ch02-topic-08-s2",
+              "title": "A placeholder name makes readers memorize a mapping",
+              "body": "However, in most other contexts a single-letter name is a poor choice; it’s just a place holder that the reader must mentally map to the actual concept. There can be no worse reason for using the name `c` than because `a` and `b` were already taken."
+            },
+            {
+              "id": "ch02-topic-08-s3",
+              "title": "Use your understanding to make the code clear to others",
+              "body": "In general programmers are pretty smart people. Smart people sometimes like to show off their smarts by demonstrating their mental juggling abilities. After all, if you can reliably remember that `r` is the lower-cased version of the url with the host and scheme removed, then you must clearly be very smart. One difference between a smart programmer and a professional programmer is that the professional understands that clarity is king. Professionals use their powers for good and write code that others can understand."
             }
           ]
         },
@@ -788,7 +987,7 @@
           "slides": [
             {
               "id": "ch02-topic-09-s1",
-              "title": "Class Names",
+              "title": "Use nouns for classes and objects",
               "body": "Classes and objects should have noun or noun phrase names like `Customer`,` WikiPage`, `Account`, and `AddressParser`. Avoid words like `Manager`,` Processor`,` Data`, or `Info` in the name of a class. A class name should not be a verb."
             }
           ]
@@ -801,8 +1000,13 @@
           "slides": [
             {
               "id": "ch02-topic-10-s1",
-              "title": "Method Names",
-              "body": "Methods should have verb or verb phrase names like `postPayment`,` deletePage`, or `save`. Accessors, mutators, and predicates should be named for their value and prefixed with `get`, `set`, and `is` according to the javabean standard.\n\n```text\nstring name = employee.getName();\ncustomer.setName(\"mike\");\nif (paycheck.isPosted())...\n```\n\nWhen constructors are overloaded, use static factory methods with names that describe the arguments. For example,\n\n```text\nComplex fulcrumPoint = Complex.FromRealNumber(23.0);\n```\n\nis generally better than\n\n```text\nComplex fulcrumPoint = new Complex(23.0);\n```\n\nConsider enforcing their use by making the corresponding constructors private."
+              "title": "Use verbs and meaningful predicate names",
+              "body": "Methods should have verb or verb phrase names like `postPayment`,` deletePage`, or `save`. Accessors, mutators, and predicates should be named for their value and prefixed with `get`, `set`, and `is` according to the javabean standard.\n\n```text\nstring name = employee.getName();\ncustomer.setName(\"mike\");\nif (paycheck.isPosted())...\n```"
+            },
+            {
+              "id": "ch02-topic-10-s2",
+              "title": "A named factory can explain the construction arguments",
+              "body": "When constructors are overloaded, use static factory methods with names that describe the arguments. For example,\n\n```text\nComplex fulcrumPoint = Complex.FromRealNumber(23.0);\n```\n\nis generally better than\n\n```text\nComplex fulcrumPoint = new Complex(23.0);\n```\n\nConsider enforcing their use by making the corresponding constructors private."
             }
           ]
         },
@@ -814,8 +1018,13 @@
           "slides": [
             {
               "id": "ch02-topic-11-s1",
-              "title": "Don't Be Cute",
-              "body": "If names are too clever, they will be memorable only to people who share the author’s sense of humor, and only as long as these people remember the joke. Will they know what the function named `HolyHandGrenade` is supposed to do? Sure, it’s cute, but maybe in this case `DeleteItems` might be a better name. Choose clarity over entertainment value. Cuteness in code often appears in the form of colloquialisms or slang. For example, don’t use the name `whack()` to mean `kill()`. Don’t tell little culture-dependent jokes like `eatMyShorts()` to mean `abort()`. Say what you mean. Mean what you say."
+              "title": "Choose clarity over an inside joke",
+              "body": "If names are too clever, they will be memorable only to people who share the author’s sense of humor, and only as long as these people remember the joke. Will they know what the function named `HolyHandGrenade` is supposed to do? Sure, it’s cute, but maybe in this case `DeleteItems` might be a better name. Choose clarity over entertainment value."
+            },
+            {
+              "id": "ch02-topic-11-s2",
+              "title": "Avoid slang that hides the intended operation",
+              "body": "Cuteness in code often appears in the form of colloquialisms or slang. For example, don’t use the name `whack()` to mean `kill()`. Don’t tell little culture-dependent jokes like `eatMyShorts()` to mean `abort()`. Say what you mean. Mean what you say."
             }
           ]
         },
@@ -827,8 +1036,18 @@
           "slides": [
             {
               "id": "ch02-topic-12-s1",
-              "title": "Pick One Word per Concept",
-              "body": "Pick one word for one abstract concept and stick with it. For instance, it’s confusing to have `fetch`,` retrieve,` and` get` as equivalent methods of different classes. How do you remember which method name goes with which class? Sadly, you often have to remember which company, group, or individual wrote the library or class in order to remember which term was used. Otherwise, you spend an awful lot of time browsing through headers and previous code samples. Modern editing environments like Eclipse and IntelliJ-provide context-sensitive clues, such as the list of methods you can call on a given object. But note that the list doesn’t usually give you the comments you wrote around your function names and parameter lists. You are lucky if it gives the parameter names from function declarations. The function names have to stand alone, and they have to be consistent in order for you to pick the correct method without any additional exploration. Likewise, it’s confusing to have a `controller` and a `manager` and a `driver` in the same code base. What is the essential difference between a `DeviceManager` and a `Protocol-` `Controller`? Why are both not `controller`s or both not `manager`s? Are they both Drivers really? The name leads you to expect two objects that have very different type as well as having different classes. A consistent lexicon is a great boon to the programmers who must use your code."
+              "title": "Use consistent vocabulary for the same operation",
+              "body": "Pick one word for one abstract concept and stick with it. For instance, it’s confusing to have `fetch`,` retrieve,` and` get` as equivalent methods of different classes. How do you remember which method name goes with which class? Sadly, you often have to remember which company, group, or individual wrote the library or class in order to remember which term was used. Otherwise, you spend an awful lot of time browsing through headers and previous code samples."
+            },
+            {
+              "id": "ch02-topic-12-s2",
+              "title": "Method names need to stand on their own",
+              "body": "Modern editing environments like Eclipse and IntelliJ-provide context-sensitive clues, such as the list of methods you can call on a given object. But note that the list doesn’t usually give you the comments you wrote around your function names and parameter lists. You are lucky if it gives the parameter names from function declarations. The function names have to stand alone, and they have to be consistent in order for you to pick the correct method without any additional exploration."
+            },
+            {
+              "id": "ch02-topic-12-s3",
+              "title": "Role names should express real distinctions",
+              "body": "Likewise, it’s confusing to have a `controller` and a `manager` and a `driver` in the same code base. What is the essential difference between a `DeviceManager` and a `Protocol-` `Controller`? Why are both not `controller`s or both not `manager`s? Are they both Drivers really? The name leads you to expect two objects that have very different type as well as having different classes. A consistent lexicon is a great boon to the programmers who must use your code."
             }
           ]
         },
@@ -840,8 +1059,18 @@
           "slides": [
             {
               "id": "ch02-topic-13-s1",
-              "title": "Don't Pun",
-              "body": "Avoid using the same word for two purposes. Using the same term for two different ideas is essentially a pun.\n\nIf you follow the “one word per concept” rule, you could end up with many classes that have, for example, an `add` method. As long as the parameter lists and return values of the various `add` methods are semantically equivalent, all is well. However one might decide to use the word `add` for “consistency” when he or she is not in fact adding in the same sense. Let’s say we have many classes where `add` will create a new value by adding or concatenating two existing values. Now let’s say we are writing a new class that has a method that puts its single parameter into a collection. Should we call this method `add`? It might seem consistent because we have so many other `add` methods, but in this case, the semantics are different, so we should use a name like `insert` or` append` instead. To call the new method `add` would be a pun. Our goal, as authors, is to make our code as easy as possible to understand. We want our code to be a quick skim, not an intense study. We want to use the popular paperback model whereby the author is responsible for making himself clear and not the academic model where it is the scholar’s job to dig the meaning out of the paper."
+              "title": "Do not reuse a term for different meanings",
+              "body": "Avoid using the same word for two purposes. Using the same term for two different ideas is essentially a pun.\n\nIf you follow the “one word per concept” rule, you could end up with many classes that have, for example, an `add` method. As long as the parameter lists and return values of the various `add` methods are semantically equivalent, all is well. However one might decide to use the word `add` for “consistency” when he or she is not in fact adding in the same sense."
+            },
+            {
+              "id": "ch02-topic-13-s2",
+              "title": "Adding values and appending an item are different ideas",
+              "body": "Let’s say we have many classes where `add` will create a new value by adding or concatenating two existing values. Now let’s say we are writing a new class that has a method that puts its single parameter into a collection. Should we call this method `add`? It might seem consistent because we have so many other `add` methods, but in this case, the semantics are different, so we should use a name like `insert` or` append` instead. To call the new method `add` would be a pun."
+            },
+            {
+              "id": "ch02-topic-13-s3",
+              "title": "Make the meaning clear rather than requiring study",
+              "body": "Our goal, as authors, is to make our code as easy as possible to understand. We want our code to be a quick skim, not an intense study. We want to use the popular paperback model whereby the author is responsible for making himself clear and not the academic model where it is the scholar’s job to dig the meaning out of the paper."
             }
           ]
         },
@@ -853,8 +1082,13 @@
           "slides": [
             {
               "id": "ch02-topic-14-s1",
-              "title": "Use Solution Domain Names",
-              "body": "Remember that the people who read your code will be programmers. So go ahead and use computer science (CS) terms, algorithm names, pattern names, math terms, and so forth. It is not wise to draw every name from the problem domain because we don’t want our coworkers to have to run back and forth to the customer asking what every name means when they already know the concept by a different name. The name `AccountVisitor` means a great deal to a programmer who is familiar with the VISITOR pattern. What programmer would not know what a `JobQueue` was? There are lots of very technical things that programmers have to do. Choosing technical names for those things is usually the most appropriate course."
+              "title": "Use technical terms your programming readers know",
+              "body": "Remember that the people who read your code will be programmers. So go ahead and use computer science (CS) terms, algorithm names, pattern names, math terms, and so forth. It is not wise to draw every name from the problem domain because we don’t want our coworkers to have to run back and forth to the customer asking what every name means when they already know the concept by a different name."
+            },
+            {
+              "id": "ch02-topic-14-s2",
+              "title": "Known technical names can communicate a useful concept",
+              "body": "The name `AccountVisitor` means a great deal to a programmer who is familiar with the VISITOR pattern. What programmer would not know what a `JobQueue` was? There are lots of very technical things that programmers have to do. Choosing technical names for those things is usually the most appropriate course."
             }
           ]
         },
@@ -866,36 +1100,69 @@
           "slides": [
             {
               "id": "ch02-topic-15-s1",
-              "title": "Use Problem Domain Names",
+              "title": "Use domain vocabulary for domain concepts",
               "body": "When there is no “programmer-eese” for what you’re doing, use the name from the problem domain. At least the programmer who maintains your code can ask a domain expert what it means. Separating solution and problem domain concepts is part of the job of a good programmer and designer. The code that has more to do with problem domain concepts should have names drawn from the problem domain."
             }
           ]
         },
         {
           "id": "ch02-topic-16",
-          "type": "slides",
+          "type": "section",
           "title": "Add Meaningful Context",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch02-topic-16-s1",
-              "title": "Add Meaningful Context · 1 of 2",
-              "body": "There are a few names which are meaningful in and of themselves—most are not. Instead, you need to place names in context for your reader by enclosing them in well-named classes, functions, or namespaces. When all else fails, then prefixing the name may be necessary as a last resort.\n\nImagine that you have variables named `firstName`,` lastName`,` street`,` houseNumber`,` city`, `state`, and `zipcode`. Taken together it’s pretty clear that they form an address. But what if you just saw the `state` variable being used alone in a method? Would you automatically infer that it was part of an address? You can add context by using prefixes: `addrFirstName`,` addrLastName`,` addrState`, and so on. At least readers will understand that these variables are part of a larger structure. Of course, a better solution is to create a class named `Address`. Then, even the compiler knows that the variables belong to a bigger concept. Consider the method in Listing 2-1. Do the variables need a more meaningful context? The function name provides only part of the context; the algorithm provides the rest. Once you read through the function, you see that the three variables, `number`,` verb`, and `pluralModifier`, are part of the “guess statistics” message. Unfortunately, the context must be inferred. When you first look at the method, the meanings of the variables are opaque."
+              "id": "ch02-topic-16-part-01",
+              "type": "slides",
+              "title": "Providing context",
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-16-part-01-s1",
+                  "title": "Give names an understandable surrounding context",
+                  "body": "There are a few names which are meaningful in and of themselves—most are not. Instead, you need to place names in context for your reader by enclosing them in well-named classes, functions, or namespaces. When all else fails, then prefixing the name may be necessary as a last resort."
+                },
+                {
+                  "id": "ch02-topic-16-part-01-s2",
+                  "title": "An isolated state value needs an address context",
+                  "body": "Imagine that you have variables named `firstName`,` lastName`,` street`,` houseNumber`,` city`, `state`, and `zipcode`. Taken together it’s pretty clear that they form an address. But what if you just saw the `state` variable being used alone in a method? Would you automatically infer that it was part of an address?"
+                },
+                {
+                  "id": "ch02-topic-16-part-01-s3",
+                  "title": "A meaningful structure can provide the context",
+                  "body": "You can add context by using prefixes: `addrFirstName`,` addrLastName`,` addrState`, and so on. At least readers will understand that these variables are part of a larger structure. Of course, a better solution is to create a class named `Address`. Then, even the compiler knows that the variables belong to a bigger concept."
+                }
+              ]
             },
             {
-              "id": "ch02-topic-16-s2",
-              "title": "Listing 2-1 Variables with unclear context.",
-              "body": "```text\nprivate void printGuessStatistics(char candidate, int count) {\n    String number;\n    String verb;\n    String pluralModifier;\n    if (count == 0) {\n      number = \"no\";\n      verb = \"are\";\n      pluralModifier = \"s\";\n    } else if (count == 1) {\n      number = \"1\";\n      verb = \"is\";\n      pluralModifier = \"\";\n    } else {\n      number = Integer.toString(count);\n      verb = \"are\";\n      pluralModifier = \"s\";\n    }\n    String guessMessage = String.format(\n      \"There %s %s %s%s\", verb, number, candidate, pluralModifier\n    );\n    print(guessMessage);\n  }\n```"
+              "id": "ch02-topic-16-part-02",
+              "type": "slides",
+              "title": "Listing 2-1 — Unclear context",
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-16-part-02-s1",
+                  "title": "Listing 2-1: context must be inferred from the function",
+                  "body": "Consider the method in Listing 2-1. Do the variables need a more meaningful context? The function name provides only part of the context; the algorithm provides the rest. Once you read through the function, you see that the three variables, `number`,` verb`, and `pluralModifier`, are part of the “guess statistics” message. Unfortunately, the context must be inferred. When you first look at the method, the meanings of the variables are opaque.\n\n**Listing 2-1 Variables with unclear context.**\n\n```text\nprivate void printGuessStatistics(char candidate, int count) {\n    String number;\n    String verb;\n    String pluralModifier;\n    if (count == 0) {\n      number = \"no\";\n      verb = \"are\";\n      pluralModifier = \"s\";\n    } else if (count == 1) {\n      number = \"1\";\n      verb = \"is\";\n      pluralModifier = \"\";\n    } else {\n      number = Integer.toString(count);\n      verb = \"are\";\n      pluralModifier = \"s\";\n    }\n    String guessMessage = String.format(\n      \"There %s %s %s%s\", verb, number, candidate, pluralModifier\n    );\n    print(guessMessage);\n  }\n```"
+                }
+              ]
             },
             {
-              "id": "ch02-topic-16-s3",
-              "title": "Add Meaningful Context · 2 of 2",
-              "body": "The function is a bit too long and the variables are used throughout. To split the function into smaller pieces we need to create a `GuessStatisticsMessage` class and make the three variables fields of this class. This provides a clear context for the three variables. They are definitively part of the `GuessStatisticsMessage`. The improvement of context also allows the algorithm to be made much cleaner by breaking it into many smaller functions. (See Listing 2-2.)"
-            },
-            {
-              "id": "ch02-topic-16-s4",
-              "title": "Listing 2-2 Variables have a context.",
-              "body": "```text\npublic class GuessStatisticsMessage {\n  private String number;\n  private String verb;\n  private String pluralModifier;\n\n  public String make(char candidate, int count) {\n    createPluralDependentMessageParts(count);\n    return String.format(\n      \"There %s %s %s%s\", \n       verb, number, candidate, pluralModifier );\n  }\n\n  private void createPluralDependentMessageParts(int count) {\n    if (count == 0) {\n      thereAreNoLetters();\n    } else if (count == 1) {\n      thereIsOneLetter();\n    } else {\n      thereAreManyLetters(count);\n    }\n  }\n\n  private void thereAreManyLetters(int count) {\n    number = Integer.toString(count);\n    verb = \"are\";\n    pluralModifier = \"s\";\n  }\n\n  private void thereIsOneLetter() {\n    number = \"1\";\n    verb = \"is\";\n    pluralModifier = \"\";\n  }\n\n  private void thereAreNoLetters() {\n    number = \"no\";\n    verb = \"are\";\n    pluralModifier = \"s\";\n  }\n}\n```"
+              "id": "ch02-topic-16-part-03",
+              "type": "slides",
+              "title": "Listing 2-2 — Explicit context",
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch02-topic-16-part-03-s1",
+                  "title": "Give the message parts a clear shared context",
+                  "body": "The function is a bit too long and the variables are used throughout. To split the function into smaller pieces we need to create a `GuessStatisticsMessage` class and make the three variables fields of this class. This provides a clear context for the three variables. They are definitively part of the `GuessStatisticsMessage`. The improvement of context also allows the algorithm to be made much cleaner by breaking it into many smaller functions. (See Listing 2-2.)"
+                },
+                {
+                  "id": "ch02-topic-16-part-03-s2",
+                  "title": "Listing 2-2: named message responsibilities",
+                  "body": "**Listing 2-2 Variables have a context.**\n\n```text\npublic class GuessStatisticsMessage {\n  private String number;\n  private String verb;\n  private String pluralModifier;\n\n  public String make(char candidate, int count) {\n    createPluralDependentMessageParts(count);\n    return String.format(\n      \"There %s %s %s%s\", \n       verb, number, candidate, pluralModifier );\n  }\n\n  private void createPluralDependentMessageParts(int count) {\n    if (count == 0) {\n      thereAreNoLetters();\n    } else if (count == 1) {\n      thereIsOneLetter();\n    } else {\n      thereAreManyLetters(count);\n    }\n  }\n\n  private void thereAreManyLetters(int count) {\n    number = Integer.toString(count);\n    verb = \"are\";\n    pluralModifier = \"s\";\n  }\n\n  private void thereIsOneLetter() {\n    number = \"1\";\n    verb = \"is\";\n    pluralModifier = \"\";\n  }\n\n  private void thereAreNoLetters() {\n    number = \"no\";\n    verb = \"are\";\n    pluralModifier = \"s\";\n  }\n}\n```"
+                }
+              ]
             }
           ]
         },
@@ -907,8 +1174,18 @@
           "slides": [
             {
               "id": "ch02-topic-17-s1",
-              "title": "Don't Add Gratuitous Context",
-              "body": "In an imaginary application called “Gas Station Deluxe,” it is a bad idea to prefix every class with `GSD`. Frankly, you are working against your tools. You type `G` and press the completion key and are rewarded with a mile-long list of every class in the system. Is that wise? Why make it hard for the IDE to help you? Likewise, say you invented a `MailingAddress` class in `GSD`’s accounting module, and you named it `GSDAccountAddress`. Later, you need a mailing address for your customer contact application. Do you use `GSDAccountAddress`? Does it sound like the right name? Ten of 17 characters are redundant or irrelevant.\n\nShorter names are generally better than longer ones, so long as they are clear. Add no more context to a name than is necessary. The names `accountAddress` and` customerAddress` are fine names for instances of the class` Address` but could be poor names for classes. `Address` is a fine name for a class. If I need to differentiate between MAC addresses, port addresses, and Web addresses, I might consider` PostalAddress`,` MAC`, and `URI`. The resulting names are more precise, which is the point of all naming."
+              "title": "A product prefix can make names harder to find",
+              "body": "In an imaginary application called “Gas Station Deluxe,” it is a bad idea to prefix every class with `GSD`. Frankly, you are working against your tools. You type `G` and press the completion key and are rewarded with a mile-long list of every class in the system. Is that wise? Why make it hard for the IDE to help you?"
+            },
+            {
+              "id": "ch02-topic-17-s2",
+              "title": "Do not attach a reusable concept to an irrelevant product",
+              "body": "Likewise, say you invented a `MailingAddress` class in `GSD`’s accounting module, and you named it `GSDAccountAddress`. Later, you need a mailing address for your customer contact application. Do you use `GSDAccountAddress`? Does it sound like the right name? Ten of 17 characters are redundant or irrelevant."
+            },
+            {
+              "id": "ch02-topic-17-s3",
+              "title": "Use only the context needed to be precise",
+              "body": "Shorter names are generally better than longer ones, so long as they are clear. Add no more context to a name than is necessary. The names `accountAddress` and` customerAddress` are fine names for instances of the class` Address` but could be poor names for classes. `Address` is a fine name for a class. If I need to differentiate between MAC addresses, port addresses, and Web addresses, I might consider` PostalAddress`,` MAC`, and `URI`. The resulting names are more precise, which is the point of all naming."
             }
           ]
         },
@@ -920,8 +1197,18 @@
           "slides": [
             {
               "id": "ch02-topic-18-s1",
-              "title": "Final Words",
-              "body": "The hardest thing about choosing good names is that it requires good descriptive skills and a shared cultural background. This is a teaching issue rather than a technical, business, or management issue. As a result many people in this field don’t learn to do it very well. People are also afraid of renaming things for fear that some other developers will object. We do not share that fear and find that we are actually grateful when names change (for the better). Most of the time we don’t really memorize the names of classes and methods. We use the modern tools to deal with details like that so we can focus on whether the code reads like paragraphs and sentences, or at least like tables and data structure (a sentence isn’t always the best way to display data). You will probably end up surprising someone when you rename, just like you might with any other code improvement. Don’t let it stop you in your tracks. Follow some of these rules and see whether you don’t improve the readability of your code. If you are maintaining someone else’s code, use refactoring tools to help resolve these problems. It will pay off in the short term and continue to pay in the long run."
+              "title": "Good naming depends on shared understanding",
+              "body": "The hardest thing about choosing good names is that it requires good descriptive skills and a shared cultural background. This is a teaching issue rather than a technical, business, or management issue. As a result many people in this field don’t learn to do it very well. People are also afraid of renaming things for fear that some other developers will object. We do not share that fear and find that we are actually grateful when names change (for the better)."
+            },
+            {
+              "id": "ch02-topic-18-s2",
+              "title": "Tools help readers focus on meaning",
+              "body": "Most of the time we don’t really memorize the names of classes and methods. We use the modern tools to deal with details like that so we can focus on whether the code reads like paragraphs and sentences, or at least like tables and data structure (a sentence isn’t always the best way to display data)."
+            },
+            {
+              "id": "ch02-topic-18-s3",
+              "title": "Improve names with help from refactoring tools",
+              "body": "You will probably end up surprising someone when you rename, just like you might with any other code improvement. Don’t let it stop you in your tracks. Follow some of these rules and see whether you don’t improve the readability of your code. If you are maintaining someone else’s code, use refactoring tools to help resolve these problems. It will pay off in the short term and continue to pay in the long run."
             }
           ]
         },
@@ -934,12 +1221,12 @@
             {
               "id": "ch02-practice-s1",
               "title": "Practice",
-              "body": "Rename d, data1 and getThem in a small example. Write what each represents before choosing names. Explain which names should be consistent across the module and what context is still necessary."
+              "body": "Revisit the Minesweeper examples. Explain what gameBoard, FLAGGED and isFlagged tell a reader that the original names did not. Then compare the address examples: when does context help, and when does a product prefix become clutter? Answer in your notes; no code editing is required."
             },
             {
               "id": "ch02-practice-s2",
               "title": "Worked self-check",
-              "body": "If d measures days since modification, daysSinceModification communicates meaning and units. Replace data1 with its domain role, not data2. If getThem returns flagged cells, getFlaggedCells makes the query predictable. Check references and preserve the result."
+              "body": "gameBoard explains the collection’s role; FLAGGED explains a status value; isFlagged expresses a meaningful question. An Address context clarifies what state means, while a repeated product prefix may obscure a reusable concept. Names should remove guessing without adding irrelevant detail."
             }
           ]
         },
@@ -952,58 +1239,58 @@
           "questions": [
             {
               "id": "ch02-quiz-q1",
-              "prompt": "A variable contains elapsed days. Which name reveals the most intent?",
+              "prompt": "A number records days since a file was modified. Which name communicates its meaning and unit?",
               "options": [
-                "elapsedTimeInDays",
-                "daysValueData",
-                "d"
+                "elapsedTime",
+                "modificationData",
+                "daysSinceModification"
               ],
-              "answer": 0,
-              "explanation": "The name communicates the measured quantity and unit."
+              "answer": 2,
+              "explanation": "daysSinceModification states both the event being measured and the unit. elapsedTime omits the unit and reference event; modificationData does not identify the quantity."
             },
             {
               "id": "ch02-quiz-q2",
-              "prompt": "Two arguments are named a1 and a2 in a copy operation. What is a clearer distinction?",
+              "prompt": "Two parameters in a copy operation are named a1 and a2. Which distinction helps the reader most?",
               "options": [
+                "firstData and secondData",
                 "data and dataInfo",
-                "value1 and value2",
                 "source and destination"
               ],
               "answer": 2,
-              "explanation": "Names should communicate different roles rather than merely satisfy uniqueness."
+              "explanation": "source and destination identify the two roles. Ordering or adding Info makes the names different without explaining how they are used."
             },
             {
               "id": "ch02-quiz-q3",
-              "prompt": "Why can accountList mislead when the value is not a list?",
+              "prompt": "An account collection might change its underlying representation. Which name avoids promising a particular container type?",
               "options": [
-                "Long names cannot compile",
-                "The name suggests a representation readers may rely on",
-                "Every collection must be an array"
+                "accounts",
+                "accountList",
+                "accountArray"
               ],
-              "answer": 1,
-              "explanation": "Avoid false clues about a value’s meaning or implementation."
+              "answer": 0,
+              "explanation": "accounts communicates the domain concept without claiming a List or array representation. The chapter also cautions that encoding a container type can add unnecessary detail."
             },
             {
               "id": "ch02-quiz-q4",
-              "prompt": "Different modules use fetch and retrieve for the same operation without a meaningful distinction. What helps?",
+              "prompt": "A codebase uses fetch, retrieve and get for equivalent operations. What would improve consistency?",
               "options": [
-                "Add a random suffix",
-                "Use a pun to make one module memorable",
-                "Choose one word for that concept consistently"
+                "Keep all three terms to indicate which developer wrote each class",
+                "Rename all operations add regardless of their purpose",
+                "Use one established term for that operation"
               ],
               "answer": 2,
-              "explanation": "Consistent vocabulary reduces unnecessary translation by the reader."
+              "explanation": "A shared term reduces unnecessary translation. Consistency should follow meaning: the same word should not be forced onto operations that do different things."
             },
             {
               "id": "ch02-quiz-q5",
-              "prompt": "What should a useful naming context do?",
+              "prompt": "A variable named state is confusing when read alone. Which change provides useful context?",
               "options": [
-                "Add the product name to every identifier",
-                "Encode every variable type",
-                "Clarify the domain role without redundant clutter"
+                "Place it in a clearly named Address structure",
+                "Prefix every identifier with the product name",
+                "Shorten it to s because its type is known"
               ],
-              "answer": 2,
-              "explanation": "The chapter distinguishes meaningful context from gratuitous context."
+              "answer": 0,
+              "explanation": "Address supplies the missing domain context. A product prefix does not explain what state means, and a shorter placeholder requires more mental mapping."
             }
           ]
         }

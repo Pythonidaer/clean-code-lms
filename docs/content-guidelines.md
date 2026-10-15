@@ -29,3 +29,7 @@ Run `python3 scripts/build-course.py`, then `node tests/course.test.cjs`. Exact 
 5. Judge whether each title describes its passage, each split feels natural, and essential context remains understandable.
 
 Existing progress in changed Chapter 1 decks resets because the runtime fingerprints lesson content. Other chapters retain their content and IDs. Saved notes on changed lesson IDs are preserved even when completion resets. Notes on removed or renamed IDs cannot be automatically associated; copy important notes or use a separate browser profile when testing structural changes.
+
+## Chapter 2 pilot
+
+Edit scripts/chapter-two-flow.py for Chapter 2 semantic boundaries. Use a 150-word prose review budget excluding fenced code: code has its own reading length and must remain intact. This pilot preserves complete listings, their labels and the paragraphs explaining them; it does not turn them into runnable demos. The generated docs/chapter-two-slide-map.json verifies ordered coverage of cleaned teaching prose and code. The Minesweeper and context sequences, plus source subheadings under Avoid Encodings, are nested. Standalone comparison connectors are made explicit as “Compare with:” rather than displaying “to” above a new example. The [N5] cross-reference remains attached to its sentence.
