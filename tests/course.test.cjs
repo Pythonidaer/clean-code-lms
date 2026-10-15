@@ -9,8 +9,9 @@ assert.deepEqual(manifest.curriculum.coreChapters,[1,2,3,4,5,6,7,8,9,10,11,12,14
 for(const c of manifest.chapters){assert.equal(sha(read(c.sourcePath)),c.sha256);assert.equal(c.unmatchedHeadings.length,0,'TOC headings '+c.chapter);}
 assert.equal(manifest.chapters.length,17);assert.equal(manifest.index.includedInLms,false);assert.ok(read(manifest.index.path).includes('PDF page 462'));
 assert.ok(!model.sections.some(s=>/^ch(?:15|16)$/.test(s.id)));assert.ok(!items.some(n=>/index|foreword|dedication|publisher|acknowledgment/i.test(n.title)));
+const cleaned=JSON.parse(require('node:child_process').execFileSync('python3',['-c',"import json,runpy; s=json.load(open('docs/chapter-units.json')); f=runpy.run_path('scripts/clean-source.py')['clean_unit']; print(json.dumps([{**c,'units':[f(u,c['number']) for u in c['units']]} for c in s]))"],{cwd:root,encoding:'utf8',maxBuffer:5000000}));
 const normalize=s=>s.replace(/\s+/g,' ').trim();
-for(const chapter of source.filter(c=>c.status!=='deferred')){
+for(const chapter of cleaned.filter(c=>c.status!=='deferred')){
  const actual=manifest.curriculum.lessons.filter(l=>l.chapter===chapter.number);
  const wanted=chapter.units.filter(u=>u.title!=='Bibliography'&&u.blocks.length);
  assert.equal(actual.length,wanted.length,'Every source subsection '+chapter.number);
@@ -19,7 +20,7 @@ for(const chapter of source.filter(c=>c.status!=='deferred')){
   const body=d.slides.map(s=>s.body).join('\n\n');
   for(const b of unit.blocks){
    if(b.kind==='heading')assert.ok(chapter.number===1?ds.some(n=>n.title===b.title):d.slides.some(s=>s.title.startsWith(b.title)),'Subheading '+b.title);
-   if(b.kind==='prose')assert.ok(normalize(body).includes(normalize(b.body)),'Full prose '+entry.lessonId);
+   if(b.kind==='prose')assert.ok(normalize(body).includes(normalize(b.body)),'Clean teaching prose '+entry.lessonId);
    if(b.kind==='listing')assert.ok(d.slides.some(s=>s.title.startsWith(b.body.replace(/^\*\*|\*\*$/g,''))),'Listing label '+b.body);
    if(b.kind==='code')for(const line of b.body.split('\n').slice(1,-1).filter(l=>l.trim()))assert.ok(body.includes(line),'Code line '+entry.lessonId);
    if(b.kind==='figure')assert.ok(body.includes(b.body.replace('../../assets/','assets/')),'Figure '+entry.lessonId);
@@ -28,12 +29,21 @@ for(const chapter of source.filter(c=>c.status!=='deferred')){
 }
 
 const pilotMap=JSON.parse(read('docs/chapter-one-slide-map.json'));
-for(const unit of source[0].units.filter(u=>u.title!=='Bibliography')){
+for(const unit of cleaned[0].units.filter(u=>u.title!=='Bibliography')){
  const mapping=pilotMap.find(m=>m.sourceUnit===unit.title);
  const actual=mapping.slides.map(m=>{const slide=slides.find(s=>s.id===m.slideId);assert.ok(slide,m.slideId);assert.equal(slide.title,m.title);assert.equal(slide.body.split(/\s+/).length,m.wordCount);assert.ok(m.wordCount<=150,'Chapter 1 reading budget '+m.slideId);return slide.body;}).join('\n\n');
  const expected=unit.blocks.filter(b=>b.kind!=='heading').map(b=>b.body.replace('../../assets/','assets/')).join('\n\n');
  assert.equal(normalize(actual),normalize(expected),'Exact ordered source coverage '+unit.title);
 }
+
+
+const chapterOne=decks.filter(d=>d.id.startsWith('ch01-')).flatMap(d=>d.slides).map(s=>s.body).join('\n\n');
+for(const artifact of ['Patterns.1','time?2','windows.3','programming.4','found it.5','1. [Beck07]','4. [Knuth92]','We\n\nare','MacBook®\n\nprovides','give\n\nthe reader','goes\n\nbeyond'])assert.ok(!chapterOne.includes(artifact),'PDF artifact removed '+artifact);
+for(const phrase of ['a working mess is better than nothing','We are deeply complicit','MacBook® provides','give the reader','Expressiveness goes beyond names','When hand-washing was first recommended'])assert.ok(normalize(chapterOne).includes(phrase),'Repaired reading '+phrase);
+// Verify meaningful numbers/lists and code are never removed by citation cleanup.
+const chapterTwo=decks.filter(d=>d.id.startsWith('ch02-')).flatMap(d=>d.slides).map(s=>s.body).join('\n\n');
+assert.ok(chapterTwo.includes('1. What kinds of things'));assert.ok(chapterTwo.includes('a1, a2'));
+const allText=slides.map(s=>s.body).join('\n\n');assert.ok(allText.includes('EJB2'));assert.ok(allText.includes('base64'));
 
 for(const s of slides){assert.ok(s.body.length<20000,'No runtime truncation '+s.id);assert.equal((s.body.match(/^```/gm)||[]).length%2,0,'Balanced fences '+s.id);}
 const prompts=new Set(quizzes.flatMap(q=>q.questions.map(q=>q.prompt)));

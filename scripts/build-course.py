@@ -8,6 +8,7 @@ study=runpy.run_path(str(ROOT/'scripts/study-material.py'))
 material=study['CHAPTERS'];final=study['FINAL']
 prior=json.loads((ROOT/'course.json').read_text())
 sections=[];coverage=[];chapter_one_mapping=[]
+cleaner=runpy.run_path(str(ROOT/"scripts/clean-source.py"));cleanup_audit=[]
 flow=runpy.run_path(str(ROOT/"scripts/chapter-one-flow.py"))
 def leaf_decks(nodes):
     for node in nodes:
@@ -107,10 +108,11 @@ for number in [*range(1,13),14,17,13]:
         if unit['title']=='Bibliography':continue
         if not unit['blocks']:continue
         id=f'{prefix}-topic-{index:02}'
-        pairs=unit_slides(unit)
+        teaching_unit=cleaner['clean_unit'](unit,number,cleanup_audit)
+        pairs=unit_slides(teaching_unit)
         if not pairs:continue
         if number==1:
-            node,mapping=flow['build_unit'](unit,id,deck)
+            node,mapping=flow['build_unit'](teaching_unit,id,deck)
             children.append(node)
             chapter_one_mapping.append(dict(sourceUnit=unit['title'],sourcePath=chapter['sourcePath'],sourcePages=unit['sourcePages'],slides=mapping))
             pairs=[s for d in leaf_decks([node]) for s in d.get('slides',[])]
@@ -127,6 +129,7 @@ html='<!doctype html>\n<html lang="en"><head><meta charset="UTF-8"><meta name="v
 (ROOT/'index.html').write_text(html)
 manifest=json.loads((ROOT/'source-manifest.json').read_text());manifest['curriculum']=dict(coreChapters=[*range(1,13),14,17],advancedChapters=[13],deferredChapters=[15,16],lessons=coverage)
 (ROOT/'source-manifest.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
+(ROOT/'docs/source-cleanup-audit.json').write_text(json.dumps(cleanup_audit,ensure_ascii=False,indent=2)+'\n')
 (ROOT/'docs/chapter-one-slide-map.json').write_text(json.dumps(chapter_one_mapping,ensure_ascii=False,indent=2)+'\n')
 leaves=list(leaf_decks(sections))
 stats=dict(chapterSections=len(sections),sourceSubsectionDecks=len(coverage),decks=sum(n['type']=='slides' for n in leaves),slides=sum(len(n.get('slides',[])) for n in leaves),chapterQuizzes=len(sections),chapterQuestions=sum(len(n.get('questions',[])) for n in leaves),finalQuestions=len(final))

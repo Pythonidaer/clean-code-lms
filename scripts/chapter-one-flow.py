@@ -32,7 +32,7 @@ FLOW = {
 'The Primal Conundrum': [('', 'Keeping code clean is part of moving quickly')],
 'The Art of Clean Code?': [
 ('', 'Recognizing quality is different from creating it'),
-('2. When hand-washing', 'Background to the hand-washing analogy'),
+('When hand-washing', 'Background to the hand-washing analogy'),
 ('Writing clean code requires', 'Developing judgment through small techniques'),
 ('A programmer without', 'Judgment guides behavior-preserving changes')],
 'What Is Clean Code?': [('', 'Several perspectives on clean code')],

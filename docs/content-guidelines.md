@@ -14,11 +14,11 @@ Chapter 1 is the preservation-first pilot. Learners read sections and take the c
 
 ## Preservation and maintenance
 
-The pilot changes segmentation and titles rather than rewriting the book. Source Markdown and chapter units remain unchanged, including historical examples, anecdotes and footnotes. Some extraction artifacts therefore remain candidates for a separate editorial pass.
+The pilot changes segmentation and titles rather than rewriting the book. Source Markdown and chapter units remain unchanged. A teaching-only cleanup removes footnote markers and reference-only fragments, retains explanatory footnotes as plain prose, and rejoins lowercase continuations split by PDF page breaks. Code blocks and numbered teaching lists are preserved. The generated docs/source-cleanup-audit.json records citation changes across the loaded chapters.
 
 Edit `scripts/chapter-one-flow.py` to change Chapter 1 boundaries. Each anchor is an exact source phrase. Assertions reject missing, ambiguous or reordered anchors. `docs/chapter-one-slide-map.json` records source units/pages, subheadings, slide IDs, character ranges within each subheading and word counts. It is generated, not edited by hand.
 
-Run `python3 scripts/build-course.py`, then `node tests/course.test.cjs`. Exact ordered normalized-text comparison verifies preservation, and the Chapter 1 word budget is checked. Run `node tests/browser.test.cjs` with Playwright and Chromium available to check rendering and nested navigation.
+Run `python3 scripts/build-course.py`, then `node tests/course.test.cjs`. Exact ordered normalized-text comparison against the cleaned teaching blocks verifies preservation, and the Chapter 1 word budget is checked. Run `node tests/browser.test.cjs` with Playwright and Chromium available to check rendering and nested navigation.
 
 ## Review locally
 
@@ -28,4 +28,4 @@ Run `python3 scripts/build-course.py`, then `node tests/course.test.cjs`. Exact 
 4. Read There Will Be Code and We Are Authors, then take the chapter quiz.
 5. Judge whether each title describes its passage, each split feels natural, and essential context remains understandable.
 
-Existing progress in changed Chapter 1 decks resets because the runtime fingerprints lesson content. Other chapters retain their content and IDs. Previous notes on changed decks may not be restored; copy important Chapter 1 notes before testing with the same browser/origin, or use a separate browser profile.
+Existing progress in changed Chapter 1 decks resets because the runtime fingerprints lesson content. Other chapters retain their content and IDs. Saved notes on changed lesson IDs are preserved even when completion resets. Notes on removed or renamed IDs cannot be automatically associated; copy important notes or use a separate browser profile when testing structural changes.

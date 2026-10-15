@@ -80,47 +80,47 @@
         "sourceSubheading": "Bad Code",
         "wordCount": 80,
         "sourceStart": 0,
-        "sourceEnd": 422
+        "sourceEnd": 421
       },
       {
         "slideId": "ch01-topic-03-s2",
         "title": "A successful product becomes difficult to maintain",
         "sourceSubheading": "Bad Code",
         "wordCount": 77,
-        "sourceStart": 422,
-        "sourceEnd": 833
+        "sourceStart": 421,
+        "sourceEnd": 832
       },
       {
         "slideId": "ch01-topic-03-s3",
         "title": "Accumulated disorder can overwhelm a product",
         "sourceSubheading": "Bad Code",
         "wordCount": 72,
-        "sourceStart": 833,
-        "sourceEnd": 1208
+        "sourceStart": 832,
+        "sourceEnd": 1207
       },
       {
         "slideId": "ch01-topic-03-s4",
         "title": "Recognizing the cost of tangled code",
         "sourceSubheading": "Bad Code",
         "wordCount": 78,
-        "sourceStart": 1208,
-        "sourceEnd": 1622
+        "sourceStart": 1207,
+        "sourceEnd": 1621
       },
       {
         "slideId": "ch01-topic-03-s5",
         "title": "Why developers leave a mess",
         "sourceSubheading": "Bad Code",
         "wordCount": 114,
-        "sourceStart": 1622,
-        "sourceEnd": 2178
+        "sourceStart": 1621,
+        "sourceEnd": 2177
       },
       {
         "slideId": "ch01-topic-03-s6",
         "title": "The risk of postponing cleanup",
         "sourceSubheading": "Bad Code",
-        "wordCount": 66,
-        "sourceStart": 2178,
-        "sourceEnd": 2529
+        "wordCount": 64,
+        "sourceStart": 2177,
+        "sourceEnd": 2513
       }
     ]
   },
@@ -209,23 +209,23 @@
         "sourceSubheading": "Attitude",
         "wordCount": 95,
         "sourceStart": 931,
-        "sourceEnd": 1446
+        "sourceEnd": 1445
       },
       {
         "slideId": "ch01-topic-04-part-03-s4",
         "title": "Communicating risk under deadline pressure",
         "sourceSubheading": "Attitude",
         "wordCount": 65,
-        "sourceStart": 1446,
-        "sourceEnd": 1812
+        "sourceStart": 1445,
+        "sourceEnd": 1811
       },
       {
         "slideId": "ch01-topic-04-part-03-s5",
         "title": "The hand-washing analogy for professional judgment",
         "sourceSubheading": "Attitude",
         "wordCount": 103,
-        "sourceStart": 1812,
-        "sourceEnd": 2399
+        "sourceStart": 1811,
+        "sourceEnd": 2397
       },
       {
         "slideId": "ch01-topic-04-part-04-s1",
@@ -247,25 +247,25 @@
         "slideId": "ch01-topic-04-part-05-s2",
         "title": "Background to the hand-washing analogy",
         "sourceSubheading": "The Art of Clean Code?",
-        "wordCount": 35,
+        "wordCount": 34,
         "sourceStart": 630,
-        "sourceEnd": 840
+        "sourceEnd": 837
       },
       {
         "slideId": "ch01-topic-04-part-05-s3",
         "title": "Developing judgment through small techniques",
         "sourceSubheading": "The Art of Clean Code?",
         "wordCount": 72,
-        "sourceStart": 840,
-        "sourceEnd": 1240
+        "sourceStart": 837,
+        "sourceEnd": 1237
       },
       {
         "slideId": "ch01-topic-04-part-05-s4",
         "title": "Judgment guides behavior-preserving changes",
         "sourceSubheading": "The Art of Clean Code?",
         "wordCount": 97,
-        "sourceStart": 1240,
-        "sourceEnd": 1793
+        "sourceStart": 1237,
+        "sourceEnd": 1790
       },
       {
         "slideId": "ch01-topic-04-part-06-s1",
@@ -289,31 +289,31 @@
         "sourceSubheading": "Bjarne Stroustrup",
         "wordCount": 126,
         "sourceStart": 449,
-        "sourceEnd": 1225
+        "sourceEnd": 1223
       },
       {
         "slideId": "ch01-topic-04-part-07-s3",
         "title": "Neglect can encourage further neglect",
         "sourceSubheading": "Bjarne Stroustrup",
         "wordCount": 83,
-        "sourceStart": 1225,
-        "sourceEnd": 1714
+        "sourceStart": 1223,
+        "sourceEnd": 1711
       },
       {
         "slideId": "ch01-topic-04-part-07-s4",
         "title": "Complete handling requires attention to detail",
         "sourceSubheading": "Bjarne Stroustrup",
         "wordCount": 54,
-        "sourceStart": 1714,
-        "sourceEnd": 2070
+        "sourceStart": 1711,
+        "sourceEnd": 2067
       },
       {
         "slideId": "ch01-topic-04-part-07-s5",
         "title": "Clean code has a focused purpose",
         "sourceSubheading": "Bjarne Stroustrup",
         "wordCount": 82,
-        "sourceStart": 2070,
-        "sourceEnd": 2574
+        "sourceStart": 2067,
+        "sourceEnd": 2571
       },
       {
         "slideId": "ch01-topic-04-part-08-s1",
@@ -327,17 +327,17 @@
         "slideId": "ch01-topic-04-part-08-s2",
         "title": "Readable code explains the problem and solution",
         "sourceSubheading": "Grady Booch",
-        "wordCount": 144,
+        "wordCount": 142,
         "sourceStart": 281,
-        "sourceEnd": 1147
+        "sourceEnd": 1082
       },
       {
         "slideId": "ch01-topic-04-part-08-s3",
         "title": "Use decisive abstractions without unnecessary detail",
         "sourceSubheading": "Grady Booch",
         "wordCount": 80,
-        "sourceStart": 1147,
-        "sourceEnd": 1678
+        "sourceStart": 1082,
+        "sourceEnd": 1613
       },
       {
         "slideId": "ch01-topic-04-part-09-s1",
@@ -367,9 +367,9 @@
         "slideId": "ch01-topic-04-part-09-s4",
         "title": "Prefer small, human-readable implementations",
         "sourceSubheading": "Dave Thomas",
-        "wordCount": 74,
+        "wordCount": 72,
         "sourceStart": 1200,
-        "sourceEnd": 1631
+        "sourceEnd": 1615
       },
       {
         "slideId": "ch01-topic-04-part-10-s1",
@@ -401,39 +401,39 @@
         "sourceSubheading": "Ron Jeffries",
         "wordCount": 97,
         "sourceStart": 589,
-        "sourceEnd": 1120
+        "sourceEnd": 1119
       },
       {
         "slideId": "ch01-topic-04-part-11-s3",
         "title": "Separate responsibilities to reveal intent",
         "sourceSubheading": "Ron Jeffries",
         "wordCount": 94,
-        "sourceStart": 1120,
-        "sourceEnd": 1623
+        "sourceStart": 1119,
+        "sourceEnd": 1622
       },
       {
         "slideId": "ch01-topic-04-part-11-s4",
         "title": "Recognize recurring operations",
         "sourceSubheading": "Ron Jeffries",
         "wordCount": 81,
-        "sourceStart": 1623,
-        "sourceEnd": 2055
+        "sourceStart": 1622,
+        "sourceEnd": 2054
       },
       {
         "slideId": "ch01-topic-04-part-11-s5",
         "title": "A small abstraction preserves room to change",
         "sourceSubheading": "Ron Jeffries",
         "wordCount": 76,
-        "sourceStart": 2055,
-        "sourceEnd": 2499
+        "sourceStart": 2054,
+        "sourceEnd": 2498
       },
       {
         "slideId": "ch01-topic-04-part-11-s6",
         "title": "An abstraction can clarify what is really needed",
         "sourceSubheading": "Ron Jeffries",
         "wordCount": 84,
-        "sourceStart": 2499,
-        "sourceEnd": 3038
+        "sourceStart": 2498,
+        "sourceEnd": 3037
       },
       {
         "slideId": "ch01-topic-04-part-12-s1",
@@ -598,15 +598,15 @@
         "sourceSubheading": "The Boy Scout Rule",
         "wordCount": 62,
         "sourceStart": 0,
-        "sourceEnd": 329
+        "sourceEnd": 328
       },
       {
         "slideId": "ch01-topic-07-s2",
         "title": "Small improvements can accumulate over time",
         "sourceSubheading": "The Boy Scout Rule",
-        "wordCount": 120,
-        "sourceStart": 329,
-        "sourceEnd": 1029
+        "wordCount": 119,
+        "sourceStart": 328,
+        "sourceEnd": 1025
       }
     ]
   },
