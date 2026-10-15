@@ -122,6 +122,11 @@ for number in [*range(1,13),14,17,13]:
     children.append(dict(id=prefix+'-quiz',type='quiz',title='Check your understanding',skill=chapter['title'],optional=optional,questions=questions(prefix+'-quiz',guide['questions'])))
     sections.append(dict(id=prefix,type='section',title=title,children=children))
 
+resource_text=(ROOT/'docs/resources/chapter-1-notes.md').read_text()
+resource_parts=re.split(r'^## ',resource_text,flags=re.M)[1:]
+resource_slides=[tuple(part.split('\n',1)) for part in resource_parts]
+sections.append(dict(id='study-resources',type='section',title='Resources',optional=True,children=[deck('resource-ch01-notes','Chapter 1 — My clean-code notes',[(t,b.strip()) for t,b in resource_slides],True)]))
+
 course=dict(schemaVersion=1,id='clean-code-core-chapters-v2',title='Clean Code',description='Learn code-quality decisions through the book’s chapters and subsections. Core: Chapters 1–12, 14 and 17. Advanced optional: Chapter 13. Practice and assessments focus on programming concepts.',sections=sections,finalQuiz=dict(id='clean-code-core-final',type='quiz',title='Final assessment',skill='Core code-quality judgment',questions=questions('final',final)),settings=prior['settings'])
 (ROOT/'course.json').write_text(json.dumps(course,ensure_ascii=False,indent=2)+'\n')
 embedded=json.dumps(course,ensure_ascii=False,separators=(',',':')).replace('<','\\u003c')
@@ -132,6 +137,6 @@ manifest=json.loads((ROOT/'source-manifest.json').read_text());manifest['curricu
 (ROOT/'docs/source-cleanup-audit.json').write_text(json.dumps(cleanup_audit,ensure_ascii=False,indent=2)+'\n')
 (ROOT/'docs/chapter-one-slide-map.json').write_text(json.dumps(chapter_one_mapping,ensure_ascii=False,indent=2)+'\n')
 leaves=list(leaf_decks(sections))
-stats=dict(chapterSections=len(sections),sourceSubsectionDecks=len(coverage),decks=sum(n['type']=='slides' for n in leaves),slides=sum(len(n.get('slides',[])) for n in leaves),chapterQuizzes=len(sections),chapterQuestions=sum(len(n.get('questions',[])) for n in leaves),finalQuestions=len(final))
+stats=dict(chapterSections=sum(s['id'].startswith('ch') for s in sections),sourceSubsectionDecks=len(coverage),decks=sum(n['type']=='slides' for n in leaves),slides=sum(len(n.get('slides',[])) for n in leaves),chapterQuizzes=sum(n['type']=='quiz' for n in leaves),chapterQuestions=sum(len(n.get('questions',[])) for n in leaves),finalQuestions=len(final))
 (ROOT/'docs/course-stats.json').write_text(json.dumps(stats,indent=2)+'\n')
 print(json.dumps(stats))

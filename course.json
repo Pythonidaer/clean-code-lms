@@ -5476,6 +5476,67 @@
           ]
         }
       ]
+    },
+    {
+      "id": "study-resources",
+      "type": "section",
+      "title": "Resources",
+      "optional": true,
+      "children": [
+        {
+          "id": "resource-ch01-notes",
+          "type": "slides",
+          "title": "Chapter 1 — My clean-code notes",
+          "optional": true,
+          "slides": [
+            {
+              "id": "resource-ch01-notes-s1",
+              "title": "What clean code should communicate",
+              "body": "Clean code should help the next person understand what the code does, why it exists, and how to change it. Meaningful names, straightforward logic, focused functions and modules, clear boundaries, and deliberate error handling make that easier. Readability and changeability are related, but they are not identical: code can look simple while still being difficult to modify safely. Tests provide evidence that a change preserves the behavior we depend on."
+            },
+            {
+              "id": "resource-ch01-notes-s2",
+              "title": "Why maintaining it matters",
+              "body": "Messy code makes us spend more time reconstructing context before we can make a change. That is the “wading” I want to avoid. If each change adds more confusion, the effort can build into a productivity spiral. I want to develop my code-sense by understanding the existing design, recognizing specific problems, and practicing small improvements. The Boy Scout Rule gives me a practical starting point: leave the area I touched a little clearer. Reading provides techniques; practice develops judgment. I should understand each recommendation’s purpose and tradeoffs rather than treat this book as the final authority."
+            },
+            {
+              "id": "resource-ch01-notes-s3",
+              "title": "The six perspectives",
+              "body": "- **Bjarne Stroustrup:** focused logic, efficiency, minimal dependencies, and attention to failure handling.\n- **Grady Booch:** clear design intent, direct flow, and abstractions that explain the problem.\n- **Dave Thomas:** code other people can read and enhance, supported by tests and a clear API.\n- **Michael Feathers:** care shows up in simplicity, order, and attention to details.\n- **Ron Jeffries:** passing tests, reduced duplication, expressed intent, and fewer unnecessary entities—in that priority order.\n- **Ward Cunningham:** predictable routines and modules that prepare the reader for what comes next.\n\nThese perspectives overlap. I can use them as questions when reviewing code, rather than six competing definitions to memorize."
+            },
+            {
+              "id": "resource-ch01-notes-s4",
+              "title": "Draft rules for future reviews and skills",
+              "body": "1. Understand the behavior and design intent before changing the code.\n2. Choose names that explain meaning, purpose, and relevant units.\n3. Keep functions and modules focused; separate responsibilities when that clarifies the design.\n4. Remove duplication when it represents the same underlying idea.\n5. Introduce an abstraction when it clarifies a real need or useful boundary.\n6. Handle failures deliberately and make dependencies clear.\n7. Make small, behavior-preserving improvements and check the affected behavior.\n8. Explain the observed problem, its consequence, and the reason for the proposed change.\n9. Communicate maintenance risks during requirements and schedule discussions.\n10. Evaluate recommendations in context; avoid treating shortness, test presence, or a named principle as proof of quality.\n\nThese are draft review heuristics, not automatic pass/fail rules."
+            },
+            {
+              "id": "resource-ch01-notes-s5",
+              "title": "Why easier reading makes the next change easier",
+              "body": "Before changing code, I need to understand its behavior and surrounding assumptions. Clear names and predictable structure reduce the guessing needed to find the relevant logic, understand its callers, and identify what the change could affect. That makes it easier to choose a small change and check its consequences.\n\nThe goal is to reduce avoidable effort, not to hit a reading-to-writing ratio below 10:1. Reading is necessary work; the chapter’s ratio illustrates why readability matters. Likewise, developers should communicate risks and protect quality, but organizational failures are not automatically one developer’s fault."
+            },
+            {
+              "id": "resource-ch01-notes-s6",
+              "title": "A small Boy Scout improvement in React and TypeScript",
+              "body": "A React component receives this typed value:\n\n```tsx\n// Before\nconst d: number = 3;\nreturn <span>{d} days since your last visit</span>;\n```\n\nClarify what the value represents:\n\n```tsx\n// After\nconst daysSinceLastVisit: number = 3;\nreturn <span>{daysSinceLastVisit} days since your last visit</span>;\n```\n\nThe displayed result stays the same. The name now communicates meaning and units. Update every reference and check the affected rendering. The same naming improvement applies in JavaScript; TypeScript also states that the value is a number."
+            },
+            {
+              "id": "resource-ch01-notes-s7",
+              "title": "Questions to explore — core concepts",
+              "body": "- How do higher levels of language abstraction work? What is a domain-specific language?\n- What are design intent, a module, a greenfield project, and code decay?\n- What makes an abstraction “crisp” or useful rather than unnecessary?\n- How do meaningful names, duplication, and Extract Method help express an idea?\n- What are unit tests, acceptance tests, and test-driven development?\n- What is a composite condition? How can its intent become clearer?\n- What are heuristics, and how do I practice deciding when they apply?\n\nThese are open learning questions, not gaps to hide in the summary."
+            },
+            {
+              "id": "resource-ch01-notes-s8",
+              "title": "Questions to explore — principles and background",
+              "body": "**Design principles:** What do SRP, OCP, DIP, and object-oriented design mean? Where do they apply in JavaScript, TypeScript, and React?\n\n**Historical context:** What are OTI, Eclipse, Fit, Extreme Programming, literate programming, and the Object Mentor school? These can remain secondary to understanding the code-quality ideas.\n\n**Working with AI:** Can I inspect an editing session or change history in Cursor? How can I use that to understand LLM-generated code and the reasoning behind changes?"
+            },
+            {
+              "id": "resource-ch01-notes-s9",
+              "title": "Ideas to revisit",
+              "body": "- Create a Hangman-style learning activity for identifying code issues, possibly by selecting functions or conditions. Clarify what the player would learn before choosing the game mechanics.\n- Use these draft rules as a repeatable review: identify the code’s purpose, observe a specific problem, propose one improvement, explain the tradeoff, and verify behavior.\n- Build code-sense through small examples and comparisons. Revisit these notes after later chapters and revise the rules with what I learn."
+            }
+          ]
+        }
+      ]
     }
   ],
   "finalQuiz": {
