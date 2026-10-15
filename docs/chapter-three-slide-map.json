@@ -1,0 +1,1215 @@
+[
+  {
+    "sourceUnit": "Chapter introduction",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      62,
+      63,
+      64,
+      65
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-01-s1",
+        "title": "Functions organize a program",
+        "sourceSubheading": "Chapter introduction",
+        "sourceStart": 0,
+        "sourceEnd": 357,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 59
+      },
+      {
+        "slideId": "ch03-topic-01-s2",
+        "title": "Listing 3-1: a function with hidden intent · listing continuation 1 of 2",
+        "sourceSubheading": "Chapter introduction",
+        "sourceStart": 357,
+        "sourceEnd": 3038,
+        "listingPart": 1,
+        "listingParts": 2,
+        "proseWordCount": 68
+      },
+      {
+        "slideId": "ch03-topic-01-s3",
+        "title": "Listing 3-1: a function with hidden intent · listing continuation 2 of 2",
+        "sourceSubheading": "Chapter introduction",
+        "sourceStart": 357,
+        "sourceEnd": 3038,
+        "listingPart": 2,
+        "listingParts": 2,
+        "proseWordCount": 0
+      },
+      {
+        "slideId": "ch03-topic-01-s4",
+        "title": "Refactoring can expose the function’s purpose",
+        "sourceSubheading": "Chapter introduction",
+        "sourceStart": 3038,
+        "sourceEnd": 4176,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 90
+      },
+      {
+        "slideId": "ch03-topic-01-s5",
+        "title": "Recognize the intent without knowing every detail",
+        "sourceSubheading": "Chapter introduction",
+        "sourceStart": 4176,
+        "sourceEnd": 4685,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 84
+      },
+      {
+        "slideId": "ch03-topic-01-s6",
+        "title": "What helps a function communicate?",
+        "sourceSubheading": "Chapter introduction",
+        "sourceStart": 4685,
+        "sourceEnd": 4985,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 52
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Small!",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      65,
+      66
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-02-part-01-s1",
+        "title": "The author argues for very small functions",
+        "sourceSubheading": "Small!",
+        "sourceStart": 0,
+        "sourceEnd": 539,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 96
+      },
+      {
+        "slideId": "ch03-topic-02-part-01-s2",
+        "title": "The recommendation comes from experience",
+        "sourceSubheading": "Small!",
+        "sourceStart": 539,
+        "sourceEnd": 871,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 61
+      },
+      {
+        "slideId": "ch03-topic-02-part-01-s3",
+        "title": "Screen size is not a useful function-size limit",
+        "sourceSubheading": "Small!",
+        "sourceStart": 871,
+        "sourceEnd": 1131,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 49
+      },
+      {
+        "slideId": "ch03-topic-02-part-01-s4",
+        "title": "An example from Kent Beck’s Sparkle program",
+        "sourceSubheading": "Small!",
+        "sourceStart": 1131,
+        "sourceEnd": 1645,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 92
+      },
+      {
+        "slideId": "ch03-topic-02-part-01-s5",
+        "title": "Short functions can form a readable sequence",
+        "sourceSubheading": "Small!",
+        "sourceStart": 1645,
+        "sourceEnd": 2027,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 71
+      },
+      {
+        "slideId": "ch03-topic-02-part-01-s6",
+        "title": "Listing 3-3: express the operation directly",
+        "sourceSubheading": "Small!",
+        "sourceStart": 2027,
+        "sourceEnd": 2470,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 28
+      },
+      {
+        "slideId": "ch03-topic-02-part-02-s1",
+        "title": "Descriptive calls can clarify small blocks",
+        "sourceSubheading": "Blocks and Indenting",
+        "sourceStart": 0,
+        "sourceEnd": 343,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 56
+      },
+      {
+        "slideId": "ch03-topic-02-part-02-s2",
+        "title": "The author connects small functions with shallow nesting",
+        "sourceSubheading": "Blocks and Indenting",
+        "sourceStart": 343,
+        "sourceEnd": 580,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 40
+      },
+      {
+        "slideId": "ch03-topic-02-part-02-s3",
+        "title": "Background to the testing example",
+        "sourceSubheading": "Blocks and Indenting",
+        "sourceStart": 580,
+        "sourceEnd": 815,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 45
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Do One Thing",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      66,
+      67
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-03-part-01-s1",
+        "title": "A busy function combines different kinds of work",
+        "sourceSubheading": "Do One Thing",
+        "sourceStart": 0,
+        "sourceEnd": 478,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 79
+      },
+      {
+        "slideId": "ch03-topic-03-part-01-s2",
+        "title": "The one-thing rule needs interpretation",
+        "sourceSubheading": "Do One Thing",
+        "sourceStart": 478,
+        "sourceEnd": 558,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 15
+      },
+      {
+        "slideId": "ch03-topic-03-part-01-s3",
+        "title": "One operation can contain several steps",
+        "sourceSubheading": "Do One Thing",
+        "sourceStart": 558,
+        "sourceEnd": 851,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 55
+      },
+      {
+        "slideId": "ch03-topic-03-part-01-s4",
+        "title": "Judge the steps relative to the function’s purpose",
+        "sourceSubheading": "Do One Thing",
+        "sourceStart": 851,
+        "sourceEnd": 1277,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 77
+      },
+      {
+        "slideId": "ch03-topic-03-part-01-s5",
+        "title": "Decompose a concept at the next level down",
+        "sourceSubheading": "Do One Thing",
+        "sourceStart": 1277,
+        "sourceEnd": 1580,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 57
+      },
+      {
+        "slideId": "ch03-topic-03-part-01-s6",
+        "title": "Mixed abstraction levels reveal unrelated work",
+        "sourceSubheading": "Do One Thing",
+        "sourceStart": 1580,
+        "sourceEnd": 1875,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 53
+      },
+      {
+        "slideId": "ch03-topic-03-part-01-s7",
+        "title": "Extraction should reveal an idea, not repeat the code",
+        "sourceSubheading": "Do One Thing",
+        "sourceStart": 1875,
+        "sourceEnd": 2240,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 59
+      },
+      {
+        "slideId": "ch03-topic-03-part-02-s1",
+        "title": "Internal sections can signal multiple responsibilities",
+        "sourceSubheading": "Sections within Functions",
+        "sourceStart": 0,
+        "sourceEnd": 277,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 44
+      }
+    ]
+  },
+  {
+    "sourceUnit": "One Level of Abstraction per Function",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      67,
+      68
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-04-part-01-s1",
+        "title": "Keep statements at a consistent level of abstraction",
+        "sourceSubheading": "One Level of Abstraction per Function",
+        "sourceStart": 0,
+        "sourceEnd": 504,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 84
+      },
+      {
+        "slideId": "ch03-topic-04-part-01-s2",
+        "title": "Do not mix essential concepts with implementation details",
+        "sourceSubheading": "One Level of Abstraction per Function",
+        "sourceStart": 504,
+        "sourceEnd": 807,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 49
+      },
+      {
+        "slideId": "ch03-topic-04-part-02-s1",
+        "title": "Let the reader descend through levels of detail",
+        "sourceSubheading": "Reading Code from Top to Bottom: The Stepdown Rule",
+        "sourceStart": 0,
+        "sourceEnd": 514,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 96
+      },
+      {
+        "slideId": "ch03-topic-04-part-02-s2",
+        "title": "Read the setup sequence as a hierarchy",
+        "sourceSubheading": "Reading Code from Top to Bottom: The Stepdown Rule",
+        "sourceStart": 514,
+        "sourceEnd": 918,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 73
+      },
+      {
+        "slideId": "ch03-topic-04-part-02-s3",
+        "title": "Use the narrative to check abstraction consistency",
+        "sourceSubheading": "Reading Code from Top to Bottom: The Stepdown Rule",
+        "sourceStart": 918,
+        "sourceEnd": 1581,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 112
+      },
+      {
+        "slideId": "ch03-topic-04-part-02-s4",
+        "title": "Why the chapter uses TO paragraphs",
+        "sourceSubheading": "Reading Code from Top to Bottom: The Stepdown Rule",
+        "sourceStart": 1581,
+        "sourceEnd": 1779,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 36
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Switch Statements",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      68,
+      69,
+      70
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-05-s1",
+        "title": "The author’s concern is repeated type-based branching",
+        "sourceSubheading": "Switch Statements",
+        "sourceStart": 0,
+        "sourceEnd": 476,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 82
+      },
+      {
+        "slideId": "ch03-topic-05-s2",
+        "title": "Listing 3-4: payroll branches on employee type",
+        "sourceSubheading": "Switch Statements",
+        "sourceStart": 476,
+        "sourceEnd": 970,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 21
+      },
+      {
+        "slideId": "ch03-topic-05-s3",
+        "title": "A growing switch can create several reasons to change",
+        "sourceSubheading": "Switch Statements",
+        "sourceStart": 970,
+        "sourceEnd": 1361,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 65
+      },
+      {
+        "slideId": "ch03-topic-05-s4",
+        "title": "The same branching can spread across operations",
+        "sourceSubheading": "Switch Statements",
+        "sourceStart": 1361,
+        "sourceEnd": 1707,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 44
+      },
+      {
+        "slideId": "ch03-topic-05-s5",
+        "title": "Hide object creation behind a factory",
+        "sourceSubheading": "Switch Statements",
+        "sourceStart": 1707,
+        "sourceEnd": 2117,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 61
+      },
+      {
+        "slideId": "ch03-topic-05-s6",
+        "title": "Read the proposed rule with its qualification",
+        "sourceSubheading": "Switch Statements",
+        "sourceStart": 2117,
+        "sourceEnd": 2464,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 61
+      },
+      {
+        "slideId": "ch03-topic-05-s7",
+        "title": "Listing 3-5: employee operations and creation",
+        "sourceSubheading": "Switch Statements",
+        "sourceStart": 2464,
+        "sourceEnd": 3296,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 14
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Use Descriptive Names",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      70,
+      71
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-06-s1",
+        "title": "A focused function is easier to name",
+        "sourceSubheading": "Use Descriptive Names",
+        "sourceStart": 0,
+        "sourceEnd": 697,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 114
+      },
+      {
+        "slideId": "ch03-topic-06-s2",
+        "title": "Prefer a descriptive name to an unexplained short one",
+        "sourceSubheading": "Use Descriptive Names",
+        "sourceStart": 697,
+        "sourceEnd": 1051,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 65
+      },
+      {
+        "slideId": "ch03-topic-06-s3",
+        "title": "Try names until the design becomes clearer",
+        "sourceSubheading": "Use Descriptive Names",
+        "sourceStart": 1051,
+        "sourceEnd": 1584,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 98
+      },
+      {
+        "slideId": "ch03-topic-06-s4",
+        "title": "Repeated vocabulary can make the sequence predictable",
+        "sourceSubheading": "Use Descriptive Names",
+        "sourceStart": 1584,
+        "sourceEnd": 2144,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 76
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Function Arguments",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      71,
+      72,
+      73,
+      74
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-07-part-01-s1",
+        "title": "The author prefers fewer arguments",
+        "sourceSubheading": "Function Arguments",
+        "sourceStart": 0,
+        "sourceEnd": 282,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 41
+      },
+      {
+        "slideId": "ch03-topic-07-part-01-s2",
+        "title": "Arguments add context the reader must interpret",
+        "sourceSubheading": "Function Arguments",
+        "sourceStart": 282,
+        "sourceEnd": 624,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 62
+      },
+      {
+        "slideId": "ch03-topic-07-part-01-s3",
+        "title": "An argument can expose a lower-level detail",
+        "sourceSubheading": "Function Arguments",
+        "sourceStart": 624,
+        "sourceEnd": 958,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 49
+      },
+      {
+        "slideId": "ch03-topic-07-part-01-s4",
+        "title": "More combinations can increase the testing burden",
+        "sourceSubheading": "Function Arguments",
+        "sourceStart": 958,
+        "sourceEnd": 1383,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 70
+      },
+      {
+        "slideId": "ch03-topic-07-part-01-s5",
+        "title": "Readers usually expect inputs and a return value",
+        "sourceSubheading": "Function Arguments",
+        "sourceStart": 1383,
+        "sourceEnd": 1918,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 87
+      },
+      {
+        "slideId": "ch03-topic-07-part-02-s1",
+        "title": "A single argument can support a query or transformation",
+        "sourceSubheading": "Common Monadic Forms",
+        "sourceStart": 0,
+        "sourceEnd": 591,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 93
+      },
+      {
+        "slideId": "ch03-topic-07-part-02-s2",
+        "title": "An event-style call should communicate its effect",
+        "sourceSubheading": "Common Monadic Forms",
+        "sourceStart": 591,
+        "sourceEnd": 1064,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 81
+      },
+      {
+        "slideId": "ch03-topic-07-part-02-s3",
+        "title": "A transformation is clearer when it returns its result",
+        "sourceSubheading": "Common Monadic Forms",
+        "sourceStart": 1064,
+        "sourceEnd": 1632,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 81
+      },
+      {
+        "slideId": "ch03-topic-07-part-03-s1",
+        "title": "A flag can hide a choice between operations",
+        "sourceSubheading": "Flag Arguments",
+        "sourceStart": 0,
+        "sourceEnd": 281,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 49
+      },
+      {
+        "slideId": "ch03-topic-07-part-03-s2",
+        "title": "A limited refactoring may keep an existing flag",
+        "sourceSubheading": "Flag Arguments",
+        "sourceStart": 281,
+        "sourceEnd": 707,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 69
+      },
+      {
+        "slideId": "ch03-topic-07-part-04-s1",
+        "title": "Two arguments can add interpretation work",
+        "sourceSubheading": "Dyadic Functions",
+        "sourceStart": 0,
+        "sourceEnd": 506,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 81
+      },
+      {
+        "slideId": "ch03-topic-07-part-04-s2",
+        "title": "Related components can naturally belong together",
+        "sourceSubheading": "Dyadic Functions",
+        "sourceStart": 506,
+        "sourceEnd": 912,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 62
+      },
+      {
+        "slideId": "ch03-topic-07-part-04-s3",
+        "title": "Argument ordering can depend on convention",
+        "sourceSubheading": "Dyadic Functions",
+        "sourceStart": 912,
+        "sourceEnd": 1195,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 41
+      },
+      {
+        "slideId": "ch03-topic-07-part-04-s4",
+        "title": "Consider alternatives without treating two arguments as forbidden",
+        "sourceSubheading": "Dyadic Functions",
+        "sourceStart": 1195,
+        "sourceEnd": 1780,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 100
+      },
+      {
+        "slideId": "ch03-topic-07-part-05-s1",
+        "title": "Three arguments can make roles harder to follow",
+        "sourceSubheading": "Triads",
+        "sourceStart": 0,
+        "sourceEnd": 578,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 91
+      },
+      {
+        "slideId": "ch03-topic-07-part-05-s2",
+        "title": "A tolerance argument can communicate an important distinction",
+        "sourceSubheading": "Triads",
+        "sourceStart": 578,
+        "sourceEnd": 847,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 44
+      },
+      {
+        "slideId": "ch03-topic-07-part-06-s1",
+        "title": "Group arguments when they express a real concept",
+        "sourceSubheading": "Argument Objects",
+        "sourceStart": 0,
+        "sourceEnd": 347,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 40
+      },
+      {
+        "slideId": "ch03-topic-07-part-06-s2",
+        "title": "A named concept matters more than a smaller count",
+        "sourceSubheading": "Argument Objects",
+        "sourceStart": 347,
+        "sourceEnd": 608,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 49
+      },
+      {
+        "slideId": "ch03-topic-07-part-07-s1",
+        "title": "A variable-length argument list can represent one group",
+        "sourceSubheading": "Argument Lists",
+        "sourceStart": 0,
+        "sourceEnd": 192,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 19
+      },
+      {
+        "slideId": "ch03-topic-07-part-07-s2",
+        "title": "Count the conceptual roles in the signature",
+        "sourceSubheading": "Argument Lists",
+        "sourceStart": 192,
+        "sourceEnd": 541,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 44
+      },
+      {
+        "slideId": "ch03-topic-07-part-07-s3",
+        "title": "The author applies the same reasoning to variable arguments",
+        "sourceSubheading": "Argument Lists",
+        "sourceStart": 541,
+        "sourceEnd": 847,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 31
+      },
+      {
+        "slideId": "ch03-topic-07-part-08-s1",
+        "title": "A function name can explain the argument’s role",
+        "sourceSubheading": "Verbs and Keywords",
+        "sourceStart": 0,
+        "sourceEnd": 431,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 75
+      },
+      {
+        "slideId": "ch03-topic-07-part-08-s2",
+        "title": "Names can make argument ordering explicit",
+        "sourceSubheading": "Verbs and Keywords",
+        "sourceStart": 431,
+        "sourceEnd": 765,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 51
+      },
+      {
+        "slideId": "ch03-topic-07-part-08-s3",
+        "title": "An example of moving a repeated argument into an object",
+        "sourceSubheading": "Verbs and Keywords",
+        "sourceStart": 765,
+        "sourceEnd": 976,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 38
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Have No Side Effects",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      75,
+      76
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-08-part-01-s1",
+        "title": "A hidden effect breaks the promise of a function’s name",
+        "sourceSubheading": "Have No Side Effects",
+        "sourceStart": 0,
+        "sourceEnd": 398,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 66
+      },
+      {
+        "slideId": "ch03-topic-08-part-01-s2",
+        "title": "Listing 3-6: a password check with an extra effect",
+        "sourceSubheading": "Have No Side Effects",
+        "sourceStart": 398,
+        "sourceEnd": 1194,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 49
+      },
+      {
+        "slideId": "ch03-topic-08-part-01-s3",
+        "title": "The password check also initializes the session",
+        "sourceSubheading": "Have No Side Effects",
+        "sourceStart": 1194,
+        "sourceEnd": 1563,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 65
+      },
+      {
+        "slideId": "ch03-topic-08-part-01-s4",
+        "title": "Hidden effects can create ordering requirements",
+        "sourceSubheading": "Have No Side Effects",
+        "sourceStart": 1563,
+        "sourceEnd": 1801,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 41
+      },
+      {
+        "slideId": "ch03-topic-08-part-01-s5",
+        "title": "Make required ordering visible to the caller",
+        "sourceSubheading": "Have No Side Effects",
+        "sourceStart": 1801,
+        "sourceEnd": 2093,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 45
+      },
+      {
+        "slideId": "ch03-topic-08-part-02-s1",
+        "title": "An argument may ambiguously look like an input",
+        "sourceSubheading": "Output Arguments",
+        "sourceStart": 0,
+        "sourceEnd": 266,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 41
+      },
+      {
+        "slideId": "ch03-topic-08-part-02-s2",
+        "title": "The caller should not have to guess what changes",
+        "sourceSubheading": "Output Arguments",
+        "sourceStart": 266,
+        "sourceEnd": 516,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 37
+      },
+      {
+        "slideId": "ch03-topic-08-part-02-s3",
+        "title": "Checking the declaration interrupts understanding",
+        "sourceSubheading": "Output Arguments",
+        "sourceStart": 516,
+        "sourceEnd": 746,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 38
+      },
+      {
+        "slideId": "ch03-topic-08-part-02-s4",
+        "title": "The chapter proposes placing the operation on the owning object",
+        "sourceSubheading": "Output Arguments",
+        "sourceStart": 746,
+        "sourceEnd": 1085,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 50
+      },
+      {
+        "slideId": "ch03-topic-08-part-02-s5",
+        "title": "Make the state being changed clear",
+        "sourceSubheading": "Output Arguments",
+        "sourceStart": 1085,
+        "sourceEnd": 1231,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 25
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Command Query Separation",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      76,
+      77
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-09-s1",
+        "title": "Separate changing state from asking a question",
+        "sourceSubheading": "Command Query Separation",
+        "sourceStart": 0,
+        "sourceEnd": 337,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 42
+      },
+      {
+        "slideId": "ch03-topic-09-s2",
+        "title": "A boolean result can obscure whether a call changes state",
+        "sourceSubheading": "Command Query Separation",
+        "sourceStart": 337,
+        "sourceEnd": 557,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 30
+      },
+      {
+        "slideId": "ch03-topic-09-s3",
+        "title": "A call inside a condition can be read two ways",
+        "sourceSubheading": "Command Query Separation",
+        "sourceStart": 557,
+        "sourceEnd": 920,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 62
+      },
+      {
+        "slideId": "ch03-topic-09-s4",
+        "title": "The verb and adjective readings conflict",
+        "sourceSubheading": "Command Query Separation",
+        "sourceStart": 920,
+        "sourceEnd": 1202,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 51
+      },
+      {
+        "slideId": "ch03-topic-09-s5",
+        "title": "Separate the command from the existence check",
+        "sourceSubheading": "Command Query Separation",
+        "sourceStart": 1202,
+        "sourceEnd": 1541,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 41
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Prefer Exceptions to Returning Error Codes",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      77,
+      78,
+      79
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-10-part-01-s1",
+        "title": "The chapter links error codes with conditional commands",
+        "sourceSubheading": "Prefer Exceptions to Returning Error Codes",
+        "sourceStart": 0,
+        "sourceEnd": 225,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 27
+      },
+      {
+        "slideId": "ch03-topic-10-part-01-s2",
+        "title": "Immediate error checks can create nested control flow",
+        "sourceSubheading": "Prefer Exceptions to Returning Error Codes",
+        "sourceStart": 225,
+        "sourceEnd": 775,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 33
+      },
+      {
+        "slideId": "ch03-topic-10-part-01-s3",
+        "title": "Exceptions can separate error handling from normal work",
+        "sourceSubheading": "Prefer Exceptions to Returning Error Codes",
+        "sourceStart": 775,
+        "sourceEnd": 1115,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 30
+      },
+      {
+        "slideId": "ch03-topic-10-part-02-s1",
+        "title": "Extract normal work and failure handling into named operations",
+        "sourceSubheading": "Extract Try/Catch Blocks",
+        "sourceStart": 0,
+        "sourceEnd": 661,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 42
+      },
+      {
+        "slideId": "ch03-topic-10-part-02-s2",
+        "title": "The example separates deletion from error handling",
+        "sourceSubheading": "Extract Try/Catch Blocks",
+        "sourceStart": 661,
+        "sourceEnd": 982,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 51
+      },
+      {
+        "slideId": "ch03-topic-10-part-03-s1",
+        "title": "The author treats error handling as a focused responsibility",
+        "sourceSubheading": "Error Handling Is One Thing",
+        "sourceStart": 0,
+        "sourceEnd": 322,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 56
+      },
+      {
+        "slideId": "ch03-topic-10-part-04-s1",
+        "title": "A shared error-code enum can become a dependency",
+        "sourceSubheading": "The Error.java Dependency Magnet",
+        "sourceStart": 0,
+        "sourceEnd": 216,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 20
+      },
+      {
+        "slideId": "ch03-topic-10-part-04-s2",
+        "title": "Shared error definitions can discourage useful distinctions",
+        "sourceSubheading": "The Error.java Dependency Magnet",
+        "sourceStart": 216,
+        "sourceEnd": 613,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 67
+      },
+      {
+        "slideId": "ch03-topic-10-part-04-s3",
+        "title": "The chapter contrasts exception hierarchies with shared codes",
+        "sourceSubheading": "The Error.java Dependency Magnet",
+        "sourceStart": 613,
+        "sourceEnd": 899,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 44
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Don't Repeat Yourself",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      79
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-11-s1",
+        "title": "Repeated logic creates repeated maintenance work",
+        "sourceSubheading": "Don't Repeat Yourself",
+        "sourceStart": 0,
+        "sourceEnd": 196,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 31
+      },
+      {
+        "slideId": "ch03-topic-11-s2",
+        "title": "Duplication can be hidden among other work",
+        "sourceSubheading": "Don't Repeat Yourself",
+        "sourceStart": 196,
+        "sourceEnd": 532,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 54
+      },
+      {
+        "slideId": "ch03-topic-11-s3",
+        "title": "A shared operation can improve the surrounding story",
+        "sourceSubheading": "Don't Repeat Yourself",
+        "sourceStart": 532,
+        "sourceEnd": 732,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 33
+      },
+      {
+        "slideId": "ch03-topic-11-s4",
+        "title": "Many design approaches aim to control duplication",
+        "sourceSubheading": "Don't Repeat Yourself",
+        "sourceStart": 732,
+        "sourceEnd": 1113,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 58
+      },
+      {
+        "slideId": "ch03-topic-11-s5",
+        "title": "The author connects reuse with the history of subroutines",
+        "sourceSubheading": "Don't Repeat Yourself",
+        "sourceStart": 1113,
+        "sourceEnd": 1427,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 42
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Structured Programming",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      79,
+      80
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-12-s1",
+        "title": "Single entry and exit is a historical discipline",
+        "sourceSubheading": "Structured Programming",
+        "sourceStart": 0,
+        "sourceEnd": 361,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 56
+      },
+      {
+        "slideId": "ch03-topic-12-s2",
+        "title": "The author allows expressive exits in small functions",
+        "sourceSubheading": "Structured Programming",
+        "sourceStart": 361,
+        "sourceEnd": 966,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 96
+      }
+    ]
+  },
+  {
+    "sourceUnit": "How Do You Write Functions Like This?",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      80
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-13-s1",
+        "title": "Start with a draft and refine it",
+        "sourceSubheading": "How Do You Write Functions Like This?",
+        "sourceStart": 0,
+        "sourceEnd": 312,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 59
+      },
+      {
+        "slideId": "ch03-topic-13-s2",
+        "title": "First drafts can have names and structure worth improving",
+        "sourceSubheading": "How Do You Write Functions Like This?",
+        "sourceStart": 312,
+        "sourceEnd": 504,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 32
+      },
+      {
+        "slideId": "ch03-topic-13-s3",
+        "title": "Refine the code while keeping the tests passing",
+        "sourceSubheading": "How Do You Write Functions Like This?",
+        "sourceStart": 504,
+        "sourceEnd": 817,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 54
+      },
+      {
+        "slideId": "ch03-topic-13-s4",
+        "title": "Clear functions are the result of revision",
+        "sourceSubheading": "How Do You Write Functions Like This?",
+        "sourceStart": 817,
+        "sourceEnd": 973,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 31
+      }
+    ]
+  },
+  {
+    "sourceUnit": "Conclusion",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      80,
+      81
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-14-s1",
+        "title": "Functions help express the language of the system",
+        "sourceSubheading": "Conclusion",
+        "sourceStart": 0,
+        "sourceEnd": 455,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 80
+      },
+      {
+        "slideId": "ch03-topic-14-s2",
+        "title": "Use the programming language to tell the system’s story",
+        "sourceSubheading": "Conclusion",
+        "sourceStart": 455,
+        "sourceEnd": 703,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 42
+      },
+      {
+        "slideId": "ch03-topic-14-s3",
+        "title": "A hierarchy of functions describes the system’s actions",
+        "sourceSubheading": "Conclusion",
+        "sourceStart": 703,
+        "sourceEnd": 989,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 48
+      },
+      {
+        "slideId": "ch03-topic-14-s4",
+        "title": "Short functions should still fit a clear overall design",
+        "sourceSubheading": "Conclusion",
+        "sourceStart": 989,
+        "sourceEnd": 1353,
+        "listingPart": 1,
+        "listingParts": 1,
+        "proseWordCount": 65
+      }
+    ]
+  },
+  {
+    "sourceUnit": "SetupTeardownIncluder",
+    "sourcePath": "docs/chapters/03-functions.md",
+    "sourcePages": [
+      81
+    ],
+    "slides": [
+      {
+        "slideId": "ch03-topic-15-s1",
+        "title": "Listing 3-7 SetupTeardownIncluder.java · listing continuation 1 of 3",
+        "sourceSubheading": "SetupTeardownIncluder",
+        "sourceStart": 0,
+        "sourceEnd": 3027,
+        "listingPart": 1,
+        "listingParts": 3,
+        "proseWordCount": 3
+      },
+      {
+        "slideId": "ch03-topic-15-s2",
+        "title": "Listing 3-7 SetupTeardownIncluder.java · listing continuation 2 of 3",
+        "sourceSubheading": "SetupTeardownIncluder",
+        "sourceStart": 0,
+        "sourceEnd": 3027,
+        "listingPart": 2,
+        "listingParts": 3,
+        "proseWordCount": 0
+      },
+      {
+        "slideId": "ch03-topic-15-s3",
+        "title": "Listing 3-7 SetupTeardownIncluder.java · listing continuation 3 of 3",
+        "sourceSubheading": "SetupTeardownIncluder",
+        "sourceStart": 0,
+        "sourceEnd": 3027,
+        "listingPart": 3,
+        "listingParts": 3,
+        "proseWordCount": 0
+      }
+    ]
+  }
+]

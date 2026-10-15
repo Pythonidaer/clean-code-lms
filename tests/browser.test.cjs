@@ -24,6 +24,12 @@ await page.reload();assert.equal(await page.locator('[data-lms-notes="'+first.id
 await openLesson('ch02-topic-02-part-03');assert.equal(await page.locator('#lms-heading').innerText(),'Give the game concepts explicit names');assert.ok((await page.locator('.lms-slide pre').innerText()).includes('getFlaggedCells'));
 for(const width of [390,768,1440]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Chapter 2 overflow '+width);if(shotDir)await page.screenshot({path:path.join(shotDir,'chapter-2-pilot-'+width+'.png')});}
 await page.setViewportSize({width:1440,height:900});
+// Chapter 3 exposes argument subtopics and ordered long-listing continuations.
+await openLesson('ch03-topic-07-part-03');assert.equal(await page.locator('#lms-heading').innerText(),'A flag can hide a choice between operations');
+await openLesson('ch03-topic-15');assert.ok((await page.locator('#lms-heading').innerText()).includes('listing continuation 1'));
+await page.locator('[data-lms="slide-next"]').click();assert.ok((await page.locator('#lms-heading').innerText()).includes('listing continuation 2'));
+for(const width of [390,768,1440]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'Chapter 3 overflow '+width);if(shotDir)await page.screenshot({path:path.join(shotDir,'chapter-3-pilot-'+width+'.png')});}
+await page.setViewportSize({width:1440,height:900});
 // Real slide layouts for names, testing and a long case-study listing.
 for(const number of [2,9,14,17]){
  const section=course.sections.find(s=>s.id==='ch'+String(number).padStart(2,'0')),target=section.children.find(n=>n.type==='slides'&&n.slides.some(s=>s.body.includes('```')))||section.children[1];await openLesson(target.id);const index=target.slides.findIndex(s=>s.body.includes('```'));for(let i=0;i<Math.max(0,index);i++)await page.locator('[data-lms="slide-next"]').click();

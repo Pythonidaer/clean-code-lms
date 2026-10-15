@@ -1310,12 +1310,12 @@
             {
               "id": "ch03-overview-s1",
               "title": "What you will learn",
-              "body": "Organize functions around one responsibility, clear abstraction levels and explicit effects."
+              "body": "Recognize focused functions, consistent abstraction levels and explicit inputs, outputs and effects."
             },
             {
               "id": "ch03-overview-s2",
               "title": "Ideas to look for",
-              "body": "• Small, focused functions should tell a coherent story and descend through abstraction levels.\n\n• Arguments and flags can hide multiple responsibilities; output arguments and side effects make a contract harder to predict.\n\n• Separate querying from changing state, express error handling clearly and remove duplication when it represents a shared idea."
+              "body": "• A function’s name and steps should express a coherent purpose.\n\n• Argument roles, hidden side effects and mixed abstraction levels add work for the reader.\n\n• Refine names and structure while preserving behavior; evaluate the author’s Java-oriented recommendations in context."
             }
           ]
         },
@@ -1327,87 +1327,217 @@
           "slides": [
             {
               "id": "ch03-topic-01-s1",
-              "title": "Chapter introduction · 1 of 3",
-              "body": "In the early days of programming we composed our systems of routines and subroutines. Then, in the era of Fortran and PL/1 we composed our systems of programs, subprograms, and functions. Nowadays only the function survives from those early days. Functions are the first line of organization in any program. Writing them well is the topic of this chapter.\n\nConsider the code in Listing 3-1. It’s hard to find a long function in FitNesse, but after a bit of searching I came across this one. Not only is it long, but it’s got duplicated code, lots of odd strings, and many strange and inobvious data types and APIs. See how much sense you can make of it in the next three minutes."
+              "title": "Functions organize a program",
+              "body": "In the early days of programming we composed our systems of routines and subroutines. Then, in the era of Fortran and PL/1 we composed our systems of programs, subprograms, and functions. Nowadays only the function survives from those early days. Functions are the first line of organization in any program. Writing them well is the topic of this chapter."
             },
             {
               "id": "ch03-topic-01-s2",
-              "title": "Listing 3-1 HtmlUtil.java (FitNesse 20070619)",
-              "body": "```text\n  public static String testableHtml(\n    PageData pageData,\n    boolean includeSuiteSetup\n  ) throws Exception {\n    WikiPage wikiPage = pageData.getWikiPage();\n    StringBuffer buffer = new StringBuffer();\n    if (pageData.hasAttribute(\"Test\")) {\n      if (includeSuiteSetup) {\n        WikiPage suiteSetup =\n          PageCrawlerImpl.getInheritedPage(\n                  SuiteResponder.SUITE_SETUP_NAME, wikiPage\n          );\n        if (suiteSetup != null) {\n          WikiPagePath pagePath =\n            suiteSetup.getPageCrawler().getFullPath(suiteSetup);\n          String pagePathName = PathParser.render(pagePath);\n          buffer.append(\"!include -setup .\")\n                .append(pagePathName)\n                .append(\"\\n\");\n        }\n      }\n      WikiPage setup = \n        PageCrawlerImpl.getInheritedPage(\"SetUp\", wikiPage);\n      if (setup != null) {\n        WikiPagePath setupPath =\n          wikiPage.getPageCrawler().getFullPath(setup);\n        String setupPathName = PathParser.render(setupPath);\n        buffer.append(\"!include -setup .\")\n              .append(setupPathName)\n              .append(\"\\n\");\n      }\n    }\n    buffer.append(pageData.getContent());\n    if (pageData.hasAttribute(\"Test\")) {\n      WikiPage teardown = \n        PageCrawlerImpl.getInheritedPage(\"TearDown\", wikiPage);\n      if (teardown != null) {\n        WikiPagePath tearDownPath =\n          wikiPage.getPageCrawler().getFullPath(teardown);\n        String tearDownPathName = PathParser.render(tearDownPath);\n        buffer.append(\"\\n\")\n              .append(\"!include -teardown .\")\n              .append(tearDownPathName)\n              .append(\"\\n\");\n      }\n```"
+              "title": "Listing 3-1: a function with hidden intent · listing continuation 1 of 2",
+              "body": "Consider the code in Listing 3-1. It’s hard to find a long function in FitNesse, but after a bit of searching I came across this one. Not only is it long, but it’s got duplicated code, lots of odd strings, and many strange and inobvious data types and APIs. See how much sense you can make of it in the next three minutes.\n\n**Listing 3-1 HtmlUtil.java (FitNesse 20070619)**\n\n```text\n  public static String testableHtml(\n    PageData pageData,\n    boolean includeSuiteSetup\n  ) throws Exception {\n    WikiPage wikiPage = pageData.getWikiPage();\n    StringBuffer buffer = new StringBuffer();\n    if (pageData.hasAttribute(\"Test\")) {\n      if (includeSuiteSetup) {\n        WikiPage suiteSetup =\n          PageCrawlerImpl.getInheritedPage(\n                  SuiteResponder.SUITE_SETUP_NAME, wikiPage\n          );\n        if (suiteSetup != null) {\n          WikiPagePath pagePath =\n            suiteSetup.getPageCrawler().getFullPath(suiteSetup);\n          String pagePathName = PathParser.render(pagePath);\n          buffer.append(\"!include -setup .\")\n                .append(pagePathName)\n                .append(\"\\n\");\n        }\n      }\n      WikiPage setup = \n        PageCrawlerImpl.getInheritedPage(\"SetUp\", wikiPage);\n      if (setup != null) {\n        WikiPagePath setupPath =\n          wikiPage.getPageCrawler().getFullPath(setup);\n        String setupPathName = PathParser.render(setupPath);\n        buffer.append(\"!include -setup .\")\n              .append(setupPathName)\n              .append(\"\\n\");\n      }\n    }\n    buffer.append(pageData.getContent());\n    if (pageData.hasAttribute(\"Test\")) {\n      WikiPage teardown = \n        PageCrawlerImpl.getInheritedPage(\"TearDown\", wikiPage);\n      if (teardown != null) {\n        WikiPagePath tearDownPath =\n          wikiPage.getPageCrawler().getFullPath(teardown);\n        String tearDownPathName = PathParser.render(tearDownPath);\n```"
             },
             {
               "id": "ch03-topic-01-s3",
-              "title": "Chapter introduction · 2 of 3",
-              "body": "```text\n      if (includeSuiteSetup) {\n        WikiPage suiteTeardown =\n          PageCrawlerImpl.getInheritedPage(\n                  SuiteResponder.SUITE_TEARDOWN_NAME,\n                  wikiPage\n          );\n        if (suiteTeardown != null) {\n          WikiPagePath pagePath =\n            suiteTeardown.getPageCrawler().getFullPath (suiteTeardown);\n          String pagePathName = PathParser.render(pagePath);\n          buffer.append(\"!include -teardown .\")\n                .append(pagePathName)\n                .append(\"\\n\");\n        }\n      }\n    }\n    pageData.setContent(buffer.toString());\n    return pageData.getHtml();\n  }\n```\n\nDo you understand the function after three minutes of study? Probably not. There’s too much going on in there at too many different levels of abstraction. There are strange strings and odd function calls mixed in with doubly nested `if` statements controlled by flags. However, with just a few simple method extractions, some renaming, and a little restructuring, I was able to capture the intent of the function in the nine lines of Listing 3-2. See whether you can understand that in the next 3 minutes."
+              "title": "Listing 3-1: a function with hidden intent · listing continuation 2 of 2",
+              "body": "```text\n        buffer.append(\"\\n\")\n              .append(\"!include -teardown .\")\n              .append(tearDownPathName)\n              .append(\"\\n\");\n      }\n```\n\n```text\n      if (includeSuiteSetup) {\n        WikiPage suiteTeardown =\n          PageCrawlerImpl.getInheritedPage(\n                  SuiteResponder.SUITE_TEARDOWN_NAME,\n                  wikiPage\n          );\n        if (suiteTeardown != null) {\n          WikiPagePath pagePath =\n            suiteTeardown.getPageCrawler().getFullPath (suiteTeardown);\n          String pagePathName = PathParser.render(pagePath);\n          buffer.append(\"!include -teardown .\")\n                .append(pagePathName)\n                .append(\"\\n\");\n        }\n      }\n    }\n    pageData.setContent(buffer.toString());\n    return pageData.getHtml();\n  }\n```"
             },
             {
               "id": "ch03-topic-01-s4",
-              "title": "Listing 3-2 HtmlUtil.java (refactored)",
-              "body": "```text\n  public static String renderPageWithSetupsAndTeardowns(\n    PageData pageData, boolean isSuite\n  ) throws Exception {\n    boolean isTestPage = pageData.hasAttribute(\"Test\");\n    if (isTestPage) {\n      WikiPage testPage = pageData.getWikiPage();\n      StringBuffer newPageContent = new StringBuffer();\n      includeSetupPages(testPage, newPageContent, isSuite);\n      newPageContent.append(pageData.getContent());\n      includeTeardownPages(testPage, newPageContent, isSuite);\n      pageData.setContent(newPageContent.toString());\n    }\n\n    return pageData.getHtml();\n  }\n```"
+              "title": "Refactoring can expose the function’s purpose",
+              "body": "Do you understand the function after three minutes of study? Probably not. There’s too much going on in there at too many different levels of abstraction. There are strange strings and odd function calls mixed in with doubly nested `if` statements controlled by flags. However, with just a few simple method extractions, some renaming, and a little restructuring, I was able to capture the intent of the function in the nine lines of Listing 3-2. See whether you can understand that in the next 3 minutes.\n\n**Listing 3-2 HtmlUtil.java (refactored)**\n\n```text\n  public static String renderPageWithSetupsAndTeardowns(\n    PageData pageData, boolean isSuite\n  ) throws Exception {\n    boolean isTestPage = pageData.hasAttribute(\"Test\");\n    if (isTestPage) {\n      WikiPage testPage = pageData.getWikiPage();\n      StringBuffer newPageContent = new StringBuffer();\n      includeSetupPages(testPage, newPageContent, isSuite);\n      newPageContent.append(pageData.getContent());\n      includeTeardownPages(testPage, newPageContent, isSuite);\n      pageData.setContent(newPageContent.toString());\n    }\n\n    return pageData.getHtml();\n  }\n```"
             },
             {
               "id": "ch03-topic-01-s5",
-              "title": "Chapter introduction · 3 of 3",
-              "body": "Unless you are a student of FitNesse, you probably don’t understand all the details. Still, you probably understand that this function performs the inclusion of some setup and teardown pages into a test page and then renders that page into HTML. If you are familiar with JUnit, you probably realize that this function belongs to some kind of Web-based testing framework. And, of course, that is correct. Divining that information from Listing 3-2 is pretty easy, but it’s pretty well obscured by Listing 3-1. So what is it that makes a function like Listing 3-2 easy to read and understand? How can we make a function communicate its intent? What attributes can we give our functions that will allow a casual reader to intuit the kind of program they live inside?\n\nAn open-source testing tool. www.fitnese.org"
+              "title": "Recognize the intent without knowing every detail",
+              "body": "Unless you are a student of FitNesse, you probably don’t understand all the details. Still, you probably understand that this function performs the inclusion of some setup and teardown pages into a test page and then renders that page into HTML. If you are familiar with JUnit, you probably realize that this function belongs to some kind of Web-based testing framework. And, of course, that is correct. Divining that information from Listing 3-2 is pretty easy, but it’s pretty well obscured by Listing 3-1."
+            },
+            {
+              "id": "ch03-topic-01-s6",
+              "title": "What helps a function communicate?",
+              "body": "So what is it that makes a function like Listing 3-2 easy to read and understand? How can we make a function communicate its intent? What attributes can we give our functions that will allow a casual reader to intuit the kind of program they live inside?\n\nAn open-source testing tool. www.fitnese.org"
             }
           ]
         },
         {
           "id": "ch03-topic-02",
-          "type": "slides",
+          "type": "section",
           "title": "Small!",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch03-topic-02-s1",
+              "id": "ch03-topic-02-part-01",
+              "type": "slides",
               "title": "Small!",
-              "body": "The first rule of functions is that they should be small. The second rule of functions is that they should be smaller than that. This is not an assertion that I can justify. I can’t provide any references to research that shows that very small functions are better. What I can tell you is that for nearly four decades I have written functions of all different sizes. I’ve written several nasty 3,000-line abominations. I’ve written scads of functions in the 100 to 300 line range. And I’ve written functions that were 20 to 30 lines long. What this experience has taught me, through long trial and error, is that functions should be very small. In the eighties we used to say that a function should be no bigger than a screen-full. Of course we said that at a time when VT100 screens were 24 lines by 80 columns, and our editors used 4 lines for administrative purposes. Nowadays with a cranked-down font and a nice big monitor, you can fit 150 characters on a line and a 100 lines or more on a screen. Lines should not be 150 characters long. Functions should not be 100 lines long. Functions should hardly ever be 20 lines long. How short should a function be? In 1999 I went to visit Kent Beck at his home in Oregon. We sat down and did some programming together. At one point he showed me a cute little Java/Swing program that he called Sparkle. It produced a visual effect on the screen very similar to the magic wand of the fairy godmother in the movie Cinderella. As you moved the mouse, the sparkles would drip from the cursor with a satisfying scintillation, falling to the bottom of the window through a simulated gravitational field. When Kent showed me the code, I was struck by how small all the functions were. I was used to functions in Swing programs that took up miles of vertical space. Every function in this program was just two, or three, or four lines long. Each was transparently obvious. Each told a story. And each led you to the next in a compelling order. That’s how short your functions should be!\n\nHow short should your functions be? They should usually be shorter than Listing 3-2! Indeed, Listing 3-2 should really be shortened to Listing 3-3."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-02-part-01-s1",
+                  "title": "The author argues for very small functions",
+                  "body": "The first rule of functions is that they should be small. The second rule of functions is that they should be smaller than that. This is not an assertion that I can justify. I can’t provide any references to research that shows that very small functions are better. What I can tell you is that for nearly four decades I have written functions of all different sizes. I’ve written several nasty 3,000-line abominations. I’ve written scads of functions in the 100 to 300 line range. And I’ve written functions that were 20 to 30 lines long."
+                },
+                {
+                  "id": "ch03-topic-02-part-01-s2",
+                  "title": "The recommendation comes from experience",
+                  "body": "What this experience has taught me, through long trial and error, is that functions should be very small. In the eighties we used to say that a function should be no bigger than a screen-full. Of course we said that at a time when VT100 screens were 24 lines by 80 columns, and our editors used 4 lines for administrative purposes."
+                },
+                {
+                  "id": "ch03-topic-02-part-01-s3",
+                  "title": "Screen size is not a useful function-size limit",
+                  "body": "Nowadays with a cranked-down font and a nice big monitor, you can fit 150 characters on a line and a 100 lines or more on a screen. Lines should not be 150 characters long. Functions should not be 100 lines long. Functions should hardly ever be 20 lines long."
+                },
+                {
+                  "id": "ch03-topic-02-part-01-s4",
+                  "title": "An example from Kent Beck’s Sparkle program",
+                  "body": "How short should a function be? In 1999 I went to visit Kent Beck at his home in Oregon. We sat down and did some programming together. At one point he showed me a cute little Java/Swing program that he called Sparkle. It produced a visual effect on the screen very similar to the magic wand of the fairy godmother in the movie Cinderella. As you moved the mouse, the sparkles would drip from the cursor with a satisfying scintillation, falling to the bottom of the window through a simulated gravitational field."
+                },
+                {
+                  "id": "ch03-topic-02-part-01-s5",
+                  "title": "Short functions can form a readable sequence",
+                  "body": "When Kent showed me the code, I was struck by how small all the functions were. I was used to functions in Swing programs that took up miles of vertical space. Every function in this program was just two, or three, or four lines long. Each was transparently obvious. Each told a story. And each led you to the next in a compelling order. That’s how short your functions should be!"
+                },
+                {
+                  "id": "ch03-topic-02-part-01-s6",
+                  "title": "Listing 3-3: express the operation directly",
+                  "body": "How short should your functions be? They should usually be shorter than Listing 3-2! Indeed, Listing 3-2 should really be shortened to Listing 3-3.\n\n**Listing 3-3 HtmlUtil.java (re-refactored)**\n\n```text\n  public static String renderPageWithSetupsAndTeardowns(\n    PageData pageData, boolean isSuite) throws Exception {\n    if (isTestPage(pageData))\n      includeSetupAndTeardownPages(pageData, isSuite);\n    return pageData.getHtml();\n  }\n```"
+                }
+              ]
             },
             {
-              "id": "ch03-topic-02-s2",
-              "title": "Listing 3-3 HtmlUtil.java (re-refactored)",
-              "body": "```text\n  public static String renderPageWithSetupsAndTeardowns(\n    PageData pageData, boolean isSuite) throws Exception {\n    if (isTestPage(pageData))\n      includeSetupAndTeardownPages(pageData, isSuite);\n    return pageData.getHtml();\n  }\n```"
-            },
-            {
-              "id": "ch03-topic-02-s3",
+              "id": "ch03-topic-02-part-02",
+              "type": "slides",
               "title": "Blocks and Indenting",
-              "body": "This implies that the blocks within `if` statements,` else` statements,` while` statements, and so on should be one line long. Probably that line should be a function call. Not only does this keep the enclosing function small, but it also adds documentary value because the function called within the block can have a nicely descriptive name. This also implies that functions should not be large enough to hold nested structures. Therefore, the indent level of a function should not be greater than one or two. This, of course, makes the functions easier to read and understand.\n\nAn open-source unit-testing tool for Java. www.junit.org\n\nI asked Kent whether he still had a copy, but he was unable to find one. I searched all my old computers too, but to no avail. All that is left now is my memory of that program."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-02-part-02-s1",
+                  "title": "Descriptive calls can clarify small blocks",
+                  "body": "This implies that the blocks within `if` statements,` else` statements,` while` statements, and so on should be one line long. Probably that line should be a function call. Not only does this keep the enclosing function small, but it also adds documentary value because the function called within the block can have a nicely descriptive name."
+                },
+                {
+                  "id": "ch03-topic-02-part-02-s2",
+                  "title": "The author connects small functions with shallow nesting",
+                  "body": "This also implies that functions should not be large enough to hold nested structures. Therefore, the indent level of a function should not be greater than one or two. This, of course, makes the functions easier to read and understand."
+                },
+                {
+                  "id": "ch03-topic-02-part-02-s3",
+                  "title": "Background to the testing example",
+                  "body": "An open-source unit-testing tool for Java. www.junit.org\n\nI asked Kent whether he still had a copy, but he was unable to find one. I searched all my old computers too, but to no avail. All that is left now is my memory of that program."
+                }
+              ]
             }
           ]
         },
         {
           "id": "ch03-topic-03",
-          "type": "slides",
+          "type": "section",
           "title": "Do One Thing",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch03-topic-03-s1",
+              "id": "ch03-topic-03-part-01",
+              "type": "slides",
               "title": "Do One Thing",
-              "body": "It should be very clear that Listing 3-1 is doing lots more than one thing. It’s creating buffers, fetching pages, searching for inherited pages, rendering paths, appending arcane strings, and generating HTML, among other things. Listing 3-1 is very busy doing lots of different things. On the other hand, Listing 3-3 is doing one simple thing. It’s including setups and teardowns into test pages. The following advice has appeared in one form or another for 30 years or more.\n\nFUNCTIONS SHOULD DO ONE THING. THEY SHOULD DO IT WELL. THEY SHOULD DO IT ONLY.\n\nThe problem with this statement is that it is hard to know what “one thing” is. Does Listing 3-3 do one thing? It’s easy to make the case that it’s doing three things:\n\n1. Determining whether the page is a test page.\n\n2. If so, including setups and teardowns.\n\n3. Rendering the page in HTML.\n\nSo which is it? Is the function doing one thing or three things? Notice that the three steps of the function are one level of abstraction below the stated name of the function. We can describe the function by describing it as a brief TO paragraph:\n\nTO RenderPageWithSetupsAndTeardowns, we check to see whether the page is a test page and if so, we include the setups and teardowns. In either case we render the page in HTML.\n\nIf a function does only those steps that are one level below the stated name of the function, then the function is doing one thing. After all, the reason we write functions is to decompose a larger concept (in other words, the name of the function) into a set of steps at the next level of abstraction. It should be very clear that Listing 3-1 contains steps at many different levels of abstraction. So it is clearly doing more than one thing. Even Listing 3-2 has two levels of abstraction, as proved by our ability to shrink it down. But it would be very hard to meaningfully shrink Listing 3-3. We could extract the `if` statement into a function named `includeSetupsAndTeardownsIfTestPage`, but that simply restates the code without changing the level of abstraction. So, another way to know that a function is doing more than “one thing” is if you can extract another function from it with a name that is not merely a restatement of its implementation [G34]."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-03-part-01-s1",
+                  "title": "A busy function combines different kinds of work",
+                  "body": "It should be very clear that Listing 3-1 is doing lots more than one thing. It’s creating buffers, fetching pages, searching for inherited pages, rendering paths, appending arcane strings, and generating HTML, among other things. Listing 3-1 is very busy doing lots of different things. On the other hand, Listing 3-3 is doing one simple thing. It’s including setups and teardowns into test pages. The following advice has appeared in one form or another for 30 years or more."
+                },
+                {
+                  "id": "ch03-topic-03-part-01-s2",
+                  "title": "The one-thing rule needs interpretation",
+                  "body": "FUNCTIONS SHOULD DO ONE THING. THEY SHOULD DO IT WELL. THEY SHOULD DO IT ONLY."
+                },
+                {
+                  "id": "ch03-topic-03-part-01-s3",
+                  "title": "One operation can contain several steps",
+                  "body": "The problem with this statement is that it is hard to know what “one thing” is. Does Listing 3-3 do one thing? It’s easy to make the case that it’s doing three things:\n\n1. Determining whether the page is a test page.\n\n2. If so, including setups and teardowns.\n\n3. Rendering the page in HTML."
+                },
+                {
+                  "id": "ch03-topic-03-part-01-s4",
+                  "title": "Judge the steps relative to the function’s purpose",
+                  "body": "So which is it? Is the function doing one thing or three things? Notice that the three steps of the function are one level of abstraction below the stated name of the function. We can describe the function by describing it as a brief TO paragraph:\n\nTO RenderPageWithSetupsAndTeardowns, we check to see whether the page is a test page and if so, we include the setups and teardowns. In either case we render the page in HTML."
+                },
+                {
+                  "id": "ch03-topic-03-part-01-s5",
+                  "title": "Decompose a concept at the next level down",
+                  "body": "If a function does only those steps that are one level below the stated name of the function, then the function is doing one thing. After all, the reason we write functions is to decompose a larger concept (in other words, the name of the function) into a set of steps at the next level of abstraction."
+                },
+                {
+                  "id": "ch03-topic-03-part-01-s6",
+                  "title": "Mixed abstraction levels reveal unrelated work",
+                  "body": "It should be very clear that Listing 3-1 contains steps at many different levels of abstraction. So it is clearly doing more than one thing. Even Listing 3-2 has two levels of abstraction, as proved by our ability to shrink it down. But it would be very hard to meaningfully shrink Listing 3-3."
+                },
+                {
+                  "id": "ch03-topic-03-part-01-s7",
+                  "title": "Extraction should reveal an idea, not repeat the code",
+                  "body": "We could extract the `if` statement into a function named `includeSetupsAndTeardownsIfTestPage`, but that simply restates the code without changing the level of abstraction. So, another way to know that a function is doing more than “one thing” is if you can extract another function from it with a name that is not merely a restatement of its implementation [G34]."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-03-s2",
+              "id": "ch03-topic-03-part-02",
+              "type": "slides",
               "title": "Sections within Functions",
-              "body": "Look at Listing 4-7 on page 71. Notice that the `generatePrimes` function is divided into sections such as declarations, initializations, and sieve. This is an obvious symptom of doing more than one thing. Functions that do one thing cannot be reasonably divided into sections."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-03-part-02-s1",
+                  "title": "Internal sections can signal multiple responsibilities",
+                  "body": "Look at Listing 4-7 on page 71. Notice that the `generatePrimes` function is divided into sections such as declarations, initializations, and sieve. This is an obvious symptom of doing more than one thing. Functions that do one thing cannot be reasonably divided into sections."
+                }
+              ]
             }
           ]
         },
         {
           "id": "ch03-topic-04",
-          "type": "slides",
+          "type": "section",
           "title": "One Level of Abstraction per Function",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch03-topic-04-s1",
+              "id": "ch03-topic-04-part-01",
+              "type": "slides",
               "title": "One Level of Abstraction per Function",
-              "body": "In order to make sure our functions are doing “one thing,” we need to make sure that the statements within our function are all at the same level of abstraction. It is easy to see how Listing 3-1 violates this rule. There are concepts in there that are at a very high level of abstraction, such as `getHtml()`; others that are at an intermediate level of abstraction, such as:` String pagePathName = PathParser.render(pagePath)`; and still others that are remarkably low level, such as: `.append(\"\\n\")`. Mixing levels of abstraction within a function is always confusing. Readers may not be able to tell whether a particular expression is an essential concept or a detail. Worse, like broken windows, once details are mixed with essential concepts, more and more details tend to accrete within the function."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-04-part-01-s1",
+                  "title": "Keep statements at a consistent level of abstraction",
+                  "body": "In order to make sure our functions are doing “one thing,” we need to make sure that the statements within our function are all at the same level of abstraction. It is easy to see how Listing 3-1 violates this rule. There are concepts in there that are at a very high level of abstraction, such as `getHtml()`; others that are at an intermediate level of abstraction, such as:` String pagePathName = PathParser.render(pagePath)`; and still others that are remarkably low level, such as: `.append(\"\\n\")`."
+                },
+                {
+                  "id": "ch03-topic-04-part-01-s2",
+                  "title": "Do not mix essential concepts with implementation details",
+                  "body": "Mixing levels of abstraction within a function is always confusing. Readers may not be able to tell whether a particular expression is an essential concept or a detail. Worse, like broken windows, once details are mixed with essential concepts, more and more details tend to accrete within the function."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-04-s2",
+              "id": "ch03-topic-04-part-02",
+              "type": "slides",
               "title": "Reading Code from Top to Bottom: The Stepdown Rule",
-              "body": "We want the code to read like a top-down narrative. We want every function to be followed by those at the next level of abstraction so that we can read the program, descending one level of abstraction at a time as we read down the list of functions. I call this The Stepdown Rule. To say this differently, we want to be able to read the program as though it were a set of TO paragraphs, each of which is describing the current level of abstraction and referencing subsequent TO paragraphs at the next level down.\n\nTo include the setups and teardowns, we include setups, then we include the test page content, and then we include the teardowns. To include the setups, we include the suite setup if this is a suite, then we include the regular setup. To include the suite setup, we search the parent hierarchy for the “SuiteSetUp” page and add an include statement with the path of that page. To search the parent. . .\n\nIt turns out to be very difficult for programmers to learn to follow this rule and write functions that stay at a single level of abstraction. But learning this trick is also very important. It is the key to keeping functions short and making sure they do “one thing.” Making the code read like a top-down set of TO paragraphs is an effective technique for keeping the abstraction level consistent. Take a look at Listing 3-7 at the end of this chapter. It shows the whole `testableHtml` function refactored according to the principles described here. Notice how each function introduces the next, and each function remains at a consistent level of abstraction.\n\nThe LOGO language used the keyword “TO” in the same way that Ruby and Python use “def.” So every function began with the word “TO.” This had an interesting effect on the way functions were designed."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-04-part-02-s1",
+                  "title": "Let the reader descend through levels of detail",
+                  "body": "We want the code to read like a top-down narrative. We want every function to be followed by those at the next level of abstraction so that we can read the program, descending one level of abstraction at a time as we read down the list of functions. I call this The Stepdown Rule. To say this differently, we want to be able to read the program as though it were a set of TO paragraphs, each of which is describing the current level of abstraction and referencing subsequent TO paragraphs at the next level down."
+                },
+                {
+                  "id": "ch03-topic-04-part-02-s2",
+                  "title": "Read the setup sequence as a hierarchy",
+                  "body": "To include the setups and teardowns, we include setups, then we include the test page content, and then we include the teardowns. To include the setups, we include the suite setup if this is a suite, then we include the regular setup. To include the suite setup, we search the parent hierarchy for the “SuiteSetUp” page and add an include statement with the path of that page. To search the parent. . ."
+                },
+                {
+                  "id": "ch03-topic-04-part-02-s3",
+                  "title": "Use the narrative to check abstraction consistency",
+                  "body": "It turns out to be very difficult for programmers to learn to follow this rule and write functions that stay at a single level of abstraction. But learning this trick is also very important. It is the key to keeping functions short and making sure they do “one thing.” Making the code read like a top-down set of TO paragraphs is an effective technique for keeping the abstraction level consistent. Take a look at Listing 3-7 at the end of this chapter. It shows the whole `testableHtml` function refactored according to the principles described here. Notice how each function introduces the next, and each function remains at a consistent level of abstraction."
+                },
+                {
+                  "id": "ch03-topic-04-part-02-s4",
+                  "title": "Why the chapter uses TO paragraphs",
+                  "body": "The LOGO language used the keyword “TO” in the same way that Ruby and Python use “def.” So every function began with the word “TO.” This had an interesting effect on the way functions were designed."
+                }
+              ]
             }
           ]
         },
@@ -1419,28 +1549,38 @@
           "slides": [
             {
               "id": "ch03-topic-05-s1",
-              "title": "Switch Statements · 1 of 3",
-              "body": "It’s hard to make a small `switch` statement. Even a `switch` statement with only two cases is larger than I’d like a single block or function to be. It’s also hard to make a `switch` statement that does one thing. By their nature, `switch` statements always do N things. Unfortunately we can’t always avoid `switch` statements, but we can make sure that each `switch` statement is buried in a low-level class and is never repeated. We do this, of course, with polymorphism.\n\nConsider Listing 3-4. It shows just one of the operations that might depend on the type of employee."
+              "title": "The author’s concern is repeated type-based branching",
+              "body": "It’s hard to make a small `switch` statement. Even a `switch` statement with only two cases is larger than I’d like a single block or function to be. It’s also hard to make a `switch` statement that does one thing. By their nature, `switch` statements always do N things. Unfortunately we can’t always avoid `switch` statements, but we can make sure that each `switch` statement is buried in a low-level class and is never repeated. We do this, of course, with polymorphism."
             },
             {
               "id": "ch03-topic-05-s2",
-              "title": "Listing 3-4 Payroll.java",
-              "body": "```text\npublic Money calculatePay(Employee e) \nthrows InvalidEmployeeType {\n    switch (e.type) {\n      case COMMISSIONED:\n        return calculateCommissionedPay(e);\n      case HOURLY:\n        return calculateHourlyPay(e);\n      case SALARIED:\n        return calculateSalariedPay(e);\n      default:\n        throw new InvalidEmployeeType(e.type);\n    }\n  }\n```"
+              "title": "Listing 3-4: payroll branches on employee type",
+              "body": "Consider Listing 3-4. It shows just one of the operations that might depend on the type of employee.\n\n**Listing 3-4 Payroll.java**\n\n```text\npublic Money calculatePay(Employee e) \nthrows InvalidEmployeeType {\n    switch (e.type) {\n      case COMMISSIONED:\n        return calculateCommissionedPay(e);\n      case HOURLY:\n        return calculateHourlyPay(e);\n      case SALARIED:\n        return calculateSalariedPay(e);\n      default:\n        throw new InvalidEmployeeType(e.type);\n    }\n  }\n```"
             },
             {
               "id": "ch03-topic-05-s3",
-              "title": "Switch Statements · 2 of 3",
-              "body": "There are several problems with this function. First, it’s large, and when new employee types are added, it will grow. Second, it very clearly does more than one thing. Third, it violates the Single Responsibility Principle (SRP) because there is more than one reason for it to change. Fourth, it violates the Open Closed Principle (OCP) because it must change whenever new types are added. But possibly the worst problem with this function is that there are an unlimited number of other functions that will have the same structure. For example we could have\n\n```text\nisPayday(Employee e, Date date), \n```\n\nor\n\n```text\ndeliverPay(Employee e, Money pay), \n```\n\nor a host of others. All of which would have the same deleterious structure. The solution to this problem (see Listing 3-5) is to bury the `switch` statement in the basement of an ABSTRACT FACTORY, and never let anyone see it. The factory will use the `switch` statement to create appropriate instances of the derivatives of `Employee`, and the various functions, such as `calculatePay`,` isPayday`, and `deliverPay`, will be dispatched polymorphically through the `Employee` interface. My general rule for `switch` statements is that they can be tolerated if they appear only once, are used to create polymorphic objects, and are hidden behind an inheritance"
+              "title": "A growing switch can create several reasons to change",
+              "body": "There are several problems with this function. First, it’s large, and when new employee types are added, it will grow. Second, it very clearly does more than one thing. Third, it violates the Single Responsibility Principle (SRP) because there is more than one reason for it to change. Fourth, it violates the Open Closed Principle (OCP) because it must change whenever new types are added."
             },
             {
               "id": "ch03-topic-05-s4",
-              "title": "Listing 3-5 Employee and Factory",
-              "body": "```text\npublic abstract class Employee {\n  public abstract boolean isPayday();\n  public abstract Money calculatePay();\n  public abstract void deliverPay(Money pay);\n}\n-----------------\npublic interface EmployeeFactory {\n  public Employee makeEmployee(EmployeeRecord r) throws InvalidEmployeeType;\n}\n-----------------\npublic class EmployeeFactoryImpl implements EmployeeFactory {\n  public Employee makeEmployee(EmployeeRecord r) throws InvalidEmployeeType {\n    switch (r.type) {\n      case COMMISSIONED:\n        return new CommissionedEmployee(r) ;\n      case HOURLY:\n        return new HourlyEmployee(r);\n      case SALARIED:\n        return new SalariedEmploye(r);\n      default:\n        throw new InvalidEmployeeType(r.type);\n    }\n  }\n}\n```"
+              "title": "The same branching can spread across operations",
+              "body": "But possibly the worst problem with this function is that there are an unlimited number of other functions that will have the same structure. For example we could have\n\n```text\nisPayday(Employee e, Date date), \n```\n\nor\n\n```text\ndeliverPay(Employee e, Money pay), \n```\n\nor a host of others. All of which would have the same deleterious structure."
             },
             {
               "id": "ch03-topic-05-s5",
-              "title": "Switch Statements · 3 of 3",
-              "body": "relationship so that the rest of the system can’t see them [G23]. Of course every circumstance is unique, and there are times when I violate one or more parts of that rule.\n\nAnd, of course, I include if/else chains in this."
+              "title": "Hide object creation behind a factory",
+              "body": "The solution to this problem (see Listing 3-5) is to bury the `switch` statement in the basement of an ABSTRACT FACTORY, and never let anyone see it. The factory will use the `switch` statement to create appropriate instances of the derivatives of `Employee`, and the various functions, such as `calculatePay`,` isPayday`, and `deliverPay`, will be dispatched polymorphically through the `Employee` interface."
+            },
+            {
+              "id": "ch03-topic-05-s6",
+              "title": "Read the proposed rule with its qualification",
+              "body": "My general rule for `switch` statements is that they can be tolerated if they appear only once, are used to create polymorphic objects, and are hidden behind an inheritance relationship so that the rest of the system can’t see them [G23]. Of course every circumstance is unique, and there are times when I violate one or more parts of that rule."
+            },
+            {
+              "id": "ch03-topic-05-s7",
+              "title": "Listing 3-5: employee operations and creation",
+              "body": "**Listing 3-5 Employee and Factory**\n\n```text\npublic abstract class Employee {\n  public abstract boolean isPayday();\n  public abstract Money calculatePay();\n  public abstract void deliverPay(Money pay);\n}\n-----------------\npublic interface EmployeeFactory {\n  public Employee makeEmployee(EmployeeRecord r) throws InvalidEmployeeType;\n}\n-----------------\npublic class EmployeeFactoryImpl implements EmployeeFactory {\n  public Employee makeEmployee(EmployeeRecord r) throws InvalidEmployeeType {\n    switch (r.type) {\n      case COMMISSIONED:\n        return new CommissionedEmployee(r) ;\n      case HOURLY:\n        return new HourlyEmployee(r);\n      case SALARIED:\n        return new SalariedEmploye(r);\n      default:\n        throw new InvalidEmployeeType(r.type);\n    }\n  }\n}\n```\n\nAnd, of course, I include if/else chains in this."
             }
           ]
         },
@@ -1452,84 +1592,287 @@
           "slides": [
             {
               "id": "ch03-topic-06-s1",
-              "title": "Use Descriptive Names",
-              "body": "In Listing 3-7 I changed the name of our example function from `testableHtml` to `SetupTeardownIncluder.render`. This is a far better name because it better describes what the function does. I also gave each of the private methods an equally descriptive name such as `isTestable` or` includeSetupAndTeardownPages`. It is hard to overestimate the value of good names. Remember Ward’s principle: “You know you are working on clean code when each routine turns out to be pretty much what you expected.” Half the battle to achieving that principle is choosing good names for small functions that do one thing. The smaller and more focused a function is, the easier it is to choose a descriptive name. Don’t be afraid to make a name long. A long descriptive name is better than a short enigmatic name. A long descriptive name is better than a long descriptive comment. Use a naming convention that allows multiple words to be easily read in the function names, and then make use of those multiple words to give the function a name that says what it does.\n\nDon’t be afraid to spend time choosing a name. Indeed, you should try several different names and read the code with each in place. Modern IDEs like Eclipse or IntelliJ make it trivial to change names. Use one of those IDEs and experiment with different names until you find one that is as descriptive as you can make it. Choosing descriptive names will clarify the design of the module in your mind and help you to improve it. It is not at all uncommon that hunting for a good name results in a favorable restructuring of the code. Be consistent in your names. Use the same phrases, nouns, and verbs in the function names you choose for your modules. Consider, for example, the names `includeSetup-` `AndTeardownPages`,` includeSetupPages`,` includeSuiteSetupPage`, and `includeSetupPage`. The similar phraseology in those names allows the sequence to tell a story. Indeed, if I showed you just the sequence above, you’d ask yourself: “What happened to `includeTeardownPages`,` includeSuiteTeardownPage`, and `includeTeardownPage`?” How’s that for being “. . . pretty much what you expected.”"
+              "title": "A focused function is easier to name",
+              "body": "In Listing 3-7 I changed the name of our example function from `testableHtml` to `SetupTeardownIncluder.render`. This is a far better name because it better describes what the function does. I also gave each of the private methods an equally descriptive name such as `isTestable` or` includeSetupAndTeardownPages`. It is hard to overestimate the value of good names. Remember Ward’s principle: “You know you are working on clean code when each routine turns out to be pretty much what you expected.” Half the battle to achieving that principle is choosing good names for small functions that do one thing. The smaller and more focused a function is, the easier it is to choose a descriptive name."
+            },
+            {
+              "id": "ch03-topic-06-s2",
+              "title": "Prefer a descriptive name to an unexplained short one",
+              "body": "Don’t be afraid to make a name long. A long descriptive name is better than a short enigmatic name. A long descriptive name is better than a long descriptive comment. Use a naming convention that allows multiple words to be easily read in the function names, and then make use of those multiple words to give the function a name that says what it does."
+            },
+            {
+              "id": "ch03-topic-06-s3",
+              "title": "Try names until the design becomes clearer",
+              "body": "Don’t be afraid to spend time choosing a name. Indeed, you should try several different names and read the code with each in place. Modern IDEs like Eclipse or IntelliJ make it trivial to change names. Use one of those IDEs and experiment with different names until you find one that is as descriptive as you can make it. Choosing descriptive names will clarify the design of the module in your mind and help you to improve it. It is not at all uncommon that hunting for a good name results in a favorable restructuring of the code."
+            },
+            {
+              "id": "ch03-topic-06-s4",
+              "title": "Repeated vocabulary can make the sequence predictable",
+              "body": "Be consistent in your names. Use the same phrases, nouns, and verbs in the function names you choose for your modules. Consider, for example, the names `includeSetup-` `AndTeardownPages`,` includeSetupPages`,` includeSuiteSetupPage`, and `includeSetupPage`. The similar phraseology in those names allows the sequence to tell a story. Indeed, if I showed you just the sequence above, you’d ask yourself: “What happened to `includeTeardownPages`,` includeSuiteTeardownPage`, and `includeTeardownPage`?” How’s that for being “. . . pretty much what you expected.”"
             }
           ]
         },
         {
           "id": "ch03-topic-07",
-          "type": "slides",
+          "type": "section",
           "title": "Function Arguments",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch03-topic-07-s1",
+              "id": "ch03-topic-07-part-01",
+              "type": "slides",
               "title": "Function Arguments",
-              "body": "The ideal number of arguments for a function is zero (niladic). Next comes one (monadic), followed closely by two (dyadic). Three arguments (triadic) should be avoided where possible. More than three (polyadic) requires very special justification—and then shouldn’t be used anyway. Arguments are hard. They take a lot of conceptual power. That’s why I got rid of almost all of them from the example. Consider, for instance, the `StringBuffer` in the example. We could have passed it around as an argument rather than making it an instance variable, but then our readers would have had to interpret it each time they saw it. When you are reading the story told by the module,` includeSetupPage()` is easier to understand than `includeSetupPageInto(newPage-` `Content)`. The argument is at a different level of abstraction than the function name and forces you to know a detail (in other words, `StringBuffer`) that isn’t particularly important at that point. Arguments are even harder from a testing point of view. Imagine the difficulty of writing all the test cases to ensure that all the various combinations of arguments work properly. If there are no arguments, this is trivial. If there’s one argument, it’s not too hard. With two arguments the problem gets a bit more challenging. With more than two arguments, testing every combination of appropriate values can be daunting.\n\nOutput arguments are harder to understand than input arguments. When we read a function, we are used to the idea of information going in to the function through arguments and out through the return value. We don’t usually expect information to be going out through the arguments. So output arguments often cause us to do a double-take. One input argument is the next best thing to no arguments. `SetupTeardown-` `Includer.render(pageData)` is pretty easy to understand. Clearly we are going to render the data in the `pageData` object."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-07-part-01-s1",
+                  "title": "The author prefers fewer arguments",
+                  "body": "The ideal number of arguments for a function is zero (niladic). Next comes one (monadic), followed closely by two (dyadic). Three arguments (triadic) should be avoided where possible. More than three (polyadic) requires very special justification—and then shouldn’t be used anyway."
+                },
+                {
+                  "id": "ch03-topic-07-part-01-s2",
+                  "title": "Arguments add context the reader must interpret",
+                  "body": "Arguments are hard. They take a lot of conceptual power. That’s why I got rid of almost all of them from the example. Consider, for instance, the `StringBuffer` in the example. We could have passed it around as an argument rather than making it an instance variable, but then our readers would have had to interpret it each time they saw it."
+                },
+                {
+                  "id": "ch03-topic-07-part-01-s3",
+                  "title": "An argument can expose a lower-level detail",
+                  "body": "When you are reading the story told by the module,` includeSetupPage()` is easier to understand than `includeSetupPageInto(newPage-` `Content)`. The argument is at a different level of abstraction than the function name and forces you to know a detail (in other words, `StringBuffer`) that isn’t particularly important at that point."
+                },
+                {
+                  "id": "ch03-topic-07-part-01-s4",
+                  "title": "More combinations can increase the testing burden",
+                  "body": "Arguments are even harder from a testing point of view. Imagine the difficulty of writing all the test cases to ensure that all the various combinations of arguments work properly. If there are no arguments, this is trivial. If there’s one argument, it’s not too hard. With two arguments the problem gets a bit more challenging. With more than two arguments, testing every combination of appropriate values can be daunting."
+                },
+                {
+                  "id": "ch03-topic-07-part-01-s5",
+                  "title": "Readers usually expect inputs and a return value",
+                  "body": "Output arguments are harder to understand than input arguments. When we read a function, we are used to the idea of information going in to the function through arguments and out through the return value. We don’t usually expect information to be going out through the arguments. So output arguments often cause us to do a double-take. One input argument is the next best thing to no arguments. `SetupTeardown-` `Includer.render(pageData)` is pretty easy to understand. Clearly we are going to render the data in the `pageData` object."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-07-s2",
+              "id": "ch03-topic-07-part-02",
+              "type": "slides",
               "title": "Common Monadic Forms",
-              "body": "There are two very common reasons to pass a single argument into a function. You may be asking a question about that argument, as in `boolean fileExists(“MyFile”)`. Or you may be operating on that argument, transforming it into something else and returning it. For example, `InputStream` `fileOpen(“MyFile”)` transforms a file name `String` into an `InputStream` return value. These two uses are what readers expect when they see a function. You should choose names that make the distinction clear, and always use the two forms in a consistent context. (See Command Query Separation below.) A somewhat less common, but still very useful form for a single argument function, is an event. In this form there is an input argument but no output argument. The overall program is meant to interpret the function call as an event and use the argument to alter the state of the system, for example, `void passwordAttemptFailedNtimes(int attempts)`. Use this form with care. It should be very clear to the reader that this is an event. Choose names and contexts carefully. Try to avoid any monadic functions that don’t follow these forms, for example, `void` `includeSetupPageInto(StringBuffer pageText)`. Using an output argument instead of a return value for a transformation is confusing. If a function is going to transform its input argument, the transformation should appear as the return value. Indeed, `StringBuffer` `transform(StringBuffer in)` is better than `void transform-(StringBuffer out)`, even if the implementation in the first case simply returns the input argument. At least it still follows the form of a transformation."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-07-part-02-s1",
+                  "title": "A single argument can support a query or transformation",
+                  "body": "There are two very common reasons to pass a single argument into a function. You may be asking a question about that argument, as in `boolean fileExists(“MyFile”)`. Or you may be operating on that argument, transforming it into something else and returning it. For example, `InputStream` `fileOpen(“MyFile”)` transforms a file name `String` into an `InputStream` return value. These two uses are what readers expect when they see a function. You should choose names that make the distinction clear, and always use the two forms in a consistent context. (See Command Query Separation below.)"
+                },
+                {
+                  "id": "ch03-topic-07-part-02-s2",
+                  "title": "An event-style call should communicate its effect",
+                  "body": "A somewhat less common, but still very useful form for a single argument function, is an event. In this form there is an input argument but no output argument. The overall program is meant to interpret the function call as an event and use the argument to alter the state of the system, for example, `void passwordAttemptFailedNtimes(int attempts)`. Use this form with care. It should be very clear to the reader that this is an event. Choose names and contexts carefully."
+                },
+                {
+                  "id": "ch03-topic-07-part-02-s3",
+                  "title": "A transformation is clearer when it returns its result",
+                  "body": "Try to avoid any monadic functions that don’t follow these forms, for example, `void` `includeSetupPageInto(StringBuffer pageText)`. Using an output argument instead of a return value for a transformation is confusing. If a function is going to transform its input argument, the transformation should appear as the return value. Indeed, `StringBuffer` `transform(StringBuffer in)` is better than `void transform-(StringBuffer out)`, even if the implementation in the first case simply returns the input argument. At least it still follows the form of a transformation."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-07-s3",
+              "id": "ch03-topic-07-part-03",
+              "type": "slides",
               "title": "Flag Arguments",
-              "body": "Flag arguments are ugly. Passing a boolean into a function is a truly terrible practice. It immediately complicates the signature of the method, loudly proclaiming that this function does more than one thing. It does one thing if the flag is true and another if the flag is false! In Listing 3-7 we had no choice because the callers were already passing that flag in, and I wanted to limit the scope of refactoring to the function and below. Still, the method call `render(true)` is just plain confusing to a poor reader. Mousing over the call and seeing `render(boolean isSuite)` helps a little, but not that much. We should have split the function into two: `renderForSuite()` and `renderForSingleTest()`."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-07-part-03-s1",
+                  "title": "A flag can hide a choice between operations",
+                  "body": "Flag arguments are ugly. Passing a boolean into a function is a truly terrible practice. It immediately complicates the signature of the method, loudly proclaiming that this function does more than one thing. It does one thing if the flag is true and another if the flag is false!"
+                },
+                {
+                  "id": "ch03-topic-07-part-03-s2",
+                  "title": "A limited refactoring may keep an existing flag",
+                  "body": "In Listing 3-7 we had no choice because the callers were already passing that flag in, and I wanted to limit the scope of refactoring to the function and below. Still, the method call `render(true)` is just plain confusing to a poor reader. Mousing over the call and seeing `render(boolean isSuite)` helps a little, but not that much. We should have split the function into two: `renderForSuite()` and `renderForSingleTest()`."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-07-s4",
+              "id": "ch03-topic-07-part-04",
+              "type": "slides",
               "title": "Dyadic Functions",
-              "body": "A function with two arguments is harder to understand than a monadic function. For example,` writeField(name)` is easier to understand than `writeField(output-Stream, name)`.\n\nThough the meaning of both is clear, the first glides past the eye, easily depositing its meaning. The second requires a short pause until we learn to ignore the first parameter. And that, of course, eventually results in problems because we should never ignore any part of code. The parts we ignore are where the bugs will hide. There are times, of course, where two arguments are appropriate. For example, `Point p = new Point(0,0);` is perfectly reasonable. Cartesian points naturally take two arguments. Indeed, we’d be very surprised to see `new Point(0)`. However, the two arguments in this case are ordered components of a single value! Whereas` output-Stream` and `name` have neither a natural cohesion, nor a natural ordering. Even obvious dyadic functions like `assertEquals(expected, actual)` are problematic. How many times have you put the `actual` where the `expected` should be? The two arguments have no natural ordering. The `expected, actual` ordering is a convention that requires practice to learn. Dyads aren’t evil, and you will certainly have to write them. However, you should be aware that they come at a cost and should take advantage of what mechanims may be available to you to convert them into monads. For example, you might make the `writeField` method a member of `outputStream` so that you can say `outputStream.` `writeField(name)`. Or you might make the `outputStream` a member variable of the current class so that you don’t have to pass it. Or you might extract a new class like `FieldWriter` that takes the `outputStream` in its constructor and has a `write` method."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-07-part-04-s1",
+                  "title": "Two arguments can add interpretation work",
+                  "body": "A function with two arguments is harder to understand than a monadic function. For example,` writeField(name)` is easier to understand than `writeField(output-Stream, name)`.\n\nThough the meaning of both is clear, the first glides past the eye, easily depositing its meaning. The second requires a short pause until we learn to ignore the first parameter. And that, of course, eventually results in problems because we should never ignore any part of code. The parts we ignore are where the bugs will hide."
+                },
+                {
+                  "id": "ch03-topic-07-part-04-s2",
+                  "title": "Related components can naturally belong together",
+                  "body": "There are times, of course, where two arguments are appropriate. For example, `Point p = new Point(0,0);` is perfectly reasonable. Cartesian points naturally take two arguments. Indeed, we’d be very surprised to see `new Point(0)`. However, the two arguments in this case are ordered components of a single value! Whereas` output-Stream` and `name` have neither a natural cohesion, nor a natural ordering."
+                },
+                {
+                  "id": "ch03-topic-07-part-04-s3",
+                  "title": "Argument ordering can depend on convention",
+                  "body": "Even obvious dyadic functions like `assertEquals(expected, actual)` are problematic. How many times have you put the `actual` where the `expected` should be? The two arguments have no natural ordering. The `expected, actual` ordering is a convention that requires practice to learn."
+                },
+                {
+                  "id": "ch03-topic-07-part-04-s4",
+                  "title": "Consider alternatives without treating two arguments as forbidden",
+                  "body": "Dyads aren’t evil, and you will certainly have to write them. However, you should be aware that they come at a cost and should take advantage of what mechanims may be available to you to convert them into monads. For example, you might make the `writeField` method a member of `outputStream` so that you can say `outputStream.` `writeField(name)`. Or you might make the `outputStream` a member variable of the current class so that you don’t have to pass it. Or you might extract a new class like `FieldWriter` that takes the `outputStream` in its constructor and has a `write` method."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-07-s5",
+              "id": "ch03-topic-07-part-05",
+              "type": "slides",
               "title": "Triads",
-              "body": "Functions that take three arguments are significantly harder to understand than dyads. The issues of ordering, pausing, and ignoring are more than doubled. I suggest you think very carefully before creating a triad. For example, consider the common overload of `assertEquals` that takes three arguments:` assertEquals(message, expected, actual)`. How many times have you read the `message` and thought it was the `expected`? I have stumbled and paused over that particular triad many times. In fact, every time I see it, I do a double-take and then learn to ignore the message. On the other hand, here is a triad that is not quite so insidious: `assertEquals(1.0,` `amount, .001)`. Although this still requires a double-take, it’s one that’s worth taking. It’s always good to be reminded that equality of floating point values is a relative thing."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-07-part-05-s1",
+                  "title": "Three arguments can make roles harder to follow",
+                  "body": "Functions that take three arguments are significantly harder to understand than dyads. The issues of ordering, pausing, and ignoring are more than doubled. I suggest you think very carefully before creating a triad. For example, consider the common overload of `assertEquals` that takes three arguments:` assertEquals(message, expected, actual)`. How many times have you read the `message` and thought it was the `expected`? I have stumbled and paused over that particular triad many times. In fact, every time I see it, I do a double-take and then learn to ignore the message."
+                },
+                {
+                  "id": "ch03-topic-07-part-05-s2",
+                  "title": "A tolerance argument can communicate an important distinction",
+                  "body": "On the other hand, here is a triad that is not quite so insidious: `assertEquals(1.0,` `amount, .001)`. Although this still requires a double-take, it’s one that’s worth taking. It’s always good to be reminded that equality of floating point values is a relative thing."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-07-s6",
+              "id": "ch03-topic-07-part-06",
+              "type": "slides",
               "title": "Argument Objects",
-              "body": "When a function seems to need more than two or three arguments, it is likely that some of those arguments ought to be wrapped into a class of their own. Consider, for example, the difference between the two following declarations:\n\n```text\nCircle makeCircle(double x, double y, double radius);\nCircle makeCircle(Point center, double radius);\n```\n\nReducing the number of arguments by creating objects out of them may seem like cheating, but it’s not. When groups of variables are passed together, the way `x` and `y` are in the example above, they are likely part of a concept that deserves a name of its own."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-07-part-06-s1",
+                  "title": "Group arguments when they express a real concept",
+                  "body": "When a function seems to need more than two or three arguments, it is likely that some of those arguments ought to be wrapped into a class of their own. Consider, for example, the difference between the two following declarations:\n\n```text\nCircle makeCircle(double x, double y, double radius);\nCircle makeCircle(Point center, double radius);\n```"
+                },
+                {
+                  "id": "ch03-topic-07-part-06-s2",
+                  "title": "A named concept matters more than a smaller count",
+                  "body": "Reducing the number of arguments by creating objects out of them may seem like cheating, but it’s not. When groups of variables are passed together, the way `x` and `y` are in the example above, they are likely part of a concept that deserves a name of its own."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-07-s7",
+              "id": "ch03-topic-07-part-07",
+              "type": "slides",
               "title": "Argument Lists",
-              "body": "Sometimes we want to pass a variable number of arguments into a function. Consider, for example, the `String.format` method:\n\n```text\nString.format(\"%s worked %.2f hours.\", name, hours);\n```\n\nIf the variable arguments are all treated identically, as they are in the example above, then they are equivalent to a single argument of type `List`. By that reasoning, `String.format` is actually dyadic. Indeed, the declaration of `String.format` as shown below is clearly dyadic.\n\n```text\npublic String format(String format, Object... args)\n```\n\nSo all the same rules apply. Functions that take variable arguments can be monads, dyads, or even triads. But it would be a mistake to give them more arguments than that.\n\n```text\nvoid monad(Integer... args);\nvoid dyad(String name, Integer... args);\nvoid triad(String name, int count, Integer... args);\n```"
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-07-part-07-s1",
+                  "title": "A variable-length argument list can represent one group",
+                  "body": "Sometimes we want to pass a variable number of arguments into a function. Consider, for example, the `String.format` method:\n\n```text\nString.format(\"%s worked %.2f hours.\", name, hours);\n```"
+                },
+                {
+                  "id": "ch03-topic-07-part-07-s2",
+                  "title": "Count the conceptual roles in the signature",
+                  "body": "If the variable arguments are all treated identically, as they are in the example above, then they are equivalent to a single argument of type `List`. By that reasoning, `String.format` is actually dyadic. Indeed, the declaration of `String.format` as shown below is clearly dyadic.\n\n```text\npublic String format(String format, Object... args)\n```"
+                },
+                {
+                  "id": "ch03-topic-07-part-07-s3",
+                  "title": "The author applies the same reasoning to variable arguments",
+                  "body": "So all the same rules apply. Functions that take variable arguments can be monads, dyads, or even triads. But it would be a mistake to give them more arguments than that.\n\n```text\nvoid monad(Integer... args);\nvoid dyad(String name, Integer... args);\nvoid triad(String name, int count, Integer... args);\n```"
+                }
+              ]
             },
             {
-              "id": "ch03-topic-07-s8",
+              "id": "ch03-topic-07-part-08",
+              "type": "slides",
               "title": "Verbs and Keywords",
-              "body": "Choosing good names for a function can go a long way toward explaining the intent of the function and the order and intent of the arguments. In the case of a monad, the function and argument should form a very nice verb/noun pair. For example, `write(name)` is very evocative. Whatever this “name” thing is, it is being “written.” An even better name might be `writeField(name)`, which tells us that the “name” thing is a “field.” This last is an example of the keyword form of a function name. Using this form we encode the names of the arguments into the function name. For example, `assertEquals` might be better written as `assertExpectedEqualsActual(expected, actual)`. This strongly mitigates the problem of having to remember the ordering of the arguments.\n\nI just finished refactoring a module that used the dyadic form. I was able to make the `outputStream` a field of the class and convert all the `writeField` calls to the monadic form. The result was much cleaner."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-07-part-08-s1",
+                  "title": "A function name can explain the argument’s role",
+                  "body": "Choosing good names for a function can go a long way toward explaining the intent of the function and the order and intent of the arguments. In the case of a monad, the function and argument should form a very nice verb/noun pair. For example, `write(name)` is very evocative. Whatever this “name” thing is, it is being “written.” An even better name might be `writeField(name)`, which tells us that the “name” thing is a “field.”"
+                },
+                {
+                  "id": "ch03-topic-07-part-08-s2",
+                  "title": "Names can make argument ordering explicit",
+                  "body": "This last is an example of the keyword form of a function name. Using this form we encode the names of the arguments into the function name. For example, `assertEquals` might be better written as `assertExpectedEqualsActual(expected, actual)`. This strongly mitigates the problem of having to remember the ordering of the arguments."
+                },
+                {
+                  "id": "ch03-topic-07-part-08-s3",
+                  "title": "An example of moving a repeated argument into an object",
+                  "body": "I just finished refactoring a module that used the dyadic form. I was able to make the `outputStream` a field of the class and convert all the `writeField` calls to the monadic form. The result was much cleaner."
+                }
+              ]
             }
           ]
         },
         {
           "id": "ch03-topic-08",
-          "type": "slides",
+          "type": "section",
           "title": "Have No Side Effects",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch03-topic-08-s1",
-              "title": "Have No Side Effects · 1 of 2",
-              "body": "Side effects are lies. Your function promises to do one thing, but it also does other hidden things. Sometimes it will make unexpected changes to the variables of its own class. Sometimes it will make them to the parameters passed into the function or to system globals. In either case they are devious and damaging mistruths that often result in strange temporal couplings and order dependencies. Consider, for example, the seemingly innocuous function in Listing 3-6. This function uses a standard algorithm to match a `userName` to a `password`. It returns `true` if they match and` false` if anything goes wrong. But it also has a side effect. Can you spot it?"
+              "id": "ch03-topic-08-part-01",
+              "type": "slides",
+              "title": "Have No Side Effects",
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-08-part-01-s1",
+                  "title": "A hidden effect breaks the promise of a function’s name",
+                  "body": "Side effects are lies. Your function promises to do one thing, but it also does other hidden things. Sometimes it will make unexpected changes to the variables of its own class. Sometimes it will make them to the parameters passed into the function or to system globals. In either case they are devious and damaging mistruths that often result in strange temporal couplings and order dependencies."
+                },
+                {
+                  "id": "ch03-topic-08-part-01-s2",
+                  "title": "Listing 3-6: a password check with an extra effect",
+                  "body": "Consider, for example, the seemingly innocuous function in Listing 3-6. This function uses a standard algorithm to match a `userName` to a `password`. It returns `true` if they match and` false` if anything goes wrong. But it also has a side effect. Can you spot it?\n\n**Listing 3-6 UserValidator.java**\n\n```text\npublic class UserValidator {\n  private Cryptographer cryptographer;\n\n  public boolean checkPassword(String userName, String password) {\n    User user = UserGateway.findByName(userName);\n    if (user != User.NULL) {\n      String codedPhrase = user.getPhraseEncodedByPassword();\n      String phrase = cryptographer.decrypt(codedPhrase, password);\n      if (\"Valid Password\".equals(phrase)) {\n        Session.initialize();\n        return true;\n      }\n    }\n    return false;\n  }\n}\n```"
+                },
+                {
+                  "id": "ch03-topic-08-part-01-s3",
+                  "title": "The password check also initializes the session",
+                  "body": "The side effect is the call to `Session.initialize()`, of course. The `checkPassword` function, by its name, says that it checks the password. The name does not imply that it initializes the session. So a caller who believes what the name of the function says runs the risk of erasing the existing session data when he or she decides to check the validity of the user."
+                },
+                {
+                  "id": "ch03-topic-08-part-01-s4",
+                  "title": "Hidden effects can create ordering requirements",
+                  "body": "This side effect creates a temporal coupling. That is, `checkPassword` can only be called at certain times (in other words, when it is safe to initialize the session). If it is called out of order, session data may be inadvertently lost."
+                },
+                {
+                  "id": "ch03-topic-08-part-01-s5",
+                  "title": "Make required ordering visible to the caller",
+                  "body": "Temporal couplings are confusing, especially when hidden as a side effect. If you must have a temporal coupling, you should make it clear in the name of the function. In this case we might rename the function` checkPasswordAndInitializeSession`, though that certainly violates “Do one thing.”"
+                }
+              ]
             },
             {
-              "id": "ch03-topic-08-s2",
-              "title": "Listing 3-6 UserValidator.java",
-              "body": "```text\npublic class UserValidator {\n  private Cryptographer cryptographer;\n\n  public boolean checkPassword(String userName, String password) {\n    User user = UserGateway.findByName(userName);\n    if (user != User.NULL) {\n      String codedPhrase = user.getPhraseEncodedByPassword();\n      String phrase = cryptographer.decrypt(codedPhrase, password);\n      if (\"Valid Password\".equals(phrase)) {\n        Session.initialize();\n        return true;\n      }\n    }\n    return false;\n  }\n}\n```"
-            },
-            {
-              "id": "ch03-topic-08-s3",
-              "title": "Have No Side Effects · 2 of 2",
-              "body": "The side effect is the call to `Session.initialize()`, of course. The `checkPassword` function, by its name, says that it checks the password. The name does not imply that it initializes the session. So a caller who believes what the name of the function says runs the risk of erasing the existing session data when he or she decides to check the validity of the user. This side effect creates a temporal coupling. That is, `checkPassword` can only be called at certain times (in other words, when it is safe to initialize the session). If it is called out of order, session data may be inadvertently lost. Temporal couplings are confusing, especially when hidden as a side effect. If you must have a temporal coupling, you should make it clear in the name of the function. In this case we might rename the function` checkPasswordAndInitializeSession`, though that certainly violates “Do one thing.”"
-            },
-            {
-              "id": "ch03-topic-08-s4",
+              "id": "ch03-topic-08-part-02",
+              "type": "slides",
               "title": "Output Arguments",
-              "body": "Arguments are most naturally interpreted as inputs to a function. If you have been programming for more than a few years, I’m sure you’ve done a double-take on an argument that was actually an output rather than an input. For example:\n\n```text\nappendFooter(s);\n```\n\nDoes this function append `s` as the footer to something? Or does it append some footer to` s`? Is `s` an input or an output? It doesn’t take long to look at the function signature and see:\n\n```text\npublic void appendFooter(StringBuffer report)\n```\n\nThis clarifies the issue, but only at the expense of checking the declaration of the function. Anything that forces you to check the function signature is equivalent to a double-take. It’s a cognitive break and should be avoided. In the days before object oriented programming it was sometimes necessary to have output arguments. However, much of the need for output arguments disappears in OO languages because `this` is intended to act as an output argument. In other words, it would be better for `appendFooter` to be invoked as\n\n```text\nreport.appendFooter();\n```\n\nIn general output arguments should be avoided. If your function must change the state of something, have it change the state of its owning object."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-08-part-02-s1",
+                  "title": "An argument may ambiguously look like an input",
+                  "body": "Arguments are most naturally interpreted as inputs to a function. If you have been programming for more than a few years, I’m sure you’ve done a double-take on an argument that was actually an output rather than an input. For example:\n\n```text\nappendFooter(s);\n```"
+                },
+                {
+                  "id": "ch03-topic-08-part-02-s2",
+                  "title": "The caller should not have to guess what changes",
+                  "body": "Does this function append `s` as the footer to something? Or does it append some footer to` s`? Is `s` an input or an output? It doesn’t take long to look at the function signature and see:\n\n```text\npublic void appendFooter(StringBuffer report)\n```"
+                },
+                {
+                  "id": "ch03-topic-08-part-02-s3",
+                  "title": "Checking the declaration interrupts understanding",
+                  "body": "This clarifies the issue, but only at the expense of checking the declaration of the function. Anything that forces you to check the function signature is equivalent to a double-take. It’s a cognitive break and should be avoided."
+                },
+                {
+                  "id": "ch03-topic-08-part-02-s4",
+                  "title": "The chapter proposes placing the operation on the owning object",
+                  "body": "In the days before object oriented programming it was sometimes necessary to have output arguments. However, much of the need for output arguments disappears in OO languages because `this` is intended to act as an output argument. In other words, it would be better for `appendFooter` to be invoked as\n\n```text\nreport.appendFooter();\n```"
+                },
+                {
+                  "id": "ch03-topic-08-part-02-s5",
+                  "title": "Make the state being changed clear",
+                  "body": "In general output arguments should be avoided. If your function must change the state of something, have it change the state of its owning object."
+                }
+              ]
             }
           ]
         },
@@ -1541,36 +1884,112 @@
           "slides": [
             {
               "id": "ch03-topic-09-s1",
-              "title": "Command Query Separation",
-              "body": "Functions should either do something or answer something, but not both. Either your function should change the state of an object, or it should return some information about that object. Doing both often leads to confusion. Consider, for example, the following function:\n\n```text\npublic boolean set(String attribute, String value);\n```\n\nThis function sets the value of a named attribute and returns `true` if it is successful and `false` if no such attribute exists. This leads to odd statements like this:\n\n```text\nif (set(\"username\", \"unclebob\"))...\n```\n\nImagine this from the point of view of the reader. What does it mean? Is it asking whether the “`username`” attribute was previously set to “`unclebob`”? Or is it asking whether the “`username`” attribute was successfully set to “`unclebob`”? It’s hard to infer the meaning from the call because it’s not clear whether the word “`set`” is a verb or an adjective. The author intended `set` to be a verb, but in the context of the `if` statement it feels like an adjective. So the statement reads as “If the `username` attribute was previously set to `unclebob`” and not “set the `username` attribute to `unclebob` and if that worked then. . . .” We could try to resolve this by renaming the `set` function to `setAndCheckIfExists`, but that doesn’t much help the readability of the `if` statement. The real solution is to separate the command from the query so that the ambiguity cannot occur.\n\n```text\nif (attributeExists(\"username\")) {\nsetAttribute(\"username\", \"unclebob\");\n...\n}\n```"
+              "title": "Separate changing state from asking a question",
+              "body": "Functions should either do something or answer something, but not both. Either your function should change the state of an object, or it should return some information about that object. Doing both often leads to confusion. Consider, for example, the following function:\n\n```text\npublic boolean set(String attribute, String value);\n```"
+            },
+            {
+              "id": "ch03-topic-09-s2",
+              "title": "A boolean result can obscure whether a call changes state",
+              "body": "This function sets the value of a named attribute and returns `true` if it is successful and `false` if no such attribute exists. This leads to odd statements like this:\n\n```text\nif (set(\"username\", \"unclebob\"))...\n```"
+            },
+            {
+              "id": "ch03-topic-09-s3",
+              "title": "A call inside a condition can be read two ways",
+              "body": "Imagine this from the point of view of the reader. What does it mean? Is it asking whether the “`username`” attribute was previously set to “`unclebob`”? Or is it asking whether the “`username`” attribute was successfully set to “`unclebob`”? It’s hard to infer the meaning from the call because it’s not clear whether the word “`set`” is a verb or an adjective."
+            },
+            {
+              "id": "ch03-topic-09-s4",
+              "title": "The verb and adjective readings conflict",
+              "body": "The author intended `set` to be a verb, but in the context of the `if` statement it feels like an adjective. So the statement reads as “If the `username` attribute was previously set to `unclebob`” and not “set the `username` attribute to `unclebob` and if that worked then. . . .”"
+            },
+            {
+              "id": "ch03-topic-09-s5",
+              "title": "Separate the command from the existence check",
+              "body": "We could try to resolve this by renaming the `set` function to `setAndCheckIfExists`, but that doesn’t much help the readability of the `if` statement. The real solution is to separate the command from the query so that the ambiguity cannot occur.\n\n```text\nif (attributeExists(\"username\")) {\nsetAttribute(\"username\", \"unclebob\");\n...\n}\n```"
             }
           ]
         },
         {
           "id": "ch03-topic-10",
-          "type": "slides",
+          "type": "section",
           "title": "Prefer Exceptions to Returning Error Codes",
-          "optional": false,
-          "slides": [
+          "children": [
             {
-              "id": "ch03-topic-10-s1",
+              "id": "ch03-topic-10-part-01",
+              "type": "slides",
               "title": "Prefer Exceptions to Returning Error Codes",
-              "body": "Returning error codes from command functions is a subtle violation of command query separation. It promotes commands being used as expressions in the predicates of `if` statements.\n\n```text\nif (deletePage(page) == E_OK)\n```\n\nThis does not suffer from verb/adjective confusion but does lead to deeply nested structures. When you return an error code, you create the problem that the caller must deal with the error immediately.\n\n```text\nif (deletePage(page) == E_OK) {\nif (registry.deleteReference(page.name) == E_OK) {\nif (configKeys.deleteKey(page.name.makeKey()) == E_OK){\nlogger.log(\"page deleted\");\n} else {\nlogger.log(\"configKey not deleted\");\n}\n} else {\nlogger.log(\"deleteReference from registry failed\");\n}\n} else {\nlogger.log(\"delete failed\");\nreturn E_ERROR;\n}\n```\n\nOn the other hand, if you use exceptions instead of returned error codes, then the error processing code can be separated from the happy path code and can be simplified:\n\n```text\ntry {\ndeletePage(page);\nregistry.deleteReference(page.name);\nconfigKeys.deleteKey(page.name.makeKey());\n}\ncatch (Exception e) {\nlogger.log(e.getMessage());\n}\n```"
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-10-part-01-s1",
+                  "title": "The chapter links error codes with conditional commands",
+                  "body": "Returning error codes from command functions is a subtle violation of command query separation. It promotes commands being used as expressions in the predicates of `if` statements.\n\n```text\nif (deletePage(page) == E_OK)\n```"
+                },
+                {
+                  "id": "ch03-topic-10-part-01-s2",
+                  "title": "Immediate error checks can create nested control flow",
+                  "body": "This does not suffer from verb/adjective confusion but does lead to deeply nested structures. When you return an error code, you create the problem that the caller must deal with the error immediately.\n\n```text\nif (deletePage(page) == E_OK) {\nif (registry.deleteReference(page.name) == E_OK) {\nif (configKeys.deleteKey(page.name.makeKey()) == E_OK){\nlogger.log(\"page deleted\");\n} else {\nlogger.log(\"configKey not deleted\");\n}\n} else {\nlogger.log(\"deleteReference from registry failed\");\n}\n} else {\nlogger.log(\"delete failed\");\nreturn E_ERROR;\n}\n```"
+                },
+                {
+                  "id": "ch03-topic-10-part-01-s3",
+                  "title": "Exceptions can separate error handling from normal work",
+                  "body": "On the other hand, if you use exceptions instead of returned error codes, then the error processing code can be separated from the happy path code and can be simplified:\n\n```text\ntry {\ndeletePage(page);\nregistry.deleteReference(page.name);\nconfigKeys.deleteKey(page.name.makeKey());\n}\ncatch (Exception e) {\nlogger.log(e.getMessage());\n}\n```"
+                }
+              ]
             },
             {
-              "id": "ch03-topic-10-s2",
+              "id": "ch03-topic-10-part-02",
+              "type": "slides",
               "title": "Extract Try/Catch Blocks",
-              "body": "`Try/catch` blocks are ugly in their own right. They confuse the structure of the code and mix error processing with normal processing. So it is better to extract the bodies of the `try` and` catch` blocks out into functions of their own.\n\n```text\n  public void delete(Page page) {\n    try {\n      deletePageAndAllReferences(page);\n    }\n    catch (Exception e) {\n      logError(e);\n    }\n  }\n\n  private void deletePageAndAllReferences(Page page) throws Exception {\n    deletePage(page);\n    registry.deleteReference(page.name);\n    configKeys.deleteKey(page.name.makeKey());\n  }\n\n  private void logError(Exception e) {\n    logger.log(e.getMessage());\n  }\n```\n\nIn the above, the `delete` function is all about error processing. It is easy to understand and then ignore. The `deletePageAndAllReferences` function is all about the processes of fully deleting a `page`. Error handling can be ignored. This provides a nice separation that makes the code easier to understand and modify."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-10-part-02-s1",
+                  "title": "Extract normal work and failure handling into named operations",
+                  "body": "`Try/catch` blocks are ugly in their own right. They confuse the structure of the code and mix error processing with normal processing. So it is better to extract the bodies of the `try` and` catch` blocks out into functions of their own.\n\n```text\n  public void delete(Page page) {\n    try {\n      deletePageAndAllReferences(page);\n    }\n    catch (Exception e) {\n      logError(e);\n    }\n  }\n\n  private void deletePageAndAllReferences(Page page) throws Exception {\n    deletePage(page);\n    registry.deleteReference(page.name);\n    configKeys.deleteKey(page.name.makeKey());\n  }\n\n  private void logError(Exception e) {\n    logger.log(e.getMessage());\n  }\n```"
+                },
+                {
+                  "id": "ch03-topic-10-part-02-s2",
+                  "title": "The example separates deletion from error handling",
+                  "body": "In the above, the `delete` function is all about error processing. It is easy to understand and then ignore. The `deletePageAndAllReferences` function is all about the processes of fully deleting a `page`. Error handling can be ignored. This provides a nice separation that makes the code easier to understand and modify."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-10-s3",
+              "id": "ch03-topic-10-part-03",
+              "type": "slides",
               "title": "Error Handling Is One Thing",
-              "body": "Functions should do one thing. Error handing is one thing. Thus, a function that handles errors should do nothing else. This implies (as in the example above) that if the keyword `try` exists in a function, it should be the very first word in the function and that there should be nothing after the `catch/finally` blocks."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-10-part-03-s1",
+                  "title": "The author treats error handling as a focused responsibility",
+                  "body": "Functions should do one thing. Error handing is one thing. Thus, a function that handles errors should do nothing else. This implies (as in the example above) that if the keyword `try` exists in a function, it should be the very first word in the function and that there should be nothing after the `catch/finally` blocks."
+                }
+              ]
             },
             {
-              "id": "ch03-topic-10-s4",
+              "id": "ch03-topic-10-part-04",
+              "type": "slides",
               "title": "The Error.java Dependency Magnet",
-              "body": "Returning error codes usually implies that there is some class or enum in which all the error codes are defined.\n\n```text\npublic enum Error {\nOK,\nINVALID,\nNO_SUCH,\nLOCKED,\nOUT_OF_RESOURCES,\nWAITING_FOR_EVENT;\n}\n```\n\nClasses like this are a dependency magnet; many other classes must import and use them. Thus, when the `Error enum` changes, all those other classes need to be recompiled and redeployed. This puts a negative pressure on the `Error` class. Programmers don’t want to add new errors because then they have to rebuild and redeploy everything. So they reuse old error codes instead of adding new ones. When you use exceptions rather than error codes, then new exceptions are derivatives of the exception class. They can be added without forcing any recompilation or redeployment.\n\nThose who felt that they could get away without recompiling and redeploying have been found—and dealt with."
+              "optional": false,
+              "slides": [
+                {
+                  "id": "ch03-topic-10-part-04-s1",
+                  "title": "A shared error-code enum can become a dependency",
+                  "body": "Returning error codes usually implies that there is some class or enum in which all the error codes are defined.\n\n```text\npublic enum Error {\nOK,\nINVALID,\nNO_SUCH,\nLOCKED,\nOUT_OF_RESOURCES,\nWAITING_FOR_EVENT;\n}\n```"
+                },
+                {
+                  "id": "ch03-topic-10-part-04-s2",
+                  "title": "Shared error definitions can discourage useful distinctions",
+                  "body": "Classes like this are a dependency magnet; many other classes must import and use them. Thus, when the `Error enum` changes, all those other classes need to be recompiled and redeployed. This puts a negative pressure on the `Error` class. Programmers don’t want to add new errors because then they have to rebuild and redeploy everything. So they reuse old error codes instead of adding new ones."
+                },
+                {
+                  "id": "ch03-topic-10-part-04-s3",
+                  "title": "The chapter contrasts exception hierarchies with shared codes",
+                  "body": "When you use exceptions rather than error codes, then new exceptions are derivatives of the exception class. They can be added without forcing any recompilation or redeployment.\n\nThose who felt that they could get away without recompiling and redeploying have been found—and dealt with."
+                }
+              ]
             }
           ]
         },
@@ -1582,8 +2001,28 @@
           "slides": [
             {
               "id": "ch03-topic-11-s1",
-              "title": "Don't Repeat Yourself",
-              "body": "Look back at Listing 3-1 carefully and you will notice that there is an algorithm that gets repeated four times, once for each of the `SetUp`, `SuiteSetUp`, `TearDown`, and `SuiteTearDown` cases. It’s not easy to spot this duplication because the four instances are intermixed with other code and aren’t uniformly duplicated. Still, the duplication is a problem because it bloats the code and will require four-fold modification should the algorithm ever have to change. It is also a four-fold opportunity for an error of omission. This duplication was remedied by the `include` method in Listing 3-7. Read through that code again and notice how the readability of the whole module is enhanced by the reduction of that duplication. Duplication may be the root of all evil in software. Many principles and practices have been created for the purpose of controlling or eliminating it. Consider, for example, that all of Codd’s database normal forms serve to eliminate duplication in data. Consider also how object-oriented programming serves to concentrate code into base classes that would otherwise be redundant. Structured programming, Aspect Oriented Programming, Component Oriented Programming, are all, in part, strategies for eliminating duplication. It would appear that since the invention of the subroutine, innovations in software development have been an ongoing attempt to eliminate duplication from our source code."
+              "title": "Repeated logic creates repeated maintenance work",
+              "body": "Look back at Listing 3-1 carefully and you will notice that there is an algorithm that gets repeated four times, once for each of the `SetUp`, `SuiteSetUp`, `TearDown`, and `SuiteTearDown` cases."
+            },
+            {
+              "id": "ch03-topic-11-s2",
+              "title": "Duplication can be hidden among other work",
+              "body": "It’s not easy to spot this duplication because the four instances are intermixed with other code and aren’t uniformly duplicated. Still, the duplication is a problem because it bloats the code and will require four-fold modification should the algorithm ever have to change. It is also a four-fold opportunity for an error of omission."
+            },
+            {
+              "id": "ch03-topic-11-s3",
+              "title": "A shared operation can improve the surrounding story",
+              "body": "This duplication was remedied by the `include` method in Listing 3-7. Read through that code again and notice how the readability of the whole module is enhanced by the reduction of that duplication."
+            },
+            {
+              "id": "ch03-topic-11-s4",
+              "title": "Many design approaches aim to control duplication",
+              "body": "Duplication may be the root of all evil in software. Many principles and practices have been created for the purpose of controlling or eliminating it. Consider, for example, that all of Codd’s database normal forms serve to eliminate duplication in data. Consider also how object-oriented programming serves to concentrate code into base classes that would otherwise be redundant."
+            },
+            {
+              "id": "ch03-topic-11-s5",
+              "title": "The author connects reuse with the history of subroutines",
+              "body": "Structured programming, Aspect Oriented Programming, Component Oriented Programming, are all, in part, strategies for eliminating duplication. It would appear that since the invention of the subroutine, innovations in software development have been an ongoing attempt to eliminate duplication from our source code."
             }
           ]
         },
@@ -1595,8 +2034,13 @@
           "slides": [
             {
               "id": "ch03-topic-12-s1",
-              "title": "Structured Programming",
-              "body": "Some programmers follow Edsger Dijkstra’s rules of structured programming. Dijkstra said that every function, and every block within a function, should have one entry and one exit. Following these rules means that there should only be one `return` statement in a function, no `break` or `continue` statements in a loop, and never, ever, any `goto` statements.\n\nWhile we are sympathetic to the goals and disciplines of structured programming, those rules serve little benefit when functions are very small. It is only in larger functions that such rules provide significant benefit. So if you keep your functions small, then the occasional multiple `return`,` break`, or `continue` statement does no harm and can sometimes even be more expressive than the single-entry, single-exit rule. On the other hand, `goto` only makes sense in large functions, so it should be avoided.\n\nThis is an example of the Open Closed Principle (OCP) [PPP02].\n\nThe DRY principle. [PRAG]."
+              "title": "Single entry and exit is a historical discipline",
+              "body": "Some programmers follow Edsger Dijkstra’s rules of structured programming. Dijkstra said that every function, and every block within a function, should have one entry and one exit. Following these rules means that there should only be one `return` statement in a function, no `break` or `continue` statements in a loop, and never, ever, any `goto` statements."
+            },
+            {
+              "id": "ch03-topic-12-s2",
+              "title": "The author allows expressive exits in small functions",
+              "body": "While we are sympathetic to the goals and disciplines of structured programming, those rules serve little benefit when functions are very small. It is only in larger functions that such rules provide significant benefit. So if you keep your functions small, then the occasional multiple `return`,` break`, or `continue` statement does no harm and can sometimes even be more expressive than the single-entry, single-exit rule. On the other hand, `goto` only makes sense in large functions, so it should be avoided.\n\nThis is an example of the Open Closed Principle (OCP) [PPP02].\n\nThe DRY principle. [PRAG]."
             }
           ]
         },
@@ -1608,8 +2052,23 @@
           "slides": [
             {
               "id": "ch03-topic-13-s1",
-              "title": "How Do You Write Functions Like This?",
-              "body": "Writing software is like any other kind of writing. When you write a paper or an article, you get your thoughts down first, then you massage it until it reads well. The first draft might be clumsy and disorganized, so you wordsmith it and restructure it and refine it until it reads the way you want it to read. When I write functions, they come out long and complicated. They have lots of indenting and nested loops. They have long argument lists. The names are arbitrary, and there is duplicated code. But I also have a suite of unit tests that cover every one of those clumsy lines of code. So then I massage and refine that code, splitting out functions, changing names, eliminating duplication. I shrink the methods and reorder them. Sometimes I break out whole classes, all the while keeping the tests passing. In the end, I wind up with functions that follow the rules I’ve laid down in this chapter. I don’t write them that way to start. I don’t think anyone could."
+              "title": "Start with a draft and refine it",
+              "body": "Writing software is like any other kind of writing. When you write a paper or an article, you get your thoughts down first, then you massage it until it reads well. The first draft might be clumsy and disorganized, so you wordsmith it and restructure it and refine it until it reads the way you want it to read."
+            },
+            {
+              "id": "ch03-topic-13-s2",
+              "title": "First drafts can have names and structure worth improving",
+              "body": "When I write functions, they come out long and complicated. They have lots of indenting and nested loops. They have long argument lists. The names are arbitrary, and there is duplicated code."
+            },
+            {
+              "id": "ch03-topic-13-s3",
+              "title": "Refine the code while keeping the tests passing",
+              "body": "But I also have a suite of unit tests that cover every one of those clumsy lines of code. So then I massage and refine that code, splitting out functions, changing names, eliminating duplication. I shrink the methods and reorder them. Sometimes I break out whole classes, all the while keeping the tests passing."
+            },
+            {
+              "id": "ch03-topic-13-s4",
+              "title": "Clear functions are the result of revision",
+              "body": "In the end, I wind up with functions that follow the rules I’ve laid down in this chapter. I don’t write them that way to start. I don’t think anyone could."
             }
           ]
         },
@@ -1621,8 +2080,23 @@
           "slides": [
             {
               "id": "ch03-topic-14-s1",
-              "title": "Conclusion",
-              "body": "Every system is built from a domain-specific language designed by the programmers to describe that system. Functions are the verbs of that language, and classes are the nouns. This is not some throwback to the hideous old notion that the nouns and verbs in a requirements document are the first guess of the classes and functions of a system. Rather, this is a much older truth. The art of programming is, and has always been, the art of language design. Master programmers think of systems as stories to be told rather than programs to be written. They use the facilities of their chosen programming language to construct a much richer and more expressive language that can be used to tell that story. Part of that domain-specific language is the hierarchy of functions that describe all the actions that take place within that system. In an artful act of recursion those actions are written to use the very domain-specific language they define to tell their own small part of the story. This chapter has been about the mechanics of writing functions well. If you follow the rules herein, your functions will be short, well named, and nicely organized. But never forget that your real goal is to tell the story of the system, and that the functions you write need to fit cleanly together into a clear and precise language to help you with that telling."
+              "title": "Functions help express the language of the system",
+              "body": "Every system is built from a domain-specific language designed by the programmers to describe that system. Functions are the verbs of that language, and classes are the nouns. This is not some throwback to the hideous old notion that the nouns and verbs in a requirements document are the first guess of the classes and functions of a system. Rather, this is a much older truth. The art of programming is, and has always been, the art of language design."
+            },
+            {
+              "id": "ch03-topic-14-s2",
+              "title": "Use the programming language to tell the system’s story",
+              "body": "Master programmers think of systems as stories to be told rather than programs to be written. They use the facilities of their chosen programming language to construct a much richer and more expressive language that can be used to tell that story."
+            },
+            {
+              "id": "ch03-topic-14-s3",
+              "title": "A hierarchy of functions describes the system’s actions",
+              "body": "Part of that domain-specific language is the hierarchy of functions that describe all the actions that take place within that system. In an artful act of recursion those actions are written to use the very domain-specific language they define to tell their own small part of the story."
+            },
+            {
+              "id": "ch03-topic-14-s4",
+              "title": "Short functions should still fit a clear overall design",
+              "body": "This chapter has been about the mechanics of writing functions well. If you follow the rules herein, your functions will be short, well named, and nicely organized. But never forget that your real goal is to tell the story of the system, and that the functions you write need to fit cleanly together into a clear and precise language to help you with that telling."
             }
           ]
         },
@@ -1634,18 +2108,18 @@
           "slides": [
             {
               "id": "ch03-topic-15-s1",
-              "title": "Listing 3-7 SetupTeardownIncluder.java · listing part 1 of 3",
-              "body": "*Continuation of the same source listing; this fragment is not a standalone program.*\n\n```text\npackage fitnesse.html;\n\nimport fitnesse.responders.run.SuiteResponder;\nimport fitnesse.wiki.*;\n\npublic class SetupTeardownIncluder {\n  private PageData pageData;\n  private boolean isSuite;\n  private WikiPage testPage;\n  private StringBuffer newPageContent;\n  private PageCrawler pageCrawler;\n\n  public static String render(PageData pageData) throws Exception {\n    return render(pageData, false);\n  }\n\n  public static String render(PageData pageData, boolean isSuite)\n    throws Exception {\n    return new SetupTeardownIncluder(pageData).render(isSuite);\n  }\n\n  private SetupTeardownIncluder(PageData pageData) {\n    this.pageData = pageData;\n    testPage = pageData.getWikiPage();\n    pageCrawler = testPage.getPageCrawler();\n    newPageContent = new StringBuffer();\n  }\n\n  private String render(boolean isSuite) throws Exception {\n    this.isSuite = isSuite;\n    if (isTestPage())\n      includeSetupAndTeardownPages();\n    return pageData.getHtml();\n  }\n\n  private boolean isTestPage() throws Exception {\n    return pageData.hasAttribute(\"Test\");\n  }\n\n  private void includeSetupAndTeardownPages() throws Exception {\n    includeSetupPages();\n    includePageContent();\n    includeTeardownPages();\n    updatePageContent();\n  }\n\n  private void includeSetupPages() throws Exception {\n    if (isSuite)\n```"
+              "title": "Listing 3-7 SetupTeardownIncluder.java · listing continuation 1 of 3",
+              "body": "**Listing 3-7 SetupTeardownIncluder.java**\n\n```text\npackage fitnesse.html;\n\nimport fitnesse.responders.run.SuiteResponder;\nimport fitnesse.wiki.*;\n\npublic class SetupTeardownIncluder {\n  private PageData pageData;\n  private boolean isSuite;\n  private WikiPage testPage;\n  private StringBuffer newPageContent;\n  private PageCrawler pageCrawler;\n\n  public static String render(PageData pageData) throws Exception {\n    return render(pageData, false);\n  }\n\n  public static String render(PageData pageData, boolean isSuite)\n    throws Exception {\n    return new SetupTeardownIncluder(pageData).render(isSuite);\n  }\n\n  private SetupTeardownIncluder(PageData pageData) {\n    this.pageData = pageData;\n    testPage = pageData.getWikiPage();\n    pageCrawler = testPage.getPageCrawler();\n    newPageContent = new StringBuffer();\n  }\n\n  private String render(boolean isSuite) throws Exception {\n    this.isSuite = isSuite;\n    if (isTestPage())\n      includeSetupAndTeardownPages();\n    return pageData.getHtml();\n  }\n\n  private boolean isTestPage() throws Exception {\n    return pageData.hasAttribute(\"Test\");\n  }\n\n  private void includeSetupAndTeardownPages() throws Exception {\n```"
             },
             {
               "id": "ch03-topic-15-s2",
-              "title": "Listing 3-7 SetupTeardownIncluder.java · listing part 2 of 3",
-              "body": "*Continuation of the same source listing; this fragment is not a standalone program.*\n\n```text\n      includeSuiteSetupPage();\n    includeSetupPage();\n  }\n\n  private void includeSuiteSetupPage() throws Exception {\n    include(SuiteResponder.SUITE_SETUP_NAME, \"-setup\");\n  }\n\n  private void includeSetupPage() throws Exception {\n    include(\"SetUp\", \"-setup\");\n  }\n\n  private void includePageContent() throws Exception {\n    newPageContent.append(pageData.getContent());\n  }\n\n  private void includeTeardownPages() throws Exception {\n    includeTeardownPage();\n    if (isSuite)\n      includeSuiteTeardownPage();\n  }\n\n  private void includeTeardownPage() throws Exception {\n    include(\"TearDown\", \"-teardown\");\n  }\n\n  private void includeSuiteTeardownPage() throws Exception {\n    include(SuiteResponder.SUITE_TEARDOWN_NAME, \"-teardown\");\n  }\n\n  private void updatePageContent() throws Exception {\n    pageData.setContent(newPageContent.toString());\n  }\n\n  private void include(String pageName, String arg) throws Exception {\n    WikiPage inheritedPage = findInheritedPage(pageName);\n    if (inheritedPage != null) {\n      String pagePathName = getPathNameForPage(inheritedPage);\n      buildIncludeDirective(pagePathName, arg);\n    }\n  }\n\n  private WikiPage findInheritedPage(String pageName) throws Exception {\n    return PageCrawlerImpl.getInheritedPage(pageName, testPage);\n  }\n\n  private String getPathNameForPage(WikiPage page) throws Exception {\n    WikiPagePath pagePath = pageCrawler.getFullPath(page);\n```"
+              "title": "Listing 3-7 SetupTeardownIncluder.java · listing continuation 2 of 3",
+              "body": "```text\n    includeSetupPages();\n    includePageContent();\n    includeTeardownPages();\n    updatePageContent();\n  }\n\n  private void includeSetupPages() throws Exception {\n    if (isSuite)\n      includeSuiteSetupPage();\n    includeSetupPage();\n  }\n\n  private void includeSuiteSetupPage() throws Exception {\n    include(SuiteResponder.SUITE_SETUP_NAME, \"-setup\");\n  }\n\n  private void includeSetupPage() throws Exception {\n    include(\"SetUp\", \"-setup\");\n  }\n\n  private void includePageContent() throws Exception {\n    newPageContent.append(pageData.getContent());\n  }\n\n  private void includeTeardownPages() throws Exception {\n    includeTeardownPage();\n    if (isSuite)\n      includeSuiteTeardownPage();\n  }\n\n  private void includeTeardownPage() throws Exception {\n    include(\"TearDown\", \"-teardown\");\n  }\n\n  private void includeSuiteTeardownPage() throws Exception {\n    include(SuiteResponder.SUITE_TEARDOWN_NAME, \"-teardown\");\n  }\n\n  private void updatePageContent() throws Exception {\n    pageData.setContent(newPageContent.toString());\n```"
             },
             {
               "id": "ch03-topic-15-s3",
-              "title": "Listing 3-7 SetupTeardownIncluder.java · listing part 3 of 3",
-              "body": "*Continuation of the same source listing; this fragment is not a standalone program.*\n\n```text\n    return PathParser.render(pagePath);\n  }\n\n  private void buildIncludeDirective(String pagePathName, String arg) {\n    newPageContent\n      .append(\"\\n!include \")\n\n      .append(arg)\n      .append(\" .\")\n      .append(pagePathName)\n      .append(\"\\n\");\n  }\n}\n```"
+              "title": "Listing 3-7 SetupTeardownIncluder.java · listing continuation 3 of 3",
+              "body": "```text\n  }\n\n  private void include(String pageName, String arg) throws Exception {\n    WikiPage inheritedPage = findInheritedPage(pageName);\n    if (inheritedPage != null) {\n      String pagePathName = getPathNameForPage(inheritedPage);\n      buildIncludeDirective(pagePathName, arg);\n    }\n  }\n\n  private WikiPage findInheritedPage(String pageName) throws Exception {\n    return PageCrawlerImpl.getInheritedPage(pageName, testPage);\n  }\n\n  private String getPathNameForPage(WikiPage page) throws Exception {\n    WikiPagePath pagePath = pageCrawler.getFullPath(page);\n    return PathParser.render(pagePath);\n  }\n\n  private void buildIncludeDirective(String pagePathName, String arg) {\n    newPageContent\n      .append(\"\\n!include \")\n\n      .append(arg)\n      .append(\" .\")\n      .append(pagePathName)\n      .append(\"\\n\");\n  }\n}\n```"
             }
           ]
         },
@@ -1658,12 +2132,12 @@
             {
               "id": "ch03-practice-s1",
               "title": "Practice",
-              "body": "Find a function that both looks up a lesson and marks it complete. Write its current contract. Propose separate query and command operations, retaining their original ordering and failure behavior."
+              "body": "Read the before-and-after HTML examples. Explain what became easier to understand. Then inspect the password example: what does the name promise, what else happens, and why could ordering matter? Answer in your notes; no code editing is required."
             },
             {
               "id": "ch03-practice-s2",
               "title": "Worked self-check",
-              "body": "findLessonById should communicate a lookup result; markLessonComplete should communicate a mutation. First specify what happens when the lesson is absent. Keep the call sequence explicit and verify that completion still happens only in the intended circumstances."
+              "body": "The refined HTML example exposes setup, content and teardown as named steps. checkPassword also initializes a session, so callers must know when that extra change is safe. Explain both intended behavior and hidden effects before choosing a clearer boundary. A shorter function or fewer arguments alone does not prove a better design."
             }
           ]
         },
@@ -1676,58 +2150,58 @@
           "questions": [
             {
               "id": "ch03-quiz-q1",
-              "prompt": "A function mixes low-level string parsing with a high-level enrollment policy. What should you inspect?",
+              "prompt": "A function mixes a domain operation with formatting newlines and traversing internal paths. What should you examine?",
               "options": [
-                "Whether its name starts with a vowel",
-                "Only its character count",
-                "Its levels of abstraction and responsibilities"
+                "Whether returning no value would automatically fix its design",
+                "Whether its steps mix abstraction levels and hide its purpose",
+                "Whether every local name has the same length"
               ],
-              "answer": 2,
-              "explanation": "Mixing abstraction levels can obscure the function’s purpose."
+              "answer": 1,
+              "explanation": "The chapter distinguishes high-level operations from low-level details. A useful extraction should expose a meaningful step rather than merely move lines."
             },
             {
               "id": "ch03-quiz-q2",
-              "prompt": "A lookup silently changes completion. Which principle is violated?",
+              "prompt": "A function named checkPassword also resets the current session. What is the main concern?",
               "options": [
-                "Pronounceable naming only",
-                "Command query separation",
-                "Vertical whitespace"
+                "Its name should be shorter regardless of behavior",
+                "A hidden state change can impose an unexpected ordering requirement",
+                "A boolean return value always makes a function incorrect"
               ],
               "answer": 1,
-              "explanation": "Queries should not unexpectedly perform commands that change state."
+              "explanation": "The name suggests a check, while session initialization changes state. Callers can lose data if they do not know when that extra operation is safe."
             },
             {
               "id": "ch03-quiz-q3",
-              "prompt": "What can a boolean flag argument indicate?",
+              "prompt": "A function has two arguments representing the coordinates of one point. How does the chapter qualify its preference for fewer arguments?",
               "options": [
-                "A performance improvement in all cases",
-                "A guarantee of exactly one responsibility",
-                "The function selects between different behaviors"
+                "Every two-argument function must become a zero-argument function",
+                "Related components can naturally belong together; evaluate their meaning",
+                "Argument count is the only evidence needed to assess clarity"
               ],
-              "answer": 2,
-              "explanation": "Flag arguments can signal that the function does more than one thing."
+              "answer": 1,
+              "explanation": "The chapter explicitly recognizes a point’s coordinates as a coherent pair. The reader’s work and conceptual roles matter alongside argument count."
             },
             {
               "id": "ch03-quiz-q4",
-              "prompt": "What is a safe first step before extracting a helper?",
+              "prompt": "A function both sets an attribute and returns whether the operation succeeded. Why can a call in an if statement be confusing?",
               "options": [
-                "Change the failure behavior silently",
-                "Understand the behavior and establish focused checks",
-                "Delete all callers"
+                "The reader may mistake a state-changing command for a query",
+                "The function cannot possibly have a meaningful return value",
+                "An if statement always violates the one-thing rule"
               ],
-              "answer": 1,
-              "explanation": "A transformation should preserve the intended observable behavior."
+              "answer": 0,
+              "explanation": "The chapter’s example illustrates ambiguity between checking an existing value and changing it. Separate or clearly communicate those responsibilities."
             },
             {
               "id": "ch03-quiz-q5",
-              "prompt": "What is the value of a descriptive function name?",
+              "prompt": "You want to improve a complicated function’s structure. Which process matches the chapter’s account?",
               "options": [
-                "It replaces an explicit contract in all cases",
-                "It communicates what the operation does",
-                "It eliminates every need for testing"
+                "Assume a shorter version preserves behavior without checking",
+                "Refine names, extract meaningful operations and keep relevant tests passing",
+                "Delete branches until the function meets a line-count target"
               ],
               "answer": 1,
-              "explanation": "Good names help readers follow the sequence and intent of operations."
+              "explanation": "The author describes revision supported by tests. Size recommendations are part of a design approach, not substitutes for behavior preservation and judgment."
             }
           ]
         }

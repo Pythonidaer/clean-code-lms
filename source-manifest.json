@@ -2114,7 +2114,7 @@
           65
         ],
         "sourceBlocksSha256": "00fd23ae2b7dc90f6c6da2d76dff347a39dde2b3aa2c362f277e481a9eb8f24c",
-        "slides": 5
+        "slides": 6
       },
       {
         "chapter": 3,
@@ -2126,7 +2126,7 @@
           66
         ],
         "sourceBlocksSha256": "521d546f0106adf4a2033412be61962a945fd2ecfe6d406ba00e678662a22a3f",
-        "slides": 3
+        "slides": 9
       },
       {
         "chapter": 3,
@@ -2138,7 +2138,7 @@
           67
         ],
         "sourceBlocksSha256": "b777ae51afeba151f13c1b86a103e1362f1974d5a6b9568bcdad8cd126442a47",
-        "slides": 2
+        "slides": 8
       },
       {
         "chapter": 3,
@@ -2150,7 +2150,7 @@
           68
         ],
         "sourceBlocksSha256": "9c9753fe797c4c4b04e9398f761dbe0d3f88681d19e5d331b58c7c210a72acea",
-        "slides": 2
+        "slides": 6
       },
       {
         "chapter": 3,
@@ -2163,7 +2163,7 @@
           70
         ],
         "sourceBlocksSha256": "fad932c6a8240b03df5ce0a7a7141f5af80e81fe52b40226c640b33a58cafc3d",
-        "slides": 5
+        "slides": 7
       },
       {
         "chapter": 3,
@@ -2175,7 +2175,7 @@
           71
         ],
         "sourceBlocksSha256": "e5c05dfb2978c81e617be0d38b102df8bc04c6cd92183ed15cc4062838a27ff3",
-        "slides": 1
+        "slides": 4
       },
       {
         "chapter": 3,
@@ -2189,7 +2189,7 @@
           74
         ],
         "sourceBlocksSha256": "5e3f0a55afd38b8d5dd61dbb5164843fa7465e7e5f271cfac6013e128b914548",
-        "slides": 8
+        "slides": 24
       },
       {
         "chapter": 3,
@@ -2201,7 +2201,7 @@
           76
         ],
         "sourceBlocksSha256": "14fb2cd5d1a8bdb3be194571ee91148fbec20ff46fd03f121da229da967de82c",
-        "slides": 4
+        "slides": 10
       },
       {
         "chapter": 3,
@@ -2213,7 +2213,7 @@
           77
         ],
         "sourceBlocksSha256": "ec01fe9067054f5612fba24b0bf6180951da27b6c6aa666f3fb3eff672832e04",
-        "slides": 1
+        "slides": 5
       },
       {
         "chapter": 3,
@@ -2226,7 +2226,7 @@
           79
         ],
         "sourceBlocksSha256": "6f00b5facaac4759b271c6d25dc68a3bd8b55b11d6c7b6489549a6996cd8da7f",
-        "slides": 4
+        "slides": 9
       },
       {
         "chapter": 3,
@@ -2237,7 +2237,7 @@
           79
         ],
         "sourceBlocksSha256": "85b95bc036a7c034ea9fcbe4838bc3a07c736ac710fd994cc1fd38bb5e4f0c3a",
-        "slides": 1
+        "slides": 5
       },
       {
         "chapter": 3,
@@ -2249,7 +2249,7 @@
           80
         ],
         "sourceBlocksSha256": "34d8f1bdaedb49d3adb7b4a45a8e779a1cb1edbb9f11ebe2b537b94f650c5bb3",
-        "slides": 1
+        "slides": 2
       },
       {
         "chapter": 3,
@@ -2260,7 +2260,7 @@
           80
         ],
         "sourceBlocksSha256": "2823ef2a7dc2b955cd715deb1f40b2a9d73be35dae464a48971c2421b4368216",
-        "slides": 1
+        "slides": 4
       },
       {
         "chapter": 3,
@@ -2272,7 +2272,7 @@
           81
         ],
         "sourceBlocksSha256": "88f49f7f71243cca295cf0e2bb11120c36a81fb5c0bf49259940b36b56566c47",
-        "slides": 1
+        "slides": 4
       },
       {
         "chapter": 3,
