@@ -37,3 +37,9 @@ Edit scripts/chapter-two-flow.py for Chapter 2 semantic boundaries. Use a 150-wo
 ## Chapter 3 pilot
 
 Edit scripts/chapter-three-flow.py for Chapter 3 boundaries. Preserve qualifications alongside the author’s recommendations about function size, arguments and error handling; do not turn them into universal modern JavaScript mandates. Code listings remain in order with explicit continuation numbering and up to 40 lines per fenced block. Their complete text is verified separately from fence boundaries. Source subheadings under function arguments, side effects and error handling appear as nested lessons. An interrupted sentence around Listing 3-5 is rejoined before the listing so it reads continuously.
+
+## Remaining loaded chapters
+
+Chapters 4–12, 14, 17 and optional 13 use scripts/remaining-reading-flow.py. It respects source subsection headings, sentence boundaries and discourse transitions, keeping sentences in the same paragraph joined normally. A slide has at most 150 prose words and 40 source-code lines. A long sentence exceeding the budget requires an explicit editorial decision rather than a forced word cut. Short source examples remain near their explanations when the budgets allow. Long listings receive ordered continuation titles. Reviewed entry titles and long-sentence title overrides are maintained in scripts/remaining-slide-titles.py.
+
+The complete ordered cleaned text, figures and code are checked against docs/remaining-chapters-slide-map.json. scripts/remaining-study-material.py supplies reading-only reflection prompts and plausible quiz distractors. Chapter 13 stays optional throughout its nested tree. Deferred chapters and the index are excluded.
