@@ -175,6 +175,12 @@
   },
   {
     "chapter": 3,
+    "page": 69,
+    "action": "rejoin sentence interrupted by listing",
+    "original": "an inheritance / Listing 3-5 / relationship"
+  },
+  {
+    "chapter": 3,
     "page": 68,
     "action": "remove reference-only footnote",
     "original": "5. [KP78], p."

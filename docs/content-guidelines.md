@@ -33,3 +33,7 @@ Existing progress in changed Chapter 1 decks resets because the runtime fingerpr
 ## Chapter 2 pilot
 
 Edit scripts/chapter-two-flow.py for Chapter 2 semantic boundaries. Use a 150-word prose review budget excluding fenced code: code has its own reading length and must remain intact. This pilot preserves complete listings, their labels and the paragraphs explaining them; it does not turn them into runnable demos. The generated docs/chapter-two-slide-map.json verifies ordered coverage of cleaned teaching prose and code. The Minesweeper and context sequences, plus source subheadings under Avoid Encodings, are nested. Standalone comparison connectors are made explicit as “Compare with:” rather than displaying “to” above a new example. The [N5] cross-reference remains attached to its sentence.
+
+## Chapter 3 pilot
+
+Edit scripts/chapter-three-flow.py for Chapter 3 boundaries. Preserve qualifications alongside the author’s recommendations about function size, arguments and error handling; do not turn them into universal modern JavaScript mandates. Code listings remain in order with explicit continuation numbering and up to 40 lines per fenced block. Their complete text is verified separately from fence boundaries. Source subheadings under function arguments, side effects and error handling appear as nested lessons. An interrupted sentence around Listing 3-5 is rejoined before the listing so it reads continuously.

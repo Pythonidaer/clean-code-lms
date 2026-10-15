@@ -19,7 +19,7 @@ for(const chapter of cleaned.filter(c=>c.status!=='deferred')){
   const unit=wanted[i],entry=actual[i],node=(function find(ns){for(const n of ns){if(n.id===entry.lessonId)return n;if(n.children){const found=find(n.children);if(found)return found;}}})(model.sections),ds=node.type==='section'?context.api.flatten(node.children):[node],d={slides:ds.flatMap(n=>n.slides||[])};assert.equal(entry.unitTitle,unit.title);
   const body=d.slides.map(s=>s.body).join('\n\n');
   for(const b of unit.blocks){
-   if(b.kind==='heading')assert.ok([1,2].includes(chapter.number)?ds.some(n=>n.title===b.title):d.slides.some(s=>s.title.startsWith(b.title)),'Subheading '+b.title);
+   if(b.kind==='heading')assert.ok([1,2,3].includes(chapter.number)?ds.some(n=>n.title===b.title):d.slides.some(s=>s.title.startsWith(b.title)),'Subheading '+b.title);
    if(b.kind==='prose')assert.ok(normalize(body).includes(normalize(b.body)),'Clean teaching prose '+entry.lessonId);
    if(b.kind==='listing')assert.ok(d.slides.some(s=>s.title.startsWith(b.body.replace(/^\*\*|\*\*$/g,''))||s.body.includes(b.body)),'Listing label '+b.body);
    if(b.kind==='code')for(const line of b.body.split('\n').slice(1,-1).filter(l=>l.trim()))assert.ok(body.includes(line),'Code line '+entry.lessonId);
@@ -64,4 +64,13 @@ for(const unit of cleaned[1].units){
  const expected=unit.blocks.filter(b=>b.kind!=='heading'&&b.kind!=='listing').map(b=>b.body.replace('../../assets/','assets/')).join('\n\n');
  const actualWithoutLabels=actual.replace(/\*\*Listing 2-[12][^\n]*\*\*/g,'');
  assert.equal(normalize(actualWithoutLabels),normalize(expected),'Ordered Chapter 2 source coverage '+unit.title);
+}
+
+const thirdMap=JSON.parse(read('docs/chapter-three-slide-map.json'));
+const withoutFences=s=>s.replace(/^```[^\n]*\n?/gm,'');
+for(const unit of cleaned[2].units.filter(u=>u.title!=='Bibliography')){
+ const mapping=thirdMap.find(m=>m.sourceUnit===unit.title);assert.ok(mapping);
+ const actual=mapping.slides.map(m=>{const slide=slides.find(s=>s.id===m.slideId);assert.ok(slide);assert.equal(slide.title,m.title);assert.ok(m.proseWordCount<=150,'Chapter 3 prose budget '+m.slideId);for(const match of slide.body.matchAll(/```[^\n]*\n([\s\S]*?)\n```/g))assert.ok(match[1].split('\n').length<=40,'Chapter 3 code budget '+m.slideId);return slide.body;}).join('\n\n');
+ const expected=unit.blocks.filter(b=>b.kind!=='heading').map(b=>b.body.replace('../../assets/','assets/')).join('\n\n');
+ assert.equal(normalize(withoutFences(actual)),normalize(withoutFences(expected)),'Ordered Chapter 3 text and code '+unit.title);
 }

@@ -24,7 +24,19 @@ def join_fragments(text):
     return re.sub(r'(?<=[\w®`,;])\n\n(?=[a-z])',' ',text)
 
 def clean_unit(unit,ch,audit=None):
-    result=copy.deepcopy(unit);out=[];notes=[];numbers=set()
+    result=copy.deepcopy(unit)
+    if ch==3 and unit['title']=='Switch Statements':
+        unit=copy.deepcopy(unit)
+        for i,b in enumerate(unit['blocks']):
+            if b['kind']=='prose' and b['body'].endswith('an inheritance'):
+                for j in range(i+1,len(unit['blocks'])):
+                    tail=unit['blocks'][j]
+                    if tail['kind']=='prose' and tail['body'].startswith('relationship so that'):
+                        b['body']+=' '+tail['body'];unit['blocks'].pop(j)
+                        if audit is not None:audit.append(dict(chapter=ch,page=b['page'],action='rejoin sentence interrupted by listing',original='an inheritance / Listing 3-5 / relationship'))
+                        break
+                break
+    out=[];notes=[];numbers=set()
     for b in unit['blocks']:
         if is_note(ch,b):
             for part in note_parts(b['body']):

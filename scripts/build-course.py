@@ -7,10 +7,11 @@ source=json.loads((ROOT/'docs/chapter-units.json').read_text())
 study=runpy.run_path(str(ROOT/'scripts/study-material.py'))
 material=study['CHAPTERS'];final=study['FINAL']
 prior=json.loads((ROOT/'course.json').read_text())
-sections=[];coverage=[];chapter_one_mapping=[];chapter_two_mapping=[]
+sections=[];coverage=[];chapter_one_mapping=[];chapter_two_mapping=[];chapter_three_mapping=[]
 cleaner=runpy.run_path(str(ROOT/"scripts/clean-source.py"));cleanup_audit=[]
 flow=runpy.run_path(str(ROOT/"scripts/chapter-one-flow.py"))
 flow_two=runpy.run_path(str(ROOT/"scripts/chapter-two-flow.py"))
+flow_three=runpy.run_path(str(ROOT/"scripts/chapter-three-flow.py"))
 def leaf_decks(nodes):
     for node in nodes:
         if node["type"]=="section":yield from leaf_decks(node["children"])
@@ -122,6 +123,11 @@ for number in [*range(1,13),14,17,13]:
             children.append(node)
             chapter_two_mapping.append(dict(sourceUnit=unit['title'],sourcePath=chapter['sourcePath'],sourcePages=unit['sourcePages'],slides=mapping))
             pairs=[s for d in leaf_decks([node]) for s in d.get('slides',[])]
+        elif number==3:
+            node,mapping=flow_three['build_unit'](teaching_unit,id,deck)
+            children.append(node)
+            chapter_three_mapping.append(dict(sourceUnit=unit['title'],sourcePath=chapter['sourcePath'],sourcePages=unit['sourcePages'],slides=mapping))
+            pairs=[s for d in leaf_decks([node]) for s in d.get('slides',[])]
         else:children.append(deck(id,unit['title'],pairs,optional))
         coverage.append(dict(chapter=number,lessonId=id,sourcePath=chapter['sourcePath'],unitTitle=unit['title'],sourcePages=unit['sourcePages'],sourceBlocksSha256=hashlib.sha256(json.dumps(unit['blocks'],sort_keys=True,ensure_ascii=False).encode()).hexdigest(),slides=len(pairs)))
     children.append(deck(prefix+'-practice','Apply the chapter',[('Practice',guide['practice']),('Worked self-check',guide['check'])],optional))
@@ -143,6 +149,7 @@ manifest=json.loads((ROOT/'source-manifest.json').read_text());manifest['curricu
 (ROOT/'docs/source-cleanup-audit.json').write_text(json.dumps(cleanup_audit,ensure_ascii=False,indent=2)+'\n')
 (ROOT/'docs/chapter-one-slide-map.json').write_text(json.dumps(chapter_one_mapping,ensure_ascii=False,indent=2)+'\n')
 (ROOT/'docs/chapter-two-slide-map.json').write_text(json.dumps(chapter_two_mapping,ensure_ascii=False,indent=2)+'\n')
+(ROOT/'docs/chapter-three-slide-map.json').write_text(json.dumps(chapter_three_mapping,ensure_ascii=False,indent=2)+'\n')
 leaves=list(leaf_decks(sections))
 stats=dict(chapterSections=sum(s['id'].startswith('ch') for s in sections),sourceSubsectionDecks=len(coverage),decks=sum(n['type']=='slides' for n in leaves),slides=sum(len(n.get('slides',[])) for n in leaves),chapterQuizzes=sum(n['type']=='quiz' for n in leaves),chapterQuestions=sum(len(n.get('questions',[])) for n in leaves),finalQuestions=len(final))
 (ROOT/'docs/course-stats.json').write_text(json.dumps(stats,indent=2)+'\n')
