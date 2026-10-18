@@ -82,3 +82,7 @@ for(const chapter of cleaned.filter(c=>c.number>3&&c.status!=='deferred'))for(co
  const expected=unit.blocks.filter(b=>b.kind!=='heading').map(b=>b.body.replace('../../assets/','assets/')).join('\n\n');
  assert.equal(normalize(withoutFences(actual)),normalize(withoutFences(expected)),'Ordered remaining source '+chapter.number+' '+unit.title);
 }
+
+const chapterTwoResource=decks.find(d=>d.id==='resource-ch02-notes');assert.ok(chapterTwoResource?.optional);
+assert.deepEqual(resource.children.map(n=>n.id),['resource-ch01-notes','resource-ch02-notes']);
+for(const title of ['Names should remove guessing','Consistency should follow meaning','Draft rules for future reviews and skills','Questions to explore','Ideas to revisit'])assert.ok(chapterTwoResource.slides.some(s=>s.title===title));
