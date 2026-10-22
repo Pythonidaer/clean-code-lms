@@ -9107,6 +9107,54 @@
               "body": "- Grow a focused CS glossary from terms I actually encounter: collections, status, indexes, predicates, queues, maps, algorithms, and design patterns. Add accessors and mutators, and explore the Visitor pattern when relevant.\n- Build a shared vocabulary with examples and genuine distinctions rather than a list of preferred synonyms.\n- Turn the draft rules into a review sequence: identify the concept, choose a name, check what readers could infer incorrectly, then verify the change.\n- Combine overlapping rules with Chapter 1 later, preserving each rule’s reason and when it applies."
             }
           ]
+        },
+        {
+          "id": "resource-ch03-notes",
+          "type": "slides",
+          "title": "Chapter 3 — My clean-code notes",
+          "optional": true,
+          "slides": [
+            {
+              "id": "resource-ch03-notes-s1",
+              "title": "Functions should make their purpose clear",
+              "body": "A function should make its purpose easy to understand. Its name tells me what it does, and its steps should deliver on that promise without mixing the overall task with low-level details. Small, focused functions help, but the goal is readability rather than a particular line count. Extracting a helper is useful when it gives a meaningful idea a name and makes the surrounding code easier to follow."
+            },
+            {
+              "id": "resource-ch03-notes-s2",
+              "title": "Clear inputs, effects, and revisions",
+              "body": "I should understand what goes into a function, what comes back, and what changes. Unclear argument roles, hidden side effects, and unexpected ordering requirements create extra work. Clear functions usually emerge through revision: write a working draft, then improve names, separate responsibilities, and remove meaningful duplication while checking that behavior stays correct. Together, the functions should explain how the system works."
+            },
+            {
+              "id": "resource-ch03-notes-s3",
+              "title": "Draft rules — purpose and structure",
+              "body": "1. Give each function one coherent purpose. Its name and steps should describe the same task.\n2. Keep functions small enough to understand. Use length and nesting as signals to investigate, rather than enforcing arbitrary limits.\n3. Keep each function at a consistent level of detail. Let higher-level steps call helpers that explain the implementation.\n4. Extract meaningful concepts. A helper should improve understanding rather than merely move lines elsewhere.\n5. Use descriptive, consistent names. Make actions and argument roles predictable across related functions."
+            },
+            {
+              "id": "resource-ch03-notes-s4",
+              "title": "Draft rules — inputs and effects",
+              "body": "6. Keep inputs understandable. Reduce unnecessary arguments and group values when they represent a real concept. Avoid hiding dependencies just to reduce the count.\n7. Review flags that select different operations. Separate clearly different actions when that makes the interface easier to understand.\n8. Make effects and ordering visible. Callers should understand what changes and whether another operation must happen first.\n9. Keep questions free of surprising changes. Distinguish reading information from changing state; make intentional combinations explicit."
+            },
+            {
+              "id": "resource-ch03-notes-s5",
+              "title": "Draft rules — failures and refinement",
+              "body": "10. Keep failure handling clear. Follow the language and project's error-handling conventions, and preserve useful failure information.\n11. Consolidate repeated knowledge. Share logic that must change together without forcing unrelated cases into one abstraction.\n12. Refine with behavior checks. Improve structure incrementally, using appropriate tests to protect the behavior being changed.\n\nThese are review heuristics. The chapter's Java examples do not make inheritance, factories, exceptions, zero arguments, or a single return mandatory in JavaScript or TypeScript. Choose structures that make responsibilities and behavior clear."
+            },
+            {
+              "id": "resource-ch03-notes-s6",
+              "title": "Questions — abstraction and design",
+              "body": "**Abstraction levels and the Stepdown Rule:** How do I distinguish the overall task, its major steps, and implementation details? Practice rewriting a function as “To accomplish this, do these steps.”\n\n**Polymorphism, SRP, and OCP:** What do they mean, and when would they improve a growing or repeated switch? Compare Java examples with TypeScript alternatives.\n\n**Temporal coupling:** When must operations happen in a particular order, and how can the interface make that requirement explicit?"
+            },
+            {
+              "id": "resource-ch03-notes-s7",
+              "title": "Questions — applying this to my stack",
+              "body": "How do exceptions compare with returned results in JavaScript and TypeScript? When is input mutation intentional, and how should it be communicated? How does command–query separation apply when an action returns a useful result?\n\nHow do I judge argument counts, function length, and multiple returns by clarity rather than treating them as automatic restrictions?"
+            },
+            {
+              "id": "resource-ch03-notes-s8",
+              "title": "Ideas to revisit",
+              "body": "- Compare one function before and after refinement: purpose, abstraction levels, names, inputs, effects, failure handling, and duplication.\n- Practice tracing a top-down sequence from the main task into its implementation helpers.\n- Combine overlapping rules with Chapters 1 and 2 later, preserving each rule's reason and limits before turning them into a shared review workflow or skill."
+            }
+          ]
         }
       ]
     }

@@ -141,7 +141,7 @@ for number in [*range(1,13),14,17,13]:
     sections.append(dict(id=prefix,type='section',title=title,children=children))
 
 resource_decks=[]
-for chapter in [1,2]:
+for chapter in [1,2,3]:
     resource_text=(ROOT/f'docs/resources/chapter-{chapter}-notes.md').read_text()
     resource_parts=re.split(r'^## ',resource_text,flags=re.M)[1:]
     resource_slides=[tuple(part.split('\n',1)) for part in resource_parts]
