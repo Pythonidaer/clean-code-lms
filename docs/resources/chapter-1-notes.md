@@ -1,4 +1,4 @@
-# Chapter 1 — My clean-code notes
+# Chapter 1 — Clean Code
 
 ## What clean code should communicate
 

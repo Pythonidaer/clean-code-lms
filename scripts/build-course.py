@@ -141,11 +141,19 @@ for number in [*range(1,13),14,17,13]:
     sections.append(dict(id=prefix,type='section',title=title,children=children))
 
 resource_decks=[]
-for chapter in [1,2,3]:
-    resource_text=(ROOT/f'docs/resources/chapter-{chapter}-notes.md').read_text()
-    resource_parts=re.split(r'^## ',resource_text,flags=re.M)[1:]
+resource_sources={
+    1:'chapter-1-notes.md',
+    2:'chapter-2-notes.md',
+    3:'chapter-3-notes.md',
+    4:'chapter-4-comments-rules.md',
+}
+for chapter,filename in resource_sources.items():
+    resource_text=(ROOT/'docs/resources'/filename).read_text()
+    preamble,*resource_parts=re.split(r'^## ',resource_text,flags=re.M)
     resource_slides=[tuple(part.split('\n',1)) for part in resource_parts]
-    resource_decks.append(deck(f'resource-ch{chapter:02}-notes',f'Chapter {chapter} — My clean-code notes',[(t,b.strip()) for t,b in resource_slides],True))
+    introduction=re.sub(r'^# .+\n+','',preamble).strip()
+    if introduction:resource_slides.insert(0,('Chapter summary',introduction))
+    resource_decks.append(deck(f'resource-ch{chapter:02}-notes',f'Chapter {chapter} — {chapters[chapter]["title"]}',[(t,b.strip()) for t,b in resource_slides],True))
 sections.append(dict(id='study-resources',type='section',title='Resources',optional=True,children=resource_decks))
 
 course=dict(schemaVersion=1,id='clean-code-core-chapters-v2',title='Clean Code',description='Learn code-quality decisions through the book’s chapters and subsections. Core: Chapters 1–12, 14 and 17. Advanced optional: Chapter 13. Practice and assessments focus on programming concepts.',sections=sections,finalQuiz=dict(id='clean-code-core-final',type='quiz',title='Final assessment',skill='Core code-quality judgment',questions=questions('final',final)),settings=prior['settings'])

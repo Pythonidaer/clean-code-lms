@@ -1,4 +1,4 @@
-# Chapter 3 — My clean-code notes
+# Chapter 3 — Functions
 
 ## Functions should make their purpose clear
 

@@ -9015,7 +9015,7 @@
         {
           "id": "resource-ch01-notes",
           "type": "slides",
-          "title": "Chapter 1 — My clean-code notes",
+          "title": "Chapter 1 — Clean Code",
           "optional": true,
           "slides": [
             {
@@ -9068,7 +9068,7 @@
         {
           "id": "resource-ch02-notes",
           "type": "slides",
-          "title": "Chapter 2 — My clean-code notes",
+          "title": "Chapter 2 — Meaningful Names",
           "optional": true,
           "slides": [
             {
@@ -9111,7 +9111,7 @@
         {
           "id": "resource-ch03-notes",
           "type": "slides",
-          "title": "Chapter 3 — My clean-code notes",
+          "title": "Chapter 3 — Functions",
           "optional": true,
           "slides": [
             {
@@ -9153,6 +9153,49 @@
               "id": "resource-ch03-notes-s8",
               "title": "Ideas to revisit",
               "body": "- Compare one function before and after refinement: purpose, abstraction levels, names, inputs, effects, failure handling, and duplication.\n- Practice tracing a top-down sequence from the main task into its implementation helpers.\n- Combine overlapping rules with Chapters 1 and 2 later, preserving each rule's reason and limits before turning them into a shared review workflow or skill."
+            }
+          ]
+        },
+        {
+          "id": "resource-ch04-notes",
+          "type": "slides",
+          "title": "Chapter 4 — Comments",
+          "optional": true,
+          "slides": [
+            {
+              "id": "resource-ch04-notes-s1",
+              "title": "Chapter summary",
+              "body": "Start by making the code clear. Keep comments that explain reasoning, constraints, or consequences the reader would otherwise miss, and check them when the code changes."
+            },
+            {
+              "id": "resource-ch04-notes-s2",
+              "title": "CC4-1 — Express intent in code first",
+              "body": "Improve the name, helper, or structure when it can communicate the same idea.\n\nWhy: Readers can follow the code directly and have one fewer explanation to keep in sync.\n\nCheck: Read the code without the comment. If a clearer name or structure tells the same story, improve the code and remove the redundant comment."
+            },
+            {
+              "id": "resource-ch04-notes-s3",
+              "title": "CC4-2 — Explain what the reader would otherwise miss",
+              "body": "Use comments for rationale, external constraints, warnings, or surprising consequences. Clarify obscure library behavior when you cannot make the call itself clearer.\n\nWhy: The implementation may show what happens without revealing why it must happen that way.\n\nCheck: Name the fact the comment adds and verify it. For example, explain why retries reuse the request ID instead of simply labeling the retry."
+            },
+            {
+              "id": "resource-ch04-notes-s4",
+              "title": "CC4-3 — Keep comments close, specific, and accurate",
+              "body": "Place comments near the code they describe and review them when behavior changes. Put systemwide guidance in shared documentation.\n\nWhy: A vague or stale comment can send the next reader in the wrong direction.\n\nCheck: Identify exactly what code the comment applies to. Check its claims against the implementation, relevant tests, or the source of an external constraint."
+            },
+            {
+              "id": "resource-ch04-notes-s5",
+              "title": "CC4-4 — Document what callers need",
+              "body": "Describe public API expectations, effects, and failure behavior where they matter. Preserve required legal notices and follow repository documentation conventions.\n\nWhy: Callers need to understand the contract before using an operation.\n\nCheck: Check what someone can learn from the signature and what they still need to know. Add missing contract details; avoid boilerplate that repeats the signature."
+            },
+            {
+              "id": "resource-ch04-notes-s6",
+              "title": "CC4-5 — Make TODOs actionable",
+              "body": "Say what work remains and, when useful, why it is deferred. Link to a tracked issue when one exists.\n\nWhy: A useful TODO gives the next reader a task they can recognize and act on.\n\nCheck: Can another developer tell what needs to change? Review stale TODOs and remove them when the work is complete or no longer relevant."
+            },
+            {
+              "id": "resource-ch04-notes-s7",
+              "title": "CC4-6 — Remove comments that add maintenance without meaning",
+              "body": "Fix or remove stale and misleading explanations. Remove redundant headers, change journals, informal bylines, and dead commented-out code. Keep section markers when they materially help navigation.\n\nWhy: Noise makes useful comments easier to overlook. Version control already records ordinary change history and deleted code.\n\nCheck: Name what a reader would lose if the comment disappeared. Preserve required notices, tool directives, and intentional documentation."
             }
           ]
         }

@@ -65,7 +65,7 @@ Resources now includes Chapter 2 notes alongside Chapter 1: two concise summary 
 
 ## Chapter 3 notes
 
-Resources includes Chapter 3 alongside Chapters 1 and 2, directly before Final assessment. Two short summary paragraphs cover function purpose and readable inputs/effects. Twelve draft review rules are split across three slides, followed by grouped questions and ideas. These optional notes preserve language-specific qualifications and do not change chapter lessons or assessments. Edit docs/resources/chapter-3-notes.md and rebuild to update them.
+Resources includes Chapters 1–4 directly before Final assessment, labeled with their chapter names: Clean Code, Meaningful Names, Functions and Comments. The optional Chapter 4 resource is built from docs/resources/chapter-4-comments-rules.md and does not change chapter lessons or assessments.
 
 ## Chapter rules
 

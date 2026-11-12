@@ -1,4 +1,4 @@
-# Chapter 2 — My clean-code notes
+# Chapter 2 — Meaningful Names
 
 ## Names should remove guessing
 

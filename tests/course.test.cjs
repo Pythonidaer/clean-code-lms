@@ -84,8 +84,11 @@ for(const chapter of cleaned.filter(c=>c.number>3&&c.status!=='deferred'))for(co
 }
 
 const chapterTwoResource=decks.find(d=>d.id==='resource-ch02-notes');assert.ok(chapterTwoResource?.optional);
-assert.deepEqual(resource.children.map(n=>n.id),['resource-ch01-notes','resource-ch02-notes','resource-ch03-notes']);
+assert.deepEqual(resource.children.map(n=>n.id),['resource-ch01-notes','resource-ch02-notes','resource-ch03-notes','resource-ch04-notes']);
+assert.deepEqual(resource.children.map(n=>n.title),['Chapter 1 — Clean Code','Chapter 2 — Meaningful Names','Chapter 3 — Functions','Chapter 4 — Comments']);
 for(const title of ['Names should remove guessing','Consistency should follow meaning','Draft rules for future reviews and skills','Questions to explore','Ideas to revisit'])assert.ok(chapterTwoResource.slides.some(s=>s.title===title));
 
 const chapterThreeResource=decks.find(d=>d.id==='resource-ch03-notes');assert.ok(chapterThreeResource?.optional);
 for(const title of ['Functions should make their purpose clear','Clear inputs, effects, and revisions','Draft rules — purpose and structure','Draft rules — inputs and effects','Draft rules — failures and refinement','Questions — abstraction and design','Questions — applying this to my stack','Ideas to revisit'])assert.ok(chapterThreeResource.slides.some(s=>s.title===title));
+const chapterFourResource=decks.find(d=>d.id==='resource-ch04-notes');assert.ok(chapterFourResource?.optional);
+for(const title of ['Chapter summary','CC4-1 — Express intent in code first','CC4-2 — Explain what the reader would otherwise miss','CC4-3 — Keep comments close, specific, and accurate','CC4-4 — Document what callers need','CC4-5 — Make TODOs actionable','CC4-6 — Remove comments that add maintenance without meaning'])assert.ok(chapterFourResource.slides.some(s=>s.title===title));
